@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "synonyme"
+version = "0.1.0"
+description = ""
+authors = ["Clément Brutti-Mairesse <clement.brutti.mairesse@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.10"
+gensim = "^3.8.3"
+statsmodels = "^0.12.1"
+rouge = "^1.0.1"
+nltk = "^3.6.5"
+sacrebleu = "^2.0.0"
+
+[tool.poetry.dev-dependencies]
+pylint = "*"
+pytest = "*"
+mypy = "*"
+jupyter = "*"
+notebook = "*"
+ipykernel = "*"
+black = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
+coverage = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
