@@ -17,13 +17,14 @@ include = [
 python = ">=3.8,<3.12"
 dstb = { git = "https://ClementBM@github.com/ClementBM/datascience-toolbox", branch = "main" }
 python-docx = "^0.8.11"
-pypdf2 = "^3.0.1"
 pypdf = "^3.4.1"
 validator-collection = "^1.5.0"
 python-dotenv = "^0.21.1"
-fasttext-wheel = "^0.9.2"
 pip = "^23.0"
 rake-nltk = "^1.0.6"
+gcld3 = "^3.0.13"
+pytesseract = "^0.3.10"
+pdf2image = "^1.16.2"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"

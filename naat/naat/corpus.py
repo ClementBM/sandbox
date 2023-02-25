@@ -6,7 +6,7 @@ from nltk.corpus.reader.util import StreamBackedCorpusView, ZipFilePathPointer, 
 from naat.tokenizers import DocxTokenizer
 from dstb.language.corpus import CorpusReaderBase
 
-from naat.data import ROOT_PATH
+from naat.data import CORPUS_PATH
 
 
 class DocxCorpusReader(CorpusReaderBase):
@@ -14,7 +14,7 @@ class DocxCorpusReader(CorpusReaderBase):
     _summaries = None
 
     def __init__(self, word_tokenizer=DocxTokenizer(), encoding="utf8"):
-        CorpusReader.__init__(self, str(ROOT_PATH), r".*\.txt", encoding)
+        CorpusReader.__init__(self, str(CORPUS_PATH), r".*\.txt", encoding)
 
         for path in self.abspaths(self._fileids):
             if isinstance(path, ZipFilePathPointer):
