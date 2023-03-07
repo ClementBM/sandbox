@@ -92,17 +92,20 @@ def list_subfolders(startpath, target_level=1):
     return subfolders
 
 
-def list_files(startpath, extension="*"):
+def list_files(startpath, verbose=False, extension="*"):
     indent_count = 4
     for root, dirs, files in os.walk(startpath):
         level = root.replace(startpath, "").count(os.sep)
         indent = " " * indent_count * (level)
-        print("{}{}/".format(indent, os.path.basename(root)))
+        if verbose:
+            print("{}{}/".format(indent, os.path.basename(root)))
         subindent = " " * indent_count * (level + 1)
         for file in files:
             filename, file_extension = os.path.splitext(file)
             if extension in ["*", file_extension]:
-                print(f"{subindent}{file}")
+                yield Path(root) / file
+                if verbose:
+                    print(f"{subindent}{file}")
 
 
 def get_file_extensions(startpath):
@@ -165,17 +168,20 @@ def detect_language(text):
         yield result.language
 
 
-def get_file_languages(startpath):
+def get_file_languages(file_path):
+    with open(file_path) as file:
+        lines = file.readlines()
+        languages = sorted(list(detect_language("".join(lines))))
+
+    return "-".join(languages)
+
+
+def get_files_languages(startpath):
     file_languages = dict()
     for root, dirs, files in os.walk(startpath):
         for file in files:
             file_abs_path = Path(root) / file
-            with open(file_abs_path) as f:
-                lines = f.readlines()
-                languages = sorted(list(detect_language("".join(lines))))
-
-            languages = "-".join(languages)
-
+            languages = get_file_languages(file_abs_path)
             if languages in file_languages:
                 file_languages[languages] += 1
             else:
