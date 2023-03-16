@@ -1,4 +1,4 @@
-from naat.corpus import DocxCorpusReader
+from naat_core.corpus import DocxCorpusReader
 from nltk.text import Text
 
 

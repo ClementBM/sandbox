@@ -1,5 +1,5 @@
-from tests.data import DOC_PESTICIDES_PATH, DOC_PROTECTION_PATH
-from naat.data import preprocess_doc_file
+from naat_data import DOC_PESTICIDES_PATH, DOC_PROTECTION_PATH
+from naat_core.data import preprocess_doc_file
 
 
 def test_doc_preprocessing_1():

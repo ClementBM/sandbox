@@ -1,5 +1,5 @@
-from tests.data import PDF_PACIFIC_PATH, PDF_JONAH_PATH
-from naat.data import preprocess_pdf_file
+from naat_data import PDF_PACIFIC_PATH, PDF_JONAH_PATH
+from naat_core.data import preprocess_pdf_file
 import re
 
 

@@ -1,5 +1,5 @@
 from docx import Document
-from tests.data import DOCX_DEJUSTICIA_PATH
+from naat_data import DOCX_DEJUSTICIA_PATH
 import html
 
 # https://python-docx.readthedocs.io/en/latest/user/quickstart.html
