@@ -1,0 +1,26 @@
+{
+    "timeZone": "Europe/Paris",
+    "exceptionLogging": "STACKDRIVER",
+    "runtimeVersion": "V8",
+    "dependencies": {
+      "enabledAdvancedServices": [
+        {
+          "userSymbol": "Drive",
+          "serviceId": "drive",
+          "version": "v2"
+        }
+      ]
+    },
+    "oauthScopes": [ 
+      "https://www.googleapis.com/auth/script.container.ui"
+    ],
+    "addOns": {
+      "common": {
+        "name": "DriveLabelName",
+        "logoUrl": "https://www.gstatic.com/images/icons/material/system/1x/pets_black_48dp.png",
+        "homepageTrigger": {
+          "runFunction": "test"
+        }
+      }
+    }
+  }
