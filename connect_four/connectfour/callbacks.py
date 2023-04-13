@@ -21,12 +21,13 @@ def create_self_play_callback(win_rate_thr, opponent_policies, opponent_count=10
             self.policy_to_remove = None
             self.win_rate_threshold = win_rate_thr
             self.frozen_policies = {
-                # "always_same": AlwaysSameHeuristic,
-                # "linear": LinearHeuristic,
-                # "beat_last": BeatLastHeuristic,
-                # "random": RandomHeuristic,
-                "smart": SmartHeuristic
+                "always_same": AlwaysSameHeuristic,
+                "linear": LinearHeuristic,
+                "beat_last": BeatLastHeuristic,
+                "random": RandomHeuristic,
+                "smart": SmartHeuristic,
             }
+            self.static_policies = ["always_same", "linear", "smart"]
 
         def on_train_result(self, *, algorithm, result, **kwargs):
             """Called at the end of Algorithm.train().
@@ -56,7 +57,7 @@ def create_self_play_callback(win_rate_thr, opponent_policies, opponent_count=10
                 new_pol_id = None
                 while new_pol_id is None:
                     if np.random.choice(range(3)) == 0:
-                        new_pol_id = np.random.choice(list(self.frozen_policies.keys()))
+                        new_pol_id = np.random.choice(self.static_policies)
                     else:
                         self.current_opponent += 1
                         new_pol_id = f"learned_v{self.current_opponent}"
@@ -79,7 +80,7 @@ def create_self_play_callback(win_rate_thr, opponent_policies, opponent_count=10
                     f"Iter={algorithm.iteration} Adding new opponent to the mix ({new_pol_id}). League size {len(self.opponent_policies) + 1}"
                 )
 
-                if new_pol_id in list(self.frozen_policies.keys()):
+                if new_pol_id in self.static_policies:
                     new_policy = algorithm.add_policy(
                         policy_id=new_pol_id,
                         policy_cls=self.frozen_policies[new_pol_id],

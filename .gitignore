@@ -138,3 +138,5 @@ checkpoint/
 images/
 
 prometheus/
+
+connect_four/models
