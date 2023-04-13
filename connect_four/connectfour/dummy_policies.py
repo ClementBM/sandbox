@@ -209,7 +209,6 @@ class SmartHeuristic(HeuristicBase):
         legal_choices = np.arange(len(legal_action))[legal_action == 1]
 
         my_grid = np.array(observation[:, :, 0] + observation[:, :, 1] * 2, dtype=int)
-        print(my_grid)
 
         mark_1 = np.sum(my_grid == 1)
         mark_2 = np.sum(my_grid == 2)
@@ -225,12 +224,14 @@ class SmartHeuristic(HeuristicBase):
         if np.all(scores == 0):
             return np.random.choice(legal_choices)
 
-        desired_action = np.random.choice(
-            list(range(self.column_count)), p=scores / sum(scores)
-        )
+        desired_action = [
+            index for index, item in enumerate(scores) if item == max(scores)
+        ]
 
-        if desired_action.size > 1:
+        if len(desired_action) > 1:
             desired_action = np.random.choice(desired_action)
+        else:
+            desired_action = desired_action[0]
 
         if desired_action in legal_choices:
             return desired_action

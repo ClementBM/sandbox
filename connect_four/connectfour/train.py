@@ -19,7 +19,9 @@ from connectfour.dummy_policies import (
     SmartHeuristic,
 )
 from connectfour.models import Connect4MaskModel
+from connectfour.conv_models import Connect4MaskConvModel
 from connectfour.wrappers import Connect4Env
+from ray.rllib.models import ModelCatalog
 
 torch, nn = try_import_torch()
 
@@ -27,8 +29,8 @@ torch, nn = try_import_torch()
 def get_cli_args():
     """
     Create CLI parser and return parsed arguments
-    python connectfour/train.py --win-rate-threshold 0.96 --stop-iters 10 > training.log 2>&1
-    python connectfour/train.py --num-cpus 5 --num-gpus 1 --win-rate-threshold 0.95 --stop-iters 500 > training.log 2>&1
+    python connectfour/train.py --win-rate-threshold 0.4 --stop-iters 10 > training.log 2>&1
+    python connectfour/train.py --num-cpus 5 --num-gpus 1 --win-rate-threshold 0.95 --stop-iters 10000 --stop-timesteps 1000000000 > training.log 2>&1
     python connectfour/train.py --num-cpus 5 --num-gpus 1 --win-rate-threshold 0.95 --stop-iters 15000 --from-checkpoint ~/ray_results/PPO/PPO_connect4_a999d_00000_0_2023-04-07_10-53-27/checkpoint_000500 > training.log 2>&1
     """
     parser = argparse.ArgumentParser()
@@ -95,8 +97,11 @@ if __name__ == "__main__":
         if episode.episode_id % 2 == int(agent_id[-1:]):
             return "learned"
         else:
-            # return random.choice(["always_same", "beat_last", "random", "linear"])
-            return "smart"
+            return random.choice(
+                ["smart", "always_same", "beat_last", "random", "linear"]
+            )
+
+    ModelCatalog.register_custom_model("connect4conv", Connect4MaskConvModel)
 
     config = (
         (
@@ -105,15 +110,10 @@ if __name__ == "__main__":
             .framework("torch")
             .training(
                 model={
-                    "custom_model": Connect4MaskModel,
-                    "conv_filters": [
-                        [2, [4, 4], 1],
-                        [2, [3, 3], 1],
-                        [2, [4, 1], 1],
-                        [2, [1, 4], 1],
-                    ],  # [Channel, [Kernel, Kernel], Stride]]
-                    # "fcnet_hiddens": [512, 512]
-                    # "num_sgd_iter": 20,
+                    "custom_model": "connect4conv",
+                    "post_fcnet_hiddens": [256, 256],
+                    "conv_filters": [[32, [4, 4], 1]],
+                    # Channel, [Kernel, Kernel], Stride]
                 }
             )
             .rollouts(
@@ -126,10 +126,10 @@ if __name__ == "__main__":
             policies={
                 "learned": PolicySpec(),
                 "smart": PolicySpec(policy_class=SmartHeuristic),
-                # "always_same": PolicySpec(policy_class=AlwaysSameHeuristic),
-                # "linear": PolicySpec(policy_class=LinearHeuristic),
-                # "beat_last": PolicySpec(policy_class=BeatLastHeuristic),
-                # "random": PolicySpec(policy_class=RandomHeuristic),
+                "always_same": PolicySpec(policy_class=AlwaysSameHeuristic),
+                "linear": PolicySpec(policy_class=LinearHeuristic),
+                "beat_last": PolicySpec(policy_class=BeatLastHeuristic),
+                "random": PolicySpec(policy_class=RandomHeuristic),
             },
             policy_mapping_fn=select_policy,
             policies_to_train=["learned"],
@@ -137,8 +137,13 @@ if __name__ == "__main__":
         .callbacks(
             create_self_play_callback(
                 win_rate_thr=args.win_rate_threshold,
-                # opponent_policies=["always_same", "beat_last", "random", "linear"],
-                opponent_policies=["smart"],
+                opponent_policies=[
+                    "smart",
+                    "always_same",
+                    "beat_last",
+                    "random",
+                    "linear",
+                ],
                 opponent_count=7,
             )
         )

@@ -1,10 +1,17 @@
 from ray.rllib.models.torch.fcnet import FullyConnectedNetwork
+from ray.rllib.models.torch.visionnet import VisionNetwork
 from ray.rllib.models.torch.torch_modelv2 import TorchModelV2
 from gymnasium.spaces import Dict
 from ray.rllib.utils.torch_utils import FLOAT_MIN
 from ray.rllib.utils.framework import try_import_torch
 from ray.rllib.algorithms.sac.sac_torch_model import SACTorchModel
 from ray.rllib.utils import override
+from ray.rllib.models.torch.misc import (
+    normc_initializer,
+    same_padding,
+    SlimConv2d,
+    SlimFC,
+)
 
 torch, nn = try_import_torch()
 
