@@ -15,6 +15,7 @@ include = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"
+pandas = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
