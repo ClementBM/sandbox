@@ -34,12 +34,9 @@ There are two essentials characteristics of how deep learning learns from data:
 
 Learning means finding a combination of model parameters that minimizes a loss function for a given set of training data samples and their correspondiong targets.
 
-
 Learning happens by drawing random batchs of data samples and their targets, and computing the gradient of the network parameters with respect to the loss on the batch. The network parameters are then moved a bit (the magnitude of the move is defined by the learning rate) in the opposite direction from the gradient.
 
-
 The entire learning process is made possible by the fact that neural networks are chains of differentiable tensor operations, and thus it's possible to apply the chain rule of derivation to find the gradient function mapping the current parameters and current batch of data to a gradient value.
-
 
 The loss is the quantity to minimize during training, so it should represent a measure of success for the task you're trying to solve.
 
