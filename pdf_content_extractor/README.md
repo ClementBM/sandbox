@@ -3,10 +3,10 @@
     - [python-docx](#python-docx)
     - [pypdf](#pypdf)
     - [pdfminer-six](#pdfminer-six)
-    - [pdf2docx](#pdf2docx)
     - [Apache Tika](#apache-tika)
-    - [pdfplumber](#pdfplumber)
     - [`soffice` linux package](#soffice-linux-package)
+    - [pdf2docx](#pdf2docx)
+    - [pdfplumber](#pdfplumber)
   - [Evaluation](#evaluation)
     - [pdf-text-extraction-benchmark](#pdf-text-extraction-benchmark)
     - [py-pdf benchmarks](#py-pdf-benchmarks)
@@ -34,11 +34,6 @@ pypdf is a free and open-source pure-python PDF library capable of splitting, me
 ### [pdfminer-six](https://github.com/pdfminer/pdfminer.six/blob/master/README.md)
 Pdfminer.six is a community maintained fork of the original PDFMiner. It is a tool for extracting information from PDF documents. It focuses on getting and analyzing text data. Pdfminer.six extracts the text from a page directly from the sourcecode of the PDF. It can also be used to get the exact location, font or color of the text.
 
-### [pdf2docx](https://github.com/dothinking/pdf2docx)
-* Extract data from PDF with PyMuPDF, e.g. text, images and drawings
-* Parse layout with rule, e.g. sections, paragraphs, images and tables
-* Generate docx with python-docx
-
 ### [Apache Tika](https://github.com/chrismattmann/tika-python)
 A Python port of the Apache Tika library that makes Tika available using the Tika REST Server.
 
@@ -46,12 +41,22 @@ This makes Apache Tika available as a Python library, installable via Setuptools
 
 To use this library, you need to have Java 7+ installed on your system as tika-python starts up the Tika REST server in the background.
 
+### `soffice` linux package
+### [pdf2docx](https://github.com/dothinking/pdf2docx)
+**Built on `PyMuPDF`**
+
+* Extract data from PDF with PyMuPDF, e.g. text, images and drawings
+* Parse layout with rule, e.g. sections, paragraphs, images and tables
+* Generate docx with python-docx
+
+
 ### [pdfplumber](https://github.com/jsvine/pdfplumber)
+**Built on `pdfminer.six`**
+
 Plumb a PDF for detailed information about each text character, rectangle, and line. Plus: Table extraction and visual debugging.
 
-Works best on machine-generated, rather than scanned, PDFs. Built on pdfminer.six.
+Works best on machine-generated, rather than scanned, PDFs. 
 
-### `soffice` linux package
 
 ## Evaluation
 
