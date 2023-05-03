@@ -1,6 +1,6 @@
 # https://python-poetry.org/docs/pyproject/
 [tool.poetry]
-name = "naat"
+name = "pdf-content-extraction"
 version = "0.1.0"
 description = "Sandbox"
 authors = ["Clément Brutti-Mairesse <clement.brutti.mairesse@gmail.com>"]
@@ -12,29 +12,18 @@ keywords = ["mykeyword", "mykeyword", "mykeyword"]
 include = [
     "LICENSE",
 ]
-packages = [
-    { include = "naat_core" },
-    { include = "naat_data" },
-]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"
-python-dotenv = "^0.21.1"
-pip = "^23.0"
-dstb = { git = "https://ClementBM@github.com/ClementBM/datascience-toolbox", branch = "main" }
+pandas = "^2.0.1"
 python-docx = "^0.8.11"
 pypdf = "^3.4.1"
-validator-collection = "^1.5.0"
 pdfminer-six = "^20221105"
 pdf2docx = "^0.5.6"
 tika = "^2.6.0"
-pytesseract = "^0.3.10"
-pdf2image = "^1.16.2"
-gcld3 = "^3.0.13"
-transformers = "^4.26.1"
-torch = "^1.13.1"
-google-api-python-client = "^2.80.0"
-rake-nltk = "^1.0.6"
+# pdf2image = "^1.16.2"
+# pytesseract = "^0.3.10"
+# validator-collection = "^1.5.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
