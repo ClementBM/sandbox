@@ -24,6 +24,7 @@ tika = "^2.6.0"
 pdf2image = "^1.16.2"
 pytesseract = "^0.3.10"
 # validator-collection = "^1.5.0"
+ebooklib = "^0.18"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
