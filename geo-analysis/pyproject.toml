@@ -1,0 +1,32 @@
+# https://python-poetry.org/docs/pyproject/
+[tool.poetry]
+name = "geo-analysis"
+version = "0.1.0"
+description = "Sandbox"
+authors = ["Clément Brutti-Mairesse <clement.brutti.mairesse@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/ClementBM/sandbox"
+repository = "https://github.com/ClementBM/sandbox"
+keywords = ["mykeyword", "mykeyword", "mykeyword"]
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+pandas = "^2.0.1"
+matplotlib = "^3.7.1"
+
+[tool.poetry.dev-dependencies]
+pylint = "*"
+pytest = "*"
+mypy = "*"
+jupyter = "*"
+notebook = "*"
+ipykernel = "*"
+black = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
