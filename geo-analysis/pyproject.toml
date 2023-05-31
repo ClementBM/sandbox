@@ -17,6 +17,9 @@ include = [
 python = ">=3.8,<3.12"
 pandas = "^2.0.1"
 matplotlib = "^3.7.1"
+geojson = "^3.0.1"
+scikit-learn = "^1.2.2"
+tqdm = "^4.65.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
