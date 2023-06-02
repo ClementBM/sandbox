@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "Emily Watson",
+    "contact": [
+      {"email": "watson@commerce.gov", "phone":  "650-333-3456"},
+      {"email": "emily@gmail.com", "phone":  "238-111-7689"}
+    ],
+    "gender": "Female",
+    "salary": 54000,
+    "address": {
+      "city": "Baltimore",
+      "state": "MD"
+    }
+  }, {
+  "id": 2,
+  "name": "John Smith",
+  "contact": [
+    {"email": "johnsmith@yahoo.com", "phone":  "425-231-8754"}
+  ],
+  "gender": "Male",
+  "salary": 67000,
+  "address": {
+    "city": "Barton",
+    "state": "TN"
+  }
+}, {
+  "id": 3,
+  "name": "Peter Jones",
+  "contact": [
+    {"email": "peter@radio.us"},
+    {"email": "peterjones@yahoo.com", "phone":  "425-213-0987"}
+  ],
+  "gender": "Male",
+  "salary": 45000.0,
+  "address": {
+    "city": "Salt Lake City",
+    "state": "UT"
+  }
+}, {
+  "id": 4,
+  "name": "Nina James",
+  "contact": [
+    {"email": "nina@hotmail.com", "phone":  "813-190-3628"},
+    {"email": "ninajames@hotmail.com", "phone":  "813-456-6509"}
+  ],
+  "gender": "Female",
+  "salary": 95500.0,
+  "address": {
+    "city": "Seattle",
+    "state": "WA"
+  }
+}
+]
