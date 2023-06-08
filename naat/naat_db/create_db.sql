@@ -267,7 +267,7 @@ CREATE SEQUENCE "AgentId_seq";
 CREATE TABLE Agent (
     AgentId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"AgentId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
+    AgentUrl VARCHAR(255) NOT NULL,
 
     AgentTypeId INT NULL,
 
@@ -651,25 +651,20 @@ ALTER TABLE LegalCaseAgent RENAME TO "nc_pghc___LegalCaseAgent";
 ALTER TABLE LegalCaseGround RENAME TO "nc_pghc___LegalCaseGround";
 
 
+
 -- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN Abstract DROP NOT NULL;
 -- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN LegalCaseStatusId DROP NOT NULL;
 -- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN JurisdictionId DROP NOT NULL;
 
+-- ALTER TABLE "nc_pghc__LegalCaseResource" DROP CONSTRAINT UX_LegalCaseResource_Code;
+-- ALTER TABLE "nc_pghc__LegalCaseResource" DROP CONSTRAINT UX_LegalCaseResource_Name;
 
+-- ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Code UNIQUE (Code, LegalCaseId);
+-- ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Name UNIQUE (Name, LegalCaseId);
 
--- TODO:
--- LegalCaseResource
-ALTER TABLE "nc_pghc__LegalCaseResource" DROP CONSTRAINT UX_LegalCaseResource_Code UNIQUE (col_name);
-ALTER TABLE "nc_pghc__LegalCaseResource" DROP CONSTRAINT UX_LegalCaseResource_Name UNIQUE (col_name);
-
-ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Code UNIQUE (Code, LegalCaseId)
-ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Name UNIQUE (Name, LegalCaseId)
-
-
--- TODO: ajouter les champs calculés sur les entités Many to Many
 
 -- TODO: entités éditables sur les vues non figées
-
 -- TODO: ne pas pouvoir ajouter des tables pour les utilisateurs éditeurs
 
--- TODO: Jurisdiction, add url
+-- TODO: ajout conseil de la partie demanderesse ?
+-- TODO: ajout dans AgentType: Cabinet Avocat ?
