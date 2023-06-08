@@ -216,6 +216,47 @@ EXECUTE FUNCTION "function_LegalCaseStatus_updated_at"();
 
 /*
 #############
+AgentType Table
+#############
+*/
+
+-- AUTO INCREMENT
+CREATE SEQUENCE "AgentTypeId_seq";
+
+CREATE TABLE AgentType (
+    AgentTypeId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"AgentTypeId_seq"'::regclass),
+    Name TEXT NOT NULL,
+    Code VARCHAR(255) NOT NULL,
+
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+
+    CONSTRAINT UX_AgentType_Code UNIQUE (Code),
+    CONSTRAINT UX_AgentType_Name UNIQUE (Name)
+);
+
+-- AUTO INCREMENT
+ALTER SEQUENCE "AgentTypeId_seq" owned by AgentType.AgentTypeId;
+
+-- CREATE FUNCTION
+CREATE OR REPLACE FUNCTION "function_AgentType_updated_at"() 
+RETURNS trigger
+LANGUAGE plpgsql
+AS $function$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$function$;
+
+-- CREATE TRIGGER
+CREATE TRIGGER "trigger_AgentType_updated_at" 
+BEFORE UPDATE
+ON AgentType FOR EACH ROW
+EXECUTE FUNCTION "function_AgentType_updated_at"();
+
+/*
+#############
 Agent Table
 #############
 */
@@ -228,8 +269,12 @@ CREATE TABLE Agent (
     Name TEXT NOT NULL,
     Code VARCHAR(255) NOT NULL,
 
+    AgentTypeId INT NULL,
+
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+
+    FOREIGN KEY(AgentTypeId) REFERENCES AgentType(AgentTypeId),
 
     CONSTRAINT UX_Agent_Code UNIQUE (Code),
     CONSTRAINT UX_Agent_Name UNIQUE (Name)
@@ -466,8 +511,8 @@ CREATE TABLE LegalCaseResource (
     FOREIGN KEY(ResourceTypeId) REFERENCES ResourceType(ResourceTypeId),
     FOREIGN KEY(LegalCaseId) REFERENCES LegalCase(LegalCaseId),
 
-    CONSTRAINT UX_LegalCaseResource_Code UNIQUE (Code),
-    CONSTRAINT UX_LegalCaseResource_Name UNIQUE (Name)
+    CONSTRAINT UX_LegalCaseResource_Code UNIQUE (Code, LegalCaseId),
+    CONSTRAINT UX_LegalCaseResource_Name UNIQUE (Name, LegalCaseId)
 );
 
 -- AUTO INCREMENT
@@ -505,7 +550,6 @@ CREATE TABLE LegalCaseAgent (
 
     AgentId INT NOT NULL,
     LegalCaseId INT NOT NULL,
-
     LegalCaseAgentTypeId INT NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -596,6 +640,7 @@ ALTER TABLE Jurisdiction RENAME TO "nc_pghc___Jurisdiction";
 ALTER TABLE GroundType RENAME TO "nc_pghc___GroundType";
 ALTER TABLE Ground RENAME TO "nc_pghc___Ground";
 ALTER TABLE LegalCaseStatus RENAME TO "nc_pghc___LegalCaseStatus";
+ALTER TABLE AgentType RENAME TO "nc_pghc___AgentType";
 ALTER TABLE Agent RENAME TO "nc_pghc___Agent";
 ALTER TABLE LegalCaseAgentType RENAME TO "nc_pghc___LegalCaseAgentType";
 ALTER TABLE AppealType RENAME TO "nc_pghc___AppealType";
@@ -611,3 +656,20 @@ ALTER TABLE LegalCaseGround RENAME TO "nc_pghc___LegalCaseGround";
 -- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN JurisdictionId DROP NOT NULL;
 
 
+
+-- TODO:
+-- LegalCaseResource
+ALTER TABLE "nc_pghc__LegalCaseResource" DROP CONSTRAINT UX_LegalCaseResource_Code UNIQUE (col_name);
+ALTER TABLE "nc_pghc__LegalCaseResource" DROP CONSTRAINT UX_LegalCaseResource_Name UNIQUE (col_name);
+
+ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Code UNIQUE (Code, LegalCaseId)
+ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Name UNIQUE (Name, LegalCaseId)
+
+
+-- TODO: ajouter les champs calculés sur les entités Many to Many
+
+-- TODO: entités éditables sur les vues non figées
+
+-- TODO: ne pas pouvoir ajouter des tables pour les utilisateurs éditeurs
+
+-- TODO: Jurisdiction, add url
