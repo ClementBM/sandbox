@@ -11,12 +11,10 @@ CREATE SEQUENCE "FinalDecisionId_seq";
 CREATE TABLE FinalDecision (
     FinalDecisionId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"FinalDecisionId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_FinalDecision_Code UNIQUE (Code),
     CONSTRAINT UX_FinalDecision_Name UNIQUE (Name)
 );
 
@@ -53,14 +51,12 @@ CREATE SEQUENCE "JurisdictionId_seq";
 CREATE TABLE Jurisdiction (
     JurisdictionId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"JurisdictionId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
-    Geolocation TEXT NOT NULL,
+    Geolocation TEXT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_Jurisdiction_Code UNIQUE (Code),
     CONSTRAINT UX_Jurisdiction_Name UNIQUE (Name)
 );
 
@@ -97,12 +93,10 @@ CREATE SEQUENCE "GroundTypeId_seq";
 CREATE TABLE GroundType (
     GroundTypeId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"GroundTypeId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_GroundType_Code UNIQUE (Code),
     CONSTRAINT UX_GroundType_Name UNIQUE (Name)
 );
 
@@ -138,7 +132,6 @@ CREATE SEQUENCE "GroundId_seq";
 CREATE TABLE Ground (
     GroundId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"GroundId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     GroundTypeId INT NOT NULL,
 
@@ -148,8 +141,7 @@ CREATE TABLE Ground (
     -- Foreign Keys
     FOREIGN KEY(GroundTypeId) REFERENCES GroundType(GroundTypeId),
 
-    CONSTRAINT UX_Ground_Code UNIQUE (Code),
-    CONSTRAINT UX_Ground_Name UNIQUE (Name)
+    CONSTRAINT UX_Ground_NameType UNIQUE (Name, GroundTypeId)
 );
 
 -- AUTO INCREMENT
@@ -174,30 +166,28 @@ EXECUTE FUNCTION "function_Ground_updated_at"();
 
 /*
 #############
-LegalCaseStatus Table
+CaseStatus Table
 #############
 */
 
 -- AUTO INCREMENT
-CREATE SEQUENCE "LegalCaseStatusId_seq";
+CREATE SEQUENCE "CaseStatusId_seq";
 
-CREATE TABLE LegalCaseStatus (
-    LegalCaseStatusId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"LegalCaseStatusId_seq"'::regclass),
+CREATE TABLE CaseStatus (
+    CaseStatusId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"CaseStatusId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_LegalCaseStatus_Code UNIQUE (Code),
-    CONSTRAINT UX_LegalCaseStatus_Name UNIQUE (Name)
+    CONSTRAINT UX_CaseStatus_Name UNIQUE (Name)
 );
 
 -- AUTO INCREMENT
-ALTER SEQUENCE "LegalCaseStatusId_seq" owned by LegalCaseStatus.LegalCaseStatusId;
+ALTER SEQUENCE "CaseStatusId_seq" owned by CaseStatus.CaseStatusId;
 
 -- CREATE FUNCTION
-CREATE OR REPLACE FUNCTION "function_LegalCaseStatus_updated_at"() 
+CREATE OR REPLACE FUNCTION "function_CaseStatus_updated_at"() 
 RETURNS trigger
 LANGUAGE plpgsql
 AS $function$
@@ -208,10 +198,10 @@ END;
 $function$;
 
 -- CREATE TRIGGER
-CREATE TRIGGER "trigger_LegalCaseStatus_updated_at" 
+CREATE TRIGGER "trigger_CaseStatus_updated_at" 
 BEFORE UPDATE
-ON LegalCaseStatus FOR EACH ROW
-EXECUTE FUNCTION "function_LegalCaseStatus_updated_at"();
+ON CaseStatus FOR EACH ROW
+EXECUTE FUNCTION "function_CaseStatus_updated_at"();
 
 
 /*
@@ -226,12 +216,10 @@ CREATE SEQUENCE "AgentTypeId_seq";
 CREATE TABLE AgentType (
     AgentTypeId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"AgentTypeId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_AgentType_Code UNIQUE (Code),
     CONSTRAINT UX_AgentType_Name UNIQUE (Name)
 );
 
@@ -267,7 +255,7 @@ CREATE SEQUENCE "AgentId_seq";
 CREATE TABLE Agent (
     AgentId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"AgentId_seq"'::regclass),
     Name TEXT NOT NULL,
-    AgentUrl VARCHAR(255) NOT NULL,
+    AgentUrl VARCHAR(255) NULL,
 
     AgentTypeId INT NULL,
 
@@ -276,8 +264,7 @@ CREATE TABLE Agent (
 
     FOREIGN KEY(AgentTypeId) REFERENCES AgentType(AgentTypeId),
 
-    CONSTRAINT UX_Agent_Code UNIQUE (Code),
-    CONSTRAINT UX_Agent_Name UNIQUE (Name)
+    CONSTRAINT UX_Agent_NameType UNIQUE (Name, AgentTypeId)
 );
 
 -- AUTO INCREMENT
@@ -303,30 +290,28 @@ EXECUTE FUNCTION "function_Agent_updated_at"();
 
 /*
 #############
-LegalCaseAgentType Table
+AgentParty Table
 #############
 */
 
 -- AUTO INCREMENT
-CREATE SEQUENCE "LegalCaseAgentTypeId_seq";
+CREATE SEQUENCE "AgentPartyId_seq";
 
-CREATE TABLE LegalCaseAgentType (
-    LegalCaseAgentTypeId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"LegalCaseAgentTypeId_seq"'::regclass),
+CREATE TABLE AgentParty (
+    AgentPartyId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"AgentPartyId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_LegalCaseAgentType_Code UNIQUE (Code),
-    CONSTRAINT UX_LegalCaseAgentType_Name UNIQUE (Name)
+    CONSTRAINT UX_AgentParty_Name UNIQUE (Name)
 );
 
 -- AUTO INCREMENT
-ALTER SEQUENCE "LegalCaseAgentTypeId_seq" owned by LegalCaseAgentType.LegalCaseAgentTypeId;
+ALTER SEQUENCE "AgentPartyId_seq" owned by AgentParty.AgentPartyId;
 
 -- CREATE FUNCTION
-CREATE OR REPLACE FUNCTION "function_LegalCaseAgentType_updated_at"() 
+CREATE OR REPLACE FUNCTION "function_AgentParty_updated_at"() 
 RETURNS trigger
 LANGUAGE plpgsql
 AS $function$
@@ -337,10 +322,10 @@ END;
 $function$;
 
 -- CREATE TRIGGER
-CREATE TRIGGER "trigger_LegalCaseAgentType_updated_at" 
+CREATE TRIGGER "trigger_AgentParty_updated_at" 
 BEFORE UPDATE
-ON LegalCaseAgentType FOR EACH ROW
-EXECUTE FUNCTION "function_LegalCaseAgentType_updated_at"();
+ON AgentParty FOR EACH ROW
+EXECUTE FUNCTION "function_AgentParty_updated_at"();
 
 
 /*
@@ -356,12 +341,10 @@ CREATE SEQUENCE "AppealTypeId_seq";
 CREATE TABLE AppealType (
     AppealTypeId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"AppealTypeId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_AppealType_Code UNIQUE (Code),
     CONSTRAINT UX_AppealType_Name UNIQUE (Name)
 );
 
@@ -369,7 +352,7 @@ CREATE TABLE AppealType (
 ALTER SEQUENCE "AppealTypeId_seq" owned by AppealType.AppealTypeId;
 
 -- CREATE FUNCTION
-CREATE OR REPLACE FUNCTION "function_AppealType_updated_at"() 
+CREATE OR REPLACE FUNCTION "function_AppealType_updated_at"()
 RETURNS trigger
 LANGUAGE plpgsql
 AS $function$
@@ -384,8 +367,6 @@ CREATE TRIGGER "trigger_AppealType_updated_at"
 BEFORE UPDATE
 ON AppealType FOR EACH ROW
 EXECUTE FUNCTION "function_AppealType_updated_at"();
-
-
 
 /*
 #############
@@ -408,7 +389,7 @@ CREATE TABLE LegalCase (
     FinalDecisionDate DATE NULL,
     FinalDecisionComment TEXT NULL,
 
-    LegalCaseStatusId INT NULL,
+    CaseStatusId INT NULL,
     JurisdictionId INT NULL,
     FinalDecisionId INT NULL,
     AppealTypeId INT NULL,
@@ -416,7 +397,7 @@ CREATE TABLE LegalCase (
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    FOREIGN KEY(LegalCaseStatusId) REFERENCES LegalCaseStatus(LegalCaseStatusId),
+    FOREIGN KEY(CaseStatusId) REFERENCES CaseStatus(CaseStatusId),
     FOREIGN KEY(JurisdictionId) REFERENCES Jurisdiction(JurisdictionId),
     FOREIGN KEY(FinalDecisionId) REFERENCES FinalDecision(FinalDecisionId),
     FOREIGN KEY(AppealTypeId) REFERENCES AppealType(AppealTypeId),
@@ -457,12 +438,10 @@ CREATE SEQUENCE "ResourceTypeId_seq";
 CREATE TABLE ResourceType (
     ResourceTypeId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"ResourceTypeId_seq"'::regclass),
     Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_ResourceType_Code UNIQUE (Code),
     CONSTRAINT UX_ResourceType_Name UNIQUE (Name)
 );
 
@@ -486,6 +465,52 @@ BEFORE UPDATE
 ON ResourceType FOR EACH ROW
 EXECUTE FUNCTION "function_ResourceType_updated_at"();
 
+/*
+#############
+Resource Table
+#############
+*/
+
+-- AUTO INCREMENT
+CREATE SEQUENCE "ResourceId_seq";
+
+CREATE TABLE Resource (
+    ResourceId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"ResourceId_seq"'::regclass),
+    
+    Name TEXT NOT NULL,
+    Url TEXT,
+    
+    ResourceTypeId INT NOT NULL,
+
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
+
+    FOREIGN KEY(ResourceTypeId) REFERENCES ResourceType(ResourceTypeId),
+
+    CONSTRAINT UX_Resource_NameType UNIQUE (Name, ResourceTypeId)
+);
+
+-- AUTO INCREMENT
+ALTER SEQUENCE "ResourceId_seq" owned by Resource.ResourceId;
+
+-- CREATE FUNCTION
+CREATE OR REPLACE FUNCTION "function_Resource_updated_at"() 
+RETURNS trigger
+LANGUAGE plpgsql
+AS $function$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$function$;
+
+-- CREATE TRIGGER
+CREATE TRIGGER "trigger_Resource_updated_at" 
+BEFORE UPDATE
+ON Resource FOR EACH ROW
+EXECUTE FUNCTION "function_Resource_updated_at"();
+
+
 
 /*
 #############
@@ -498,21 +523,18 @@ CREATE SEQUENCE "LegalCaseResourceId_seq";
 
 CREATE TABLE LegalCaseResource (
     LegalCaseResourceId INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('"LegalCaseResourceId_seq"'::regclass),
-    Name TEXT NOT NULL,
-    Code VARCHAR(255) NOT NULL,
 
-    ResourceTypeId INT NOT NULL,
+    ResourceId INT NOT NULL,
     LegalCaseId INT NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
     -- Foreign Keys
-    FOREIGN KEY(ResourceTypeId) REFERENCES ResourceType(ResourceTypeId),
+    FOREIGN KEY(ResourceId) REFERENCES Resource(ResourceId),
     FOREIGN KEY(LegalCaseId) REFERENCES LegalCase(LegalCaseId),
 
-    CONSTRAINT UX_LegalCaseResource_Code UNIQUE (Code, LegalCaseId),
-    CONSTRAINT UX_LegalCaseResource_Name UNIQUE (Name, LegalCaseId)
+    CONSTRAINT UX_LegalCaseResource_ResourceLegal UNIQUE (ResourceId, LegalCaseId),
 );
 
 -- AUTO INCREMENT
@@ -550,16 +572,16 @@ CREATE TABLE LegalCaseAgent (
 
     AgentId INT NOT NULL,
     LegalCaseId INT NOT NULL,
-    LegalCaseAgentTypeId INT NOT NULL,
+    AgentPartyId INT NOT NULL,
 
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
     FOREIGN KEY(AgentId) REFERENCES Agent(AgentId),
     FOREIGN KEY(LegalCaseId) REFERENCES LegalCase(LegalCaseId),
-    FOREIGN KEY(LegalCaseAgentTypeId) REFERENCES LegalCaseAgentType(LegalCaseAgentTypeId),
+    FOREIGN KEY(AgentPartyId) REFERENCES AgentParty(AgentPartyId),
 
-    CONSTRAINT UX_LegalCaseAgent_AgentLegalCaseType UNIQUE (AgentId, LegalCaseId, LegalCaseAgentTypeId)
+    CONSTRAINT UX_LegalCaseAgent_AgentLegalCaseType UNIQUE (AgentId, LegalCaseId, AgentPartyId)
 );
 
 -- AUTO INCREMENT
@@ -631,6 +653,73 @@ EXECUTE FUNCTION "function_LegalCaseGround_updated_at"();
 
 /*
 #############
+ADD CONSTANT VALUES
+#############
+*/
+
+/*
+AgentType
+Entreprise, Etat, Organisation publique, Association, Particulier
+*/
+INSERT INTO AgentType (Name) VALUES ("Entreprise");
+INSERT INTO AgentType (Name) VALUES ("Etat");
+INSERT INTO AgentType (Name) VALUES ("Organisation publique");
+INSERT INTO AgentType (Name) VALUES ("Association");
+INSERT INTO AgentType (Name) VALUES ("Particulier");
+
+/*
+GroundType
+Public trust, Tort law, Droits humains, Normes environnementales, Droit civil
+*/
+INSERT INTO GroundType (Name) VALUES ("Public trust");
+INSERT INTO GroundType (Name) VALUES ("Tort law");
+INSERT INTO GroundType (Name) VALUES ("Droits humains");
+INSERT INTO GroundType (Name) VALUES ("Normes environnementales");
+INSERT INTO GroundType (Name) VALUES ("Droit civil");
+
+/*
+AppealType
+Climat, Environnement, Climat/Environnement
+*/
+INSERT INTO AppealType (Name) VALUES ("Climat");
+INSERT INTO AppealType (Name) VALUES ("Environnement");
+INSERT INTO AppealType (Name) VALUES ("Climat/Environnement");
+
+/*
+ResourceType
+Décision, Ouvrage/Article, Newsletter
+*/
+INSERT INTO ResourceType (Name) VALUES ("Décision");
+INSERT INTO ResourceType (Name) VALUES ("Ouvrage/Article");
+INSERT INTO ResourceType (Name) VALUES ("Newsletter");
+
+/*
+FinalDecision
+Demandes accueillies, Rejet, Ne statue pas sur le fond, Demande partiellement accueillies
+*/
+INSERT INTO FinalDecision (Name) VALUES ("Demandes accueillies");
+INSERT INTO FinalDecision (Name) VALUES ("Rejet");
+INSERT INTO FinalDecision (Name) VALUES ("Ne statue pas sur le fond");
+INSERT INTO FinalDecision (Name) VALUES ("Demande partiellement accueillies");
+
+/*
+CaseStatus
+En cours, Finie, En appel
+*/
+INSERT INTO CaseStatus (Name) VALUES ("En cours");
+INSERT INTO CaseStatus (Name) VALUES ("Finie");
+INSERT INTO CaseStatus (Name) VALUES ("En appel");
+
+/*
+AgentParty
+Partie demanderesse, Partie défenderesse, Tiers
+*/
+INSERT INTO AgentParty (Name) VALUES ("Partie demanderesse");
+INSERT INTO AgentParty (Name) VALUES ("Partie défenderesse");
+INSERT INTO AgentParty (Name) VALUES ("Tiers");
+
+/*
+#############
 RENAME TABLES
 #############
 */
@@ -639,21 +728,20 @@ ALTER TABLE FinalDecision RENAME TO "nc_pghc___FinalDecision";
 ALTER TABLE Jurisdiction RENAME TO "nc_pghc___Jurisdiction";
 ALTER TABLE GroundType RENAME TO "nc_pghc___GroundType";
 ALTER TABLE Ground RENAME TO "nc_pghc___Ground";
-ALTER TABLE LegalCaseStatus RENAME TO "nc_pghc___LegalCaseStatus";
+ALTER TABLE CaseStatus RENAME TO "nc_pghc___CaseStatus";
 ALTER TABLE AgentType RENAME TO "nc_pghc___AgentType";
 ALTER TABLE Agent RENAME TO "nc_pghc___Agent";
-ALTER TABLE LegalCaseAgentType RENAME TO "nc_pghc___LegalCaseAgentType";
+ALTER TABLE AgentParty RENAME TO "nc_pghc___AgentParty";
 ALTER TABLE AppealType RENAME TO "nc_pghc___AppealType";
 ALTER TABLE LegalCase RENAME TO "nc_pghc___LegalCase";
 ALTER TABLE ResourceType RENAME TO "nc_pghc___ResourceType";
+ALTER TABLE Resource RENAME TO "nc_pghc___Resource";
 ALTER TABLE LegalCaseResource RENAME TO "nc_pghc___LegalCaseResource";
 ALTER TABLE LegalCaseAgent RENAME TO "nc_pghc___LegalCaseAgent";
 ALTER TABLE LegalCaseGround RENAME TO "nc_pghc___LegalCaseGround";
 
-
-
 -- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN Abstract DROP NOT NULL;
--- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN LegalCaseStatusId DROP NOT NULL;
+-- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN CaseStatusId DROP NOT NULL;
 -- ALTER TABLE "nc_pghc__LegalCase" ALTER COLUMN JurisdictionId DROP NOT NULL;
 
 -- ALTER TABLE "nc_pghc__LegalCaseResource" DROP CONSTRAINT UX_LegalCaseResource_Code;
@@ -661,7 +749,6 @@ ALTER TABLE LegalCaseGround RENAME TO "nc_pghc___LegalCaseGround";
 
 -- ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Code UNIQUE (Code, LegalCaseId);
 -- ALTER TABLE "nc_pghc__LegalCaseResource" ADD CONSTRAINT UX_LegalCaseResource_Name UNIQUE (Name, LegalCaseId);
-
 
 -- TODO: entités éditables sur les vues non figées
 -- TODO: ne pas pouvoir ajouter des tables pour les utilisateurs éditeurs

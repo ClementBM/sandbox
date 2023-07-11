@@ -1,0 +1,46 @@
+# https://python-poetry.org/docs/pyproject/
+[tool.poetry]
+name = "eda-as-usual"
+version = "0.1.0"
+description = "Basic python repository template"
+authors = ["Clément Brutti-Mairesse <clement.brutti.mairesse@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/ClementBM/sandbox/eda-as-usual"
+repository = "https://github.com/ClementBM/sandbox/eda-as-usual"
+keywords = ["mykeyword", "mykeyword", "mykeyword"]
+include = [
+    "LICENSE",
+]
+# https://pypi.org/classifiers/
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+pandas = "*"
+scikit-learn = "^1.3.0"
+scipy = "1.10.1"
+ydata-profiling = "^4.3.1"
+# bamboolib = "^1.30.19"
+xgboost = "^1.7.6"
+openpyxl = "^3.1.2"
+
+[tool.poetry.dev-dependencies]
+pylint = "*"
+pytest = "*"
+mypy = "*"
+jupyter = "*"
+notebook = "*"
+ipykernel = "*"
+black = "*"
+coverage = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
