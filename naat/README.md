@@ -30,3 +30,13 @@ curl -fsSL https://railway.app/install.sh | sh
 railway connect
 railway link 1abe047c-0a00-4476-aff7-b5af6a273ab3
 ```
+
+# Google Apps Script
+
+[Mastering npm modules in google apps script (medium)](https://medium.com/geekculture/the-ultimate-guide-to-npm-modules-in-google-apps-script-a84545c3f57c)
+[Write Google Apps Script Locally & Deploy with Clasp (medium)](https://medium.com/geekculture/how-to-write-google-apps-script-code-locally-in-vs-code-and-deploy-it-with-clasp-9a4273e2d018)
+
+
+## Developer Resources
+[nocodb rest apis](https://docs.nocodb.com/developer-resources/rest-apis/)
+[nocodb sdk](https://docs.nocodb.com/developer-resources/sdk/)
