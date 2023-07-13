@@ -142,3 +142,7 @@ prometheus/
 connect_four/models
 
 geo-analysis/data/*.csv
+
+# javascript
+dist/
+node_modules/
