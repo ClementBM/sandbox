@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+</head>
+    
+<body>
+
+<h1>Liste des affaires (démonstration hors ligne)</h1>
+
+<table 
+    id="casetable"
+    data-search="true"
+    data-pagination="true"
+    data-show-footer="true"
+    data-detail-view="true"
+    data-detail-formatter="detailFormatter">
+    <thead>
+      <tr>
+        <th data-sortable="true" data-field="title">Titre</th>
+        <th data-sortable="true" data-field="factsdigest">Faits</th>
+        <th data-sortable="true" data-field="factdate">Date</th>
+        <th data-sortable="true" data-field="appealtype">Type</th>
+        <th data-sortable="true" data-field="casestatus">Statut</th>
+        <th data-field="complainants">Demanderesses</th>
+        <th data-field="complainantrecipients">Défenderesses</th>
+        <th data-field="procedures">Procédure</th>
+      </tr>
+    </thead>
+</table>
+    
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
+<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/locale/bootstrap-table-fr-FR.min.js"></script>
+
+<script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+
+<script>
+    var $table = $('#casetable');
+
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://noco-db-production-b667.up.railway.app/api/v1/db/data/noco/p_t5h0w8055utdyw/LegalCase/views/PublicGrid?offset=0&limit=100&where=",
+        "method": "GET",
+        "headers": {
+            "xc-auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNsZW1lbnQuYnJ1dHRpLm1haXJlc3NlQGdtYWlsLmNvbSIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImlkIjoidXNfMnllODdlbHB2YWMwcXgiLCJyb2xlcyI6Im9yZy1sZXZlbC1jcmVhdG9yLHN1cGVyIiwidG9rZW5fdmVyc2lvbiI6IjQzODRhNDFlZDY5Yzg0ZWE5YjBhZTY2YmI1MDBmOGIyZGM1ZWFkN2M1ZGEzOGZlZjc2ZTRiN2RmNWMxOWNjZDVmYjFkMGI5YTdmMjc0YzZjIiwiaWF0IjoxNjkxNzM0NjczLCJleHAiOjE2OTE3NzA2NzN9.C8ZMjqnss0a4ibOWpswjXTPBu75ky2Feml9y6fe2qg0"
+        }
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response["list"]);
+
+        var dataArray = response["list"].map(function(x){
+            return { 
+                "title": x["Title"],
+                "factsdigest": x["FactsDigest"],
+                "factdate": x["FactsDate"],
+                "appealtype": x["AppealType"] != null ? x["AppealType"]["Name"]: "",
+                "casestatus": x["CaseStatus"] != null ? x["CaseStatus"]["Name"]: "",
+                "complainants": x["Complainants"].map((y) => y["Title"]),
+                "complainantrecipients": x["ComplainantRecipients"].map((y) => y["Title"]),
+                "procedures": x["Procedures"].map((y) => y["Abstract"])
+            }
+        });
+
+        console.log(dataArray);
+
+        $table.bootstrapTable({
+            data: dataArray,
+            height: 800,
+        })
+    });
+
+
+  function detailFormatter(index, row) {
+    var html = []
+    $.each(row, function (key, value) {
+      html.push('<p><b>' + key + ':</b> ' + value + '</p>')
+    })
+    return html.join('')
+  }
+</script>
+
+
+</body>
+</html>
+

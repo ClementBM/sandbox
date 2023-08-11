@@ -58,7 +58,7 @@ CREATE TABLE Jurisdiction (
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
 
-    CONSTRAINT UX_Jurisdiction_Name UNIQUE (Name)
+    CONSTRAINT UX_Jurisdiction_NameLocation UNIQUE (Name, Geolocation)
 );
 
 -- AUTO INCREMENT
@@ -861,6 +861,7 @@ ALTER TABLE          "nc_05yt___Legal_Procedure_Resource" RENAME TO Legal_Proced
 ALTER TABLE            "nc_05yt___Legal_Case_Complainant" RENAME TO Legal_Case_Complainant          ;
 ALTER TABLE  "nc_05yt___Legal_Case_Complainant_Recipient" RENAME TO Legal_Case_Complainant_Recipient;
 ALTER TABLE            "nc_05yt___Legal_Procedure_Ground" RENAME TO Legal_Procedure_Ground          ;
+
 
 
 
