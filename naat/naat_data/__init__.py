@@ -13,3 +13,5 @@ PDF_PACIFIC_PATH = (
     ROOT.parent / "Pacific Coast Fisherman Federation Association Claim 2018.pdf"
 )
 PDF_JONAH_PATH = ROOT.parent / "Jonah Gembre v Shell.pdf"
+
+ISO_FLAGS = ROOT.parent / "flags_iso.csv"
