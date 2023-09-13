@@ -2,12 +2,17 @@ import re
 import math
 
 def parse_serie_name(serie_name:str):
-    extraction_pattern = r"(\([^,:]+\)|\[[^,:]+\]|[^,:\(\[]+)"
+    first_pattern = r"([^,:]+)"
+    second_pattern = r"(\s{0,1}\([^\)]+\)|\s{0,1}\[[^\[]+\])"
     
-    regex_pattern = re.compile(extraction_pattern)
-    matches = regex_pattern.findall(serie_name)
+    matches = re.compile(first_pattern).findall(serie_name)
+    primary_matches =  [match.strip() for match in matches if match.strip() != ""]
+
+    tokens = []
+    for primary_match in primary_matches:
+       tokens.append(re.sub(second_pattern, "", primary_match))
     
-    return [match.strip() for match in matches if match.strip() != ""]
+    return [token.replace("  ", " ") for token in tokens]
 
 def get_dict_count(tokens):
     dict_count = {}
