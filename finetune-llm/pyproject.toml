@@ -1,0 +1,41 @@
+# https://python-poetry.org/docs/pyproject/
+[tool.poetry]
+name = "finetune_llm"
+version = "0.1.0"
+description = "Fine Tune LLM"
+authors = ["Clément Brutti-Mairesse <clement.brutti.mairesse@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/ClementBM/sandbox"
+repository = "https://github.com/ClementBM/sandbox"
+
+include = [
+    "LICENSE",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+torch = ">=2.0.0, !=2.0.1"
+transformers = "^4.33.1"
+trl = "^0.7.1"
+datasets = "^2.14.5"
+peft = "^0.5.0"
+bitsandbytes = "^0.41.1"
+accelerate = "^0.22.0"
+scipy = "^1.11.2"
+
+[tool.poetry.dev-dependencies]
+pylint = "*"
+pytest = "*"
+mypy = "*"
+jupyter = "*"
+notebook = "*"
+ipykernel = "*"
+black = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
+coverage = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
