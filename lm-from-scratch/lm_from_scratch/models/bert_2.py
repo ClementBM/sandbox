@@ -34,11 +34,11 @@ class BERTEmbedding(nn.Module):
 class Head(nn.Module):
     """one head of self-attention"""
 
-    def __init__(self, head_size, n_embd):
+    def __init__(self, head_size, embed_dim):
         super().__init__()
-        self.key = nn.Linear(n_embd, head_size, bias=False)
-        self.query = nn.Linear(n_embd, head_size, bias=False)
-        self.value = nn.Linear(n_embd, head_size, bias=False)
+        self.key = nn.Linear(embed_dim, head_size, bias=False)
+        self.query = nn.Linear(embed_dim, head_size, bias=False)
+        self.value = nn.Linear(embed_dim, head_size, bias=False)
 
     def forward(self, x, attn_mask):
         # input of size (batch, time-step, channels=embedding size)
@@ -65,12 +65,46 @@ class Head(nn.Module):
 
 
 class MultiHeadAttention(nn.Module):
-    def __init__(self, num_heads, head_size, n_embd):
+    def __init__(self, num_heads, head_size, embed_dim):
         super().__init__()
-        self.heads = nn.ModuleList([Head(head_size, n_embd) for _ in range(num_heads)])
+        self.heads = nn.ModuleList(
+            [Head(head_size, embed_dim) for _ in range(num_heads)]
+        )
+        self.projection = nn.Linear(
+            embed_dim, embed_dim
+        )  # projection for residual connection
 
     def forward(self, x, attn_mask):
-        return torch.cat([h(x, attn_mask) for h in self.heads], dim=-1)
+        out = torch.cat([h(x, attn_mask) for h in self.heads], dim=-1)
+        out = self.projection(out)
+        return out
+
+
+class FeedForward(nn.Module):
+    def __init__(self, embed_dim):
+        super().__init__()
+
+        self.net = nn.Sequential(
+            nn.Linear(embed_dim, 4 * embed_dim),
+            nn.ReLU(),
+            nn.Linear(4 * embed_dim, embed_dim),  # projection for residual connection
+        )
+
+    def forward(self, x):
+        return self.net(x)
+
+
+class TransformerBlock(nn.Module):
+    def __init__(self, embed_dim, head_size, num_heads) -> None:
+        super().__init__()
+
+        self.multihead_attention = MultiHeadAttention(num_heads, head_size, embed_dim)
+        self.ffwd = FeedForward(embed_dim)
+
+    def forward(self, x, attn_mask):
+        x = x + self.multihead_attention(x, attn_mask)
+        x = x + self.ffwd(x)
+        return x
 
 
 class BERT(nn.Module):
@@ -85,13 +119,13 @@ class BERT(nn.Module):
 
         head_size = embed_dim // num_heads
 
-        self.multi_head = MultiHeadAttention(num_heads, head_size, embed_dim)
+        self.multihead_attention = TransformerBlock(num_heads, head_size, embed_dim)
         self.lm_head = nn.Linear(head_size * num_heads, vocab_size)
         self.sentence_classifier = nn.Linear(head_size * num_heads, 2)
 
     def forward(self, sequence, segment, attn_mask, masked_pos):
         x = self.embedding(sequence, segment)  # B, T, embedding_size
-        x = self.multi_head(x, attn_mask)  # B, T, head_size * num_heads
+        x = self.multihead_attention(x, attn_mask)  # B, T, head_size * num_heads
 
         # masked token prediction
         masked_pos = masked_pos[:, :, None].expand(-1, -1, x.size(-1))

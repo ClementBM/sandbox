@@ -8,14 +8,14 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 class Head(nn.Module):
     """one head of self-attention"""
 
-    def __init__(self, head_size, n_embd, block_size, dropout):
+    def __init__(self, head_size, n_embd, max_len, dropout):
         super().__init__()
         self.key = nn.Linear(n_embd, head_size, bias=False)
         self.query = nn.Linear(n_embd, head_size, bias=False)
         self.value = nn.Linear(n_embd, head_size, bias=False)
 
         # buffer != not a parameter of the model
-        self.register_buffer("tril", torch.tril(torch.ones(block_size, block_size)))
+        self.register_buffer("tril", torch.tril(torch.ones(max_len, max_len)))
 
         # self.dropout = nn.Dropout(dropout)
 
@@ -42,12 +42,12 @@ class Head(nn.Module):
 
 
 class Gpt(nn.Module):
-    def __init__(self, vocab_size, head_size, n_embd, block_size, dropout):
+    def __init__(self, vocab_size, head_size, n_embd, max_len, dropout):
         super().__init__()
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
-        self.position_embedding_table = nn.Embedding(block_size, n_embd)
+        self.position_embedding_table = nn.Embedding(max_len, n_embd)
 
-        self.sa_head = Head(head_size, n_embd, block_size, dropout)
+        self.sa_head = Head(head_size, n_embd, max_len, dropout)
         self.lm_head = nn.Linear(head_size, vocab_size)
 
     def forward(self, idx, targets=None):
@@ -72,20 +72,3 @@ class Gpt(nn.Module):
             loss = F.cross_entropy(logits, targets)
 
         return logits, loss
-
-
-# sample_sequence = torch.randn(BATCH_SIZE,MAX_LEN,VOCAB_SIZE)
-
-# head = Head(HEAD_SIZE, N_EMBEDDING, BLOCK_SIZE, 0.1)
-# out = head(sample_sequence)
-# out.shape
-
-
-# sample_sequence = torch.randint(
-#     high=VOCAB_SIZE,
-#     size=(BATCH_SIZE,MAX_LEN)
-# )
-
-# model = Gpt(VOCAB_SIZE, HEAD_SIZE, N_EMBEDDING, BLOCK_SIZE, 0.1)
-
-# model(sample_sequence)
