@@ -1,11 +1,12 @@
 # Introduction
-Template repository for python package.
 
-After duplicating this repository, you may rename the default package name, which is `mypkg128`, with your package name wherever it is declared.
-So rename it in:
-* `pyproject.toml`
-* `tests.yaml`
-* `launch.json`
+* **BERT**: (Bidirectional Encoder Representations from Transformers) is a pre-trained natural language processing (NLP) model developed by Google. It's designed to understand context and meaning in text by considering the entire context of a sentence, unlike earlier models which looked at text in a unidirectional manner. 
+* **GPT-2**: (Generative Pretrained Transformer) is a powerful language generation model that can generate coherent and contextually relevant text.
+* **T5** (Text-to-Text Transfer Transformer) is a model that treats all NLP tasks as text-to-text tasks. It can be applied to a wide range of tasks by framing them as a text-to-text problem.
+* **XLNet**: is a transformer model that extends the idea of autoregressive models like GPT but also includes elements of autoencoding. It's designed to capture bidirectional contexts for better performance
+* **BART** (BART is a denoising autoencoder for pretraining sequence-to-sequence models) is designed for sequence-to-sequence tasks. It frames tasks as a denoising autoencoder problem, where the model is trained to reconstruct original sequences from noisy versions.
+* **ELMo** (Embeddings from Language Models) is a contextual word representation model developed by researchers at the Allen Institute for Artificial Intelligence. It's called "contextual" because unlike traditional word embeddings like Word2Vec or GloVe, which assign a fixed vector to each word in a sentence regardless of its context, ELMo generates a unique vector for each occurrence of a word depending on the context in which it appears.
+* **ULMFiT** (Universal Language Model Fine-tuning) is a technique developed by Jeremy Howard and Sebastian Ruder for transfer learning in natural language processing (NLP). It allows for efficient training of high-performance models even when you have a limited amount of task-specific data
 
 # Development setup
 ## Prerequisites
@@ -29,25 +30,6 @@ git config --global user.email 'your email'
 * First setup `poetry install`
 * Then `poetry shell`
 
-# Build and publish with poetry
-## Build
-Manuel steps to generate and publish the package to TestPyPI with poetry, documentation from [packaging.python](https://python-poetry.org/docs/)
-
-Build the package, generate distribution archives
-```shell
-poetry build
-```
-
-## Publish to Test PyPI
-Add Test PyPI as an alternate package repository
-```shell
-poetry config repositories.testpypi https://test.pypi.org/legacy/
-```
-
-Upload/publish package/distribution archive to TestPyPI (a separate instance of the Python Package Index)
-```shell
-poetry publish -r testpypi
-```
 
 ## Installation with pip
 ```shell
