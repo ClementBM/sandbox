@@ -20,6 +20,11 @@ numpy = "^1.26.1"
 pandas = "^2.1.1"
 matplotlib = "^3.8.0"
 tokenizers = "^0.14.1"
+einops = "^0.7.0"
+sentencepiece = "^0.1.99"
+transformers = "^4.34.1"
+spacy = "^3.7.2"
+opendelta = "^0.3.2"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"

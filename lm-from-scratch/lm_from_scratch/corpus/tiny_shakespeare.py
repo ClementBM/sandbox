@@ -1,4 +1,4 @@
-from artefacts import TINY_SHAKESPEARE_CORPUS
+from artifacts import TINY_SHAKESPEARE_CORPUS
 
 
 class TinyShakespeareCorpus:

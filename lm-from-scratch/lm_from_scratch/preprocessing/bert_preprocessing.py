@@ -3,7 +3,7 @@ import numpy as np
 from lm_from_scratch.models.bert import BERT
 from lm_from_scratch.corpus.decision_corpus import DecisionCorpus
 import pandas as pd
-from artefacts import TOKENIZER_PATH
+from artifacts import TOKENIZER_PATH
 from random import randint, random
 
 from tokenizers import Tokenizer
