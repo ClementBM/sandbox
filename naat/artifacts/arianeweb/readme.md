@@ -3,3 +3,4 @@
 ```shell
 xsdata artifacts/nct-schema.xsd --package artifacts
 ```
+
