@@ -1,0 +1,1958 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.1 (Ubuntu 16.1-1.pgdg22.04+1)
+-- Dumped by pg_dump version 16.1 (Ubuntu 16.1-1.pgdg22.04+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: timescaledb_toolkit; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS timescaledb_toolkit WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION timescaledb_toolkit; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION timescaledb_toolkit IS 'Library of analytical hyperfunctions, time-series pipelining, and other SQL utilities';
+
+
+--
+-- Name: function_Agent_Type_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Agent_Type_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Agent_Type_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Agent_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Agent_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Agent_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Appeal_Type_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Appeal_Type_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Appeal_Type_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Case_Complainant_Recipient_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Case_Complainant_Recipient_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Case_Complainant_Recipient_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Case_Complainant_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Case_Complainant_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Case_Complainant_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Case_Status_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Case_Status_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Case_Status_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Case_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Case_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Case_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Decision_Ground_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Decision_Ground_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Decision_Ground_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Decision_Resource_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Decision_Resource_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Decision_Resource_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Decision_Status_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Decision_Status_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Decision_Status_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Decision_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Decision_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Decision_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Ground_Type_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Ground_Type_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Ground_Type_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Ground_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Ground_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Ground_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Jurisdiction_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Jurisdiction_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Jurisdiction_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Resource_Type_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Resource_Type_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Resource_Type_updated_at"() OWNER TO postgres;
+
+--
+-- Name: function_Resource_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public."function_Resource_updated_at"() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+begin
+    NEW."updated_at" = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public."function_Resource_updated_at"() OWNER TO postgres;
+
+--
+-- Name: xc_au_nc_jb59___zzzzzzz_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.xc_au_nc_jb59___zzzzzzz_updated_at() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+                          BEGIN
+                            NEW."updated_at" = NOW();
+                            RETURN NEW;
+                          END;
+                          $$;
+
+
+ALTER FUNCTION public.xc_au_nc_jb59___zzzzzzz_updated_at() OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: agent; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.agent (
+    agent_id integer NOT NULL,
+    name text NOT NULL,
+    agent_url character varying(255),
+    description text,
+    agent_type_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.agent OWNER TO postgres;
+
+--
+-- Name: Agent_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Agent_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Agent_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Agent_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Agent_Id_seq" OWNED BY public.agent.agent_id;
+
+
+--
+-- Name: agent_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.agent_type (
+    agent_type_id integer NOT NULL,
+    name text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.agent_type OWNER TO postgres;
+
+--
+-- Name: Agent_Type_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Agent_Type_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Agent_Type_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Agent_Type_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Agent_Type_Id_seq" OWNED BY public.agent_type.agent_type_id;
+
+
+--
+-- Name: appeal_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.appeal_type (
+    appeal_type_id integer NOT NULL,
+    name text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.appeal_type OWNER TO postgres;
+
+--
+-- Name: Appeal_Type_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Appeal_Type_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Appeal_Type_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Appeal_Type_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Appeal_Type_Id_seq" OWNED BY public.appeal_type.appeal_type_id;
+
+
+--
+-- Name: case1; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.case1 (
+    case_id integer NOT NULL,
+    title text NOT NULL,
+    facts_digest text,
+    google_drive_folder text,
+    case_status_id integer,
+    appeal_type_id integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    "FactsYear" integer,
+    "Status" text DEFAULT 'À faire'::text
+);
+
+
+ALTER TABLE public.case1 OWNER TO postgres;
+
+--
+-- Name: Case_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Case_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Case_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Case_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Case_Id_seq" OWNED BY public.case1.case_id;
+
+
+--
+-- Name: case_status; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.case_status (
+    case_status_id integer NOT NULL,
+    name text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.case_status OWNER TO postgres;
+
+--
+-- Name: Case_Status_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Case_Status_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Case_Status_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Case_Status_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Case_Status_Id_seq" OWNED BY public.case_status.case_status_id;
+
+
+--
+-- Name: decision; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.decision (
+    decision_id integer NOT NULL,
+    abstract text,
+    introduction_date date,
+    decision_date date,
+    solution text,
+    comment text,
+    case_id integer NOT NULL,
+    decision_status_id integer,
+    jurisdiction_id integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.decision OWNER TO postgres;
+
+--
+-- Name: Decision_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Decision_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Decision_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Decision_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Decision_Id_seq" OWNED BY public.decision.decision_id;
+
+
+--
+-- Name: decision_status; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.decision_status (
+    decision_status_id integer NOT NULL,
+    name text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.decision_status OWNER TO postgres;
+
+--
+-- Name: Decision_Status_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Decision_Status_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Decision_Status_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Decision_Status_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Decision_Status_Id_seq" OWNED BY public.decision_status.decision_status_id;
+
+
+--
+-- Name: ground; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ground (
+    ground_id integer NOT NULL,
+    name text NOT NULL,
+    ground_type_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.ground OWNER TO postgres;
+
+--
+-- Name: Ground_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Ground_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Ground_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Ground_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Ground_Id_seq" OWNED BY public.ground.ground_id;
+
+
+--
+-- Name: ground_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ground_type (
+    ground_type_id integer NOT NULL,
+    name text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.ground_type OWNER TO postgres;
+
+--
+-- Name: Ground_Type_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Ground_Type_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Ground_Type_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Ground_Type_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Ground_Type_Id_seq" OWNED BY public.ground_type.ground_type_id;
+
+
+--
+-- Name: jurisdiction; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.jurisdiction (
+    jurisdiction_id integer NOT NULL,
+    name text NOT NULL,
+    geolocation text,
+    jurisdiction_url text,
+    scope text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.jurisdiction OWNER TO postgres;
+
+--
+-- Name: Jurisdiction_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Jurisdiction_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Jurisdiction_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Jurisdiction_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Jurisdiction_Id_seq" OWNED BY public.jurisdiction.jurisdiction_id;
+
+
+--
+-- Name: resource; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.resource (
+    resource_id integer NOT NULL,
+    name text NOT NULL,
+    url text,
+    resource_type_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.resource OWNER TO postgres;
+
+--
+-- Name: Resource_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Resource_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Resource_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Resource_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Resource_Id_seq" OWNED BY public.resource.resource_id;
+
+
+--
+-- Name: resource_type; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.resource_type (
+    resource_type_id integer NOT NULL,
+    name text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.resource_type OWNER TO postgres;
+
+--
+-- Name: Resource_Type_Id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Resource_Type_Id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public."Resource_Type_Id_seq" OWNER TO postgres;
+
+--
+-- Name: Resource_Type_Id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Resource_Type_Id_seq" OWNED BY public.resource_type.resource_type_id;
+
+
+--
+-- Name: case_complainant; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.case_complainant (
+    agent_id integer NOT NULL,
+    case_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.case_complainant OWNER TO postgres;
+
+--
+-- Name: case_complainant_recipient; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.case_complainant_recipient (
+    agent_id integer NOT NULL,
+    case_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.case_complainant_recipient OWNER TO postgres;
+
+--
+-- Name: decision_ground; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.decision_ground (
+    ground_id integer NOT NULL,
+    decision_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.decision_ground OWNER TO postgres;
+
+--
+-- Name: decision_resource; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.decision_resource (
+    resource_id integer NOT NULL,
+    decision_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.decision_resource OWNER TO postgres;
+
+--
+-- Name: agent agent_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.agent ALTER COLUMN agent_id SET DEFAULT nextval('public."Agent_Id_seq"'::regclass);
+
+
+--
+-- Name: agent_type agent_type_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.agent_type ALTER COLUMN agent_type_id SET DEFAULT nextval('public."Agent_Type_Id_seq"'::regclass);
+
+
+--
+-- Name: appeal_type appeal_type_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.appeal_type ALTER COLUMN appeal_type_id SET DEFAULT nextval('public."Appeal_Type_Id_seq"'::regclass);
+
+
+--
+-- Name: case1 case_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case1 ALTER COLUMN case_id SET DEFAULT nextval('public."Case_Id_seq"'::regclass);
+
+
+--
+-- Name: case_status case_status_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_status ALTER COLUMN case_status_id SET DEFAULT nextval('public."Case_Status_Id_seq"'::regclass);
+
+
+--
+-- Name: decision decision_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision ALTER COLUMN decision_id SET DEFAULT nextval('public."Decision_Id_seq"'::regclass);
+
+
+--
+-- Name: decision_status decision_status_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_status ALTER COLUMN decision_status_id SET DEFAULT nextval('public."Decision_Status_Id_seq"'::regclass);
+
+
+--
+-- Name: ground ground_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ground ALTER COLUMN ground_id SET DEFAULT nextval('public."Ground_Id_seq"'::regclass);
+
+
+--
+-- Name: ground_type ground_type_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ground_type ALTER COLUMN ground_type_id SET DEFAULT nextval('public."Ground_Type_Id_seq"'::regclass);
+
+
+--
+-- Name: jurisdiction jurisdiction_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jurisdiction ALTER COLUMN jurisdiction_id SET DEFAULT nextval('public."Jurisdiction_Id_seq"'::regclass);
+
+
+--
+-- Name: resource resource_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resource ALTER COLUMN resource_id SET DEFAULT nextval('public."Resource_Id_seq"'::regclass);
+
+
+--
+-- Name: resource_type resource_type_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resource_type ALTER COLUMN resource_type_id SET DEFAULT nextval('public."Resource_Type_Id_seq"'::regclass);
+
+
+--
+-- Data for Name: agent; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.agent (agent_id, name, agent_url, description, agent_type_id, created_at, updated_at) FROM stdin;
+1	Gloucester Resources Limited	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Scott Gilmore et autres (Hausfeld LLP)	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Minister for Planning	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+4	Ramin Pejan et autres (Earthjustice)	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+5	Argentine	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+6	Brésil	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+7	France	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+8	Allemagne	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+9	Turquie	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+10	Alaska Wilderness League	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+11	Defenders of Wildlife	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+12	Northern Alaska Environmental Center	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+13	Sierra Club	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+14	The Wilderness Society	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+15	Center for Biological Diversity	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+16	Friends of the Earth	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+17	Greenpeace	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+18	ConocoPhillips Ltd	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+19	William Tsama	\N	\N	5	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+20	Saúl Luciano Lliuya	\N	\N	5	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+21	RWE	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+22	Tribue Standing Rock Sioux	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+23	Tribue Cheyenne River Sioux	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+24	Corps des ingénieurs de l'armée états-unienne (US Army Corp of Engineers, USACE)	\N	\N	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+25	Chiara Sacchi	\N	\N	5	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+27	Autorités locales ougandaises	\N	\N	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+28	Greenpeace Espana	https://es.greenpeace.org/es/	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+29	Ecologistas en Acción	https://www.ecologistasenaccion.org/	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+30	Oxfam Intermón	https://www.oxfamintermon.org/es	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+32	Notre Affaire à Tous	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+33	Total	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+34	Plan B Earth	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+35	Secrétaire d’État Anglais au transport	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+36	Commonwealth of Massachusetts	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+37	Exxon Mobil Corporation	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+38	Greenpeace Pologne	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+39	PGE GiEK	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+40	Bureau of Ocean Energy Management (BOEM)	\N	\N	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+41	Greenpeace USA	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+42	Pacific Environment	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+43	Oxfam France	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+44	Les Amis de la Terre France	\N	\N	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+45	BNP Paribas	\N	\N	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+46	32 citoyens de Jakarta	\N	\N	5	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+47	Président Indonésien	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+48	Marguerite P	\N	\N	5	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+31	Espagne	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 14:13:59.693391
+26	Ouganda	\N	\N	2	2023-08-23 12:36:48.489827	2023-08-23 14:14:06.167436
+49	France Nature Environnement	\N	\N	4	2023-09-01 19:54:17.383938	2023-09-01 19:54:17.907582
+50	RESPIRE	\N	\N	4	2023-09-08 07:46:20.018845	2023-09-08 07:46:20.244169
+51	Réseau sortir du nucléaire	https://www.sortirdunucleaire.org/	\N	4	2023-10-11 08:26:46.555559	2023-10-11 08:26:47.444991
+52	Anonyme bangladais	\N	\N	5	2023-10-24 16:48:54.377096	2023-10-24 16:48:54.649038
+53	Hasso Krull	\N	Scientifique estonien	5	2023-12-13 19:58:46.848388	2023-12-13 19:58:47.556376
+54	Association de Lutte contre les Nuisances et la Pollution	\N		4	2023-12-13 20:00:29.353712	2023-12-13 20:00:29.779714
+55	Tony Lowes	\N	Activiste irlandais	5	2023-12-13 20:01:09.614318	2023-12-13 20:01:10.254273
+56	2Celsius Network	2celsius.net	Association de protection de l'environnement roumaine	4	2023-12-13 20:02:26.718329	2023-12-13 20:02:26.989976
+57	WOLF	\N	Association de protection des forêts slovaques	4	2023-12-13 20:03:34.089375	2023-12-13 20:03:34.353654
+58	Kent Roberson	\N	Propriétaire d'une forêt aux Etats-Unis	5	2023-12-13 20:04:16.915085	2023-12-13 20:04:17.254174
+59	Parlement européen	https://www.europarl.europa.eu/portal/fr	\N	2	2023-12-13 20:07:46.76575	2023-12-13 20:07:47.630571
+60	Conseil de l'Union européenne	https://www.consilium.europa.eu/fr/council-eu/	\N	2	2023-12-13 20:08:49.902301	2023-12-13 20:08:50.586825
+\.
+
+
+--
+-- Data for Name: agent_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.agent_type (agent_type_id, name, created_at, updated_at) FROM stdin;
+1	Entreprise	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Etat	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Organisation publique	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+4	Association	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+5	Particulier	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+\.
+
+
+--
+-- Data for Name: appeal_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.appeal_type (appeal_type_id, name, created_at, updated_at) FROM stdin;
+1	Climat	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Environnement	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Climat/Environnement	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+4	Autre	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+\.
+
+
+--
+-- Data for Name: case1; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.case1 (case_id, title, facts_digest, google_drive_folder, case_status_id, appeal_type_id, created_at, updated_at, "FactsYear", "Status") FROM stdin;
+24	CE Force 5 et al. QPC 28 mai 2020	\N	 https://drive.google.com/drive/folders/1gyKYZMzEexGtL5T0wpHbbt6H1asHlGIi	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+26	TA La prise en compte de l’impact écologique MAPA	\N	 https://drive.google.com/drive/folders/1Ab0aT-VGvhFTFdRha_ZxtidC5eVdu60n	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+27	CEDH Projet norvégien forage pétrolier l’Arctique	\N	 https://drive.google.com/drive/folders/1Qm0QBLzrto8ZdbZDd0X3pyGkavqwMxZZ	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+28	Devoir de vigilance 3 arrêts importants premier trimestre 2021	\N	 https://drive.google.com/drive/folders/1oPZ4eqO-UuKiCqwmERJwvnS7vd772p5e	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+29	Indemnisation des agriculteurs exposés aux pesticides	\N	 https://drive.google.com/drive/folders/133ux-Ln1lvgv_i1MEsLxmLP9vpLXmQWf	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+30	CC Association Générations futures QPC 19.03.2021	\N	 https://drive.google.com/drive/folders/1PD1T0hVpoqaLNFsGAWvYW44uzE3I90-l	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+32	CE Gennevilliers c. Préfet des Hauts-de-Seine 31-12-2020 N°440923	\N	 https://drive.google.com/drive/folders/1s1d5m1AhbDOKgf_Wo3yMP1CRhbVpANbT	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+33	CE Consécration responsabilité de l’Etat lois inconstitutionnelles	\N	 https://drive.google.com/drive/folders/1HKx-DUwksFwR0K0PGndyBRGFJNJAQ4Yf	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+34	CC Néonicotinoïdes Betteraves Sucrières 10-12-2020	\N	 https://drive.google.com/drive/folders/1rH9lShgVNKRj774oeCqQmNZm2JW7nAZH	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+35	CAss Pollution de l’air Navire Britanique Carnival PLC 24-11-20	\N	 https://drive.google.com/drive/folders/1d0mltB2nlYzzy_z3ukiLJUVX_UdwT0N3	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+37	Commission Européenne Accès à l'information environnementale 14-05-2020	\N	 https://drive.google.com/drive/folders/1OWd8lEPquB1HelMc_tZM2BwyUl1k_8qT	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+38	FNE Concessions minières 2022	\N	 https://drive.google.com/drive/folders/1KisHXfwLBuT2EMbwbVglgxL2xBZF88hJ	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+40	Recours Cour Suprême de Taïwan	\N	 https://drive.google.com/drive/folders/1m3WK7C_PZstk-jfEaLfxv_5ovVq_vbUs	\N	\N	2023-08-23 12:39:30.815717	2023-08-23 12:39:30.815717	\N	\N
+42	A.Periyakaruppan vs. The Principal Secretary to Government	\N	 https://drive.google.com/drive/folders/17LJNXnBLgrCSLEiLRkca0ToSG88abKvF	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+43	Préfet des Hauts de Seine c. commune de Malakoff	\N	 https://drive.google.com/drive/folders/1GMD_ySlx_w7t7Bt4rq1znIGI-eMxWsgz	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+3	Tsama William et alii v. Attorney General of Uganda	Le 3 décembre 2019, un glissement de terrain, faisant suite à de nombreux autres, engloutit les propriétés des requérants et cause vingt décès. Les victimes et familles des victimes, décident de saisir la Haute Cour de l'Ouganda.	 https://drive.google.com/drive/folders/1Yg4CyFq0HU_2WWSE8vB2nuVP0yZrPtWM	1	2	2023-08-23 12:39:30.514065	2023-08-28 08:10:00.554952	2019	Fait
+10	Commentaire croisé Liberty et Willow (US) et Arctic Oil (Norvège)	\N	 https://drive.google.com/drive/folders/1nd9AA2tL2NzCVQXxVcJs8NlgF60K5aVe	\N	\N	2023-08-23 12:39:30.514065	2023-08-28 08:10:32.46606	\N	À déplacer
+13	Circulaire visant à consolider le rôle de la justice en matière environnementale	\N	 https://drive.google.com/drive/folders/11fEOjWe2aoMFf7M5UW0GoBXpQQ6TEKi6	\N	\N	2023-08-23 12:39:30.514065	2023-08-28 08:10:38.124116	\N	À déplacer
+15	La responsabilité de la société absorbante du fait de la société absorbée	Dans une affaire de droit pénal (destruction involontaire de bien appartenant à autrui par manquement à une obligation de sécurité ou de prudence imposée par la loi) impliquant deux société, la Cour de cassation a opéré un revirement de jurisprudence concernant la transmission de la responsabilité pénale d'une société absorbée.	 https://drive.google.com/drive/folders/1kCkeQiwRMbGvBVQ2zKE9oUpYZ9B-6par	2	4	2023-08-23 12:39:30.514065	2023-08-28 08:10:20.097992	2020	Fait
+36	CAA Bordeaux OQTF Bengladais 18-12-2020	Après un arrêté pris à son encontre quant à son obligation de quitter le territoire français (OQTF) un Bengladais, Sheel,  a saisi la justice française à travers un recours pour excès de pouvoir. Celui-ci s’est vu autorisé à rester sur le territoire Français, car la justice a estimé que sa santé  était incompatible avec la pollution de l’air de son pays. 	 https://drive.google.com/drive/folders/1dGJsaKWy9xprSCSEn7fdYKxB5Ab13c7Z	2	2	2023-08-23 12:39:30.815717	2023-10-24 16:49:54.601849	2020	\N
+19	CE 20 avril 2020, Restriction des épandages agricoles	A l’occasion du confinement qui débute en France le 17 mars 2020 et qui sera marqué par une baisse drastique des activités et des déplacements générateurs d’émissions de gaz à effet de serre, l’association nationale pour la préservation et l’amélioration de la qualité de l’air (association « RESPIRE ») souhaite suspendre provisoirement, le temps de l’épidémie, les épandages agricoles.	https://drive.google.com/drive/folders/1i1mqeXTOQpMJQxeGjpjAF78dIzTAXf3t	2	2	2023-08-23 12:39:30.514065	2023-09-08 07:46:43.714137	2020	À faire
+18	CE 15 novembre 2021, France Nature Environnement, requête 437613	L’association France Nature Environnement a introduit un recours en excès de pouvoir contre la carence du gouvernement à prendre les mesures nécessaires afin de limiter l’usage des pesticides dans deux types de zones, les zones protégées au titre de la directive-cadre sur l’eau du 23 octobre 2000 et celles constitutives du réseau Natura 2000.	https://drive.google.com/drive/folders/19_PqVxNaUsQwKRUwO_1T0Lsc_Oo-0awD	2	2	2023-08-23 12:39:30.514065	2023-10-11 08:29:47.506317	2021	En cours
+31	CE Décision Glyphosate Epinay-Sur-Seine 01-07-21	\N	 https://drive.google.com/drive/folders/14HB0Bgvf006--dxAjtBhIfbJcwCFbtiX	\N	\N	2023-08-23 12:39:30.815717	2023-10-28 08:21:40.952636	\N	À faire
+22	L’état des lieux de la criminalité environnementale par l’ONG Bureau européen de l’environnement	\N	 https://drive.google.com/drive/folders/1rmtcIuz6j9tZDrzZSbXqW-JkbqSRzuCU	\N	\N	2023-08-23 12:39:30.815717	2023-08-28 08:10:54.987123	\N	À faire
+23	CE Référé-liberté et environnement	\N	 https://drive.google.com/drive/folders/1cru9SAGDfoanTD80usS5EOd2__5qiQFB	\N	\N	2023-08-23 12:39:30.815717	2023-08-28 08:10:56.77517	\N	À faire
+39	Rivière Magpie - QUÉBEC	\N	https://drive.google.com/drive/folders/1X5J9AVzCf_o_cOyPtL_KOTZaqByPhpmy	\N	\N	2023-08-23 12:39:30.815717	2023-10-29 18:15:13.785834	\N	\N
+41	Affaire Chlordécone	\N	https://drive.google.com/drive/folders/1tidteLkZOFuGUpILq2m2gXyVEXnenorJ	\N	\N	2023-08-23 12:39:31.197322	2023-10-29 18:16:21.792194	\N	\N
+45	TJ de Marseille - Parc National des Calanques	\N	 https://drive.google.com/drive/folders/1qfxFz644M6fQ38ZoqqC3MBqYnaGIEpjD	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+46	CC Equateur - Estrellita	\N	 https://drive.google.com/drive/folders/14E0rGbzpv61zDZhTNPQOoFzbBeSqlEPz	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+47	Okpabi et al. c. RDS	\N	 https://drive.google.com/drive/folders/1tkh8Fi9nmcS9Rd-ogVCvb4ju-VDE5KQW	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+48	Wilde Cypress Branch et al. v. Beachline South Residential, LLC and Noah Valenstein, Secretary of the Florida Department of Environmental Protection	\N	 https://drive.google.com/drive/folders/1m0_gtzOSWAkFuc4DIszikwf7YG7ec_7y	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+49	Bayer CropScience c. Tribunal UE	\N	 https://drive.google.com/drive/folders/19Y44SEKkDIQfS0zMWhNqpwbUc-H02WzA	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+50	SOBEGI c. SEPANSO	\N	 https://drive.google.com/drive/folders/1fua4bhp_n0S-xY3YNskKNV0WJxewmELq	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+51	Norvège People c. Artic oil	\N	 https://drive.google.com/drive/folders/1kkEgDFYVaPFX8x1eIjAldCMxsKUQRa05	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+52	LPO  c. Bayer et Nufarm	\N	 https://drive.google.com/drive/folders/10LL0WgoQkYYwt2_k-zO9a1FnA6kEY-lT	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+53	Hamida Begum c. Maran Ltd (UK)	\N	 https://drive.google.com/drive/folders/1phSUnnc1o2uSvFJ0SPh3iuZw810lycEC	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+54	Pollution de l'air - UE	\N	 https://drive.google.com/drive/folders/1d5XDfVcHVZK4BO4K7wVsjgN_AFJ_c8c0	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+55	Notre Affaire à Tous c. Total	\N	 https://drive.google.com/drive/folders/1NHbLPVwkq7YFCPhVT9ywVlIaHAU5GY-O	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+56	Deutsche Umwelthilfe (DUH) c. République fédérale allemande	\N	 https://drive.google.com/drive/folders/1UDvDJgB11WgfOEdahyxQdLUAdvAG54Yo	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+57	SCI Les Vigneux c. préfet de l’Aube	\N	 https://drive.google.com/drive/folders/1Hs8nMj7uEAbs50k2zlq1EFaZsY1mDHyF	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+58	Milieudefensie c. Shell	\N	 https://drive.google.com/drive/folders/1cdlEjj9-Kw6HsFxcjDsElIA60MTwP3oA	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+59	Austria Bundesrwalttungsgericht	\N	 https://drive.google.com/drive/folders/152ZwdjsUd6pC75zmnRpT9ZwyWDXo6tX5	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+60	Cour constitutionnelle allemande	\N	 https://drive.google.com/drive/folders/1GxkAhcDR4GhK-i90hjV3jvsFPckmdgUu	\N	\N	2023-08-23 12:39:31.197322	2023-08-23 12:39:31.197322	\N	\N
+61	Daniel Billy et al. c. Australie	\N	 https://drive.google.com/drive/folders/1K1Tl76SFoxDoR54HcJ3pLAPNow0a9FRJ	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+62	Sustaining the Wild Coast NPC et al. c. Afrique du Sud	\N	 https://drive.google.com/drive/folders/1tX8yzCTcWx0lGn4_h9FooM6RaQIraahG	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+63	Aéroport de Heathrow c. Les Amis de la Terre	\N	 https://drive.google.com/drive/folders/1X8MhoiM_E3QWu2ZGJk814PL9ZixlicG_	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+64	Affaire PSB et al. contre Brésil	\N	 https://drive.google.com/drive/folders/1H1w4exBk6g6OozmkmXSKtb5e6hDXH9Jz	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+65	Chevron - Greenwashing	\N	 https://drive.google.com/drive/folders/1R4sOUU75sApPaGa4meAXdAdVBwQzOhDo	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+66	CEDH Youth for Climate Justice	\N	 https://drive.google.com/drive/folders/16-3CQrciBq4i2yAe99SDVMpud2cZXc1F	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+67	Affaire Grande-Synthe	\N	 https://drive.google.com/drive/folders/1ibBhvF-9D3OhnvqkRTyw-PVh5dbTUzYv	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+68	Aéroport de Vienne (Cour Fédérale)	\N	 https://drive.google.com/drive/folders/16NCg5oijH6vKKR14_TI0DPRnQBbfyUZh	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+69	Waorani	\N	 https://drive.google.com/drive/folders/1C1PJItVWIsDNkrbxoQzSra9zcDdrhvEw	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+70	Affaire Exxon	\N	 https://drive.google.com/drive/folders/1evsv0B9GaBB97ETyMHE9dwkCUe9CZBeD	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+72	Fishermen v. Chevron	\N	 https://drive.google.com/drive/folders/1VhLluULu2GlN8Umu_ZvrYODRuvJ7wlAB	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+73	EarthJustice v. Lucky Minerals	\N	 https://drive.google.com/drive/folders/1SrpWbwk_lTjylMHK_iFSoytTqqcqGf3x	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+74	New Zealand High Court Smith v. Fonterra	\N	 https://drive.google.com/drive/folders/1JFIJYSr3uF-Qy--eNBrCBFcpdl1BlDb1	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+75	Rocky Mountain farmers Union V. Corey	\N	 https://drive.google.com/drive/folders/17Q-qSFbymhAYQiglY8Ny-rLwjIKHp53q	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+76	Von Colditz v. Exxon Mobil	\N	 https://drive.google.com/drive/folders/12AlAkfQibifxWDe7u08QoUhLXlZ73yO4	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+77	Urgenda v. Gouvernement Allemand	\N	 https://drive.google.com/drive/folders/1WxhgEtbManXyJquTnb94FlPmCkfFzw-Q	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+78	Our children’s Trust v. Oregon	\N	 https://drive.google.com/drive/folders/1-U3VMu4mQvPpBKAW6wAWphWI0g8brInl	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+79	Senior Women Climate Case v. Switzerland	\N	 https://drive.google.com/drive/folders/1qYeSlV5xeYt8vIhez9nKPSNoDMPpiEaf	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+80	Climate Case Ireland	\N	 https://drive.google.com/drive/folders/1Sx07VGjSdz2SYiMXpT7sXxclL5hzVgiB	\N	\N	2023-08-23 12:39:31.687195	2023-08-23 12:39:31.687195	\N	\N
+82	People of the State of New York v Exxon Mobil	\N	 https://drive.google.com/drive/folders/1-NhEuCxA0XF9jT8MRvfUjjUU2VmQSeLQ	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+83	Chevron Texaco c. Equateur	\N	 https://drive.google.com/drive/folders/1Pz16mb2HqsOtgCXag2WxvnSJGzX2REt6	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+85	CJUE Commission c. France (pollution de l'air)	\N	 https://drive.google.com/drive/folders/1KuM-nd0iAGTxFu-8VjSQi3CV_3nm1Uz4	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+86	PAYS-BAS - Urgenda (Netherlands)	\N	 https://drive.google.com/drive/folders/1oiw9KKPx5QgsZYwPz2yKzzQhoc7vmBNo	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+87	COLOMBIE - Tierra Digna (Colombie)	\N	 https://drive.google.com/drive/folders/1NK7NY4oWL309lDU1CXJAyicYWmEp2Z2g	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+88	INDIA - Pandey v. India	\N	 https://drive.google.com/drive/folders/1tgo2lNZp5X8pYgI8jerLoh7K8WpXqQSA	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+89	USA - Oregon Federal District Court	\N	 https://drive.google.com/drive/folders/1AZPEDH_Nri-fT-bSqw3qQ3NbIW5pRBA7	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+90	ROYAUME UNI - UK High Court Coal Mine	\N	 https://drive.google.com/drive/folders/1KU-Ik5X4ST5iIFylSC8eY-Y8uOPWt1ox	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+91	ALLEMAGNE - Greenpeace Allemagne vs Etat fédéral allemand	\N	 https://drive.google.com/drive/folders/1nS0eiZ5iAJ_0JNHlQb1dIWFHV0A1U07k	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+44	Affaire Lubrizol	\N	https://drive.google.com/drive/folders/1pVQQ1OiIT0ueLgh_4eTQhiSVD_fuIAkF	\N	\N	2023-08-23 12:39:31.197322	2023-10-29 18:18:45.30311	\N	\N
+84	E.U. Biomass Plaintiffs v. European Union		 https://drive.google.com/drive/folders/1ebggF68x5_enuieQJm412yfIGgmLwbEn	2	1	2023-08-23 12:39:32.004007	2023-12-13 20:18:43.803507	2019	Fait
+92	ITALIE - Giudizio Universale	\N	 https://drive.google.com/drive/folders/1h1yNUsx4sx3jCwzL44H9Y7Hlda3yE7l2	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+93	NORWAY - Greenpeace Nordic Ass’n and Nature and Youth v. Ministry of Petroleum and Energy	\N	 https://drive.google.com/drive/folders/1E2DcEXvWBkcakPIgnSd3X7ni4j6Qirw7	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+94	IRELAND - Friends of the Irish Environment	\N	 https://drive.google.com/drive/folders/1nB82WqjCICyp1-57XG1d8TUqcoJaB4HJ	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+95	FRANCE - L'affaire du Siècle	\N	 https://drive.google.com/drive/folders/1tMAzeCi32Y5OeKjXT1tiASyd4smL1ue7	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+96	Gbemre v. Shell (Nigeria)	\N	 https://drive.google.com/drive/folders/13aB_Ogq-EOPInZ4Uc0H3ziYsrJI9YNHg	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+97	Bioenergy and RED II (à traiter ?)	\N	 https://drive.google.com/drive/folders/1fSG0YWPInDe0q9P5VzrffeRV1Hk-wv6U	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+98	CEDH (Urgenda + ADS)	\N	 https://drive.google.com/drive/folders/1INo40SiuvFPSdcs2Azmmp2uWe1BYuXZP	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+99	Keystone Pipeline	\N	 https://drive.google.com/drive/folders/1DSmvCPyCEM8BOTY5yBwZK56W6qUOEZ_L	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+100	Peoples' Climate Case (UE)	\N	 https://drive.google.com/drive/folders/1SkHvqroXdkZ7tqYbKgoYfd_azVT7cTX_	\N	\N	2023-08-23 12:39:32.004007	2023-08-23 12:39:32.004007	\N	\N
+101	Juliana (USA)	\N	 https://drive.google.com/drive/folders/1kNBHWK81l1NKgawe9FLMMWBRjfjMSExS	\N	\N	2023-08-23 12:39:32.405882	2023-08-23 12:39:32.405882	\N	\N
+102	ENVironnement JEUnesse (Canada)	\N	 https://drive.google.com/drive/folders/1poWJhjuAeZymS0-QRB4i6nRHCx1XxCRG	\N	\N	2023-08-23 12:39:32.405882	2023-08-23 12:39:32.405882	\N	\N
+103	EarthLife (Afr du Sud)	\N	 https://drive.google.com/drive/folders/1oTAcvuMcxPBjv1YenYo-uPrE02d-PsZu	\N	\N	2023-08-23 12:39:32.405882	2023-08-23 12:39:32.405882	\N	\N
+104	DeJusticia (Colombie)	\N	 https://drive.google.com/drive/folders/1EsnJt39ZgnFyWqJbolp17XLs05_7olpM	\N	\N	2023-08-23 12:39:32.405882	2023-08-23 12:39:32.405882	\N	\N
+105	Canada Class Action	\N	 https://drive.google.com/drive/folders/1ghYXUC-F8JJGIy6_nnZGU3QtQJgGvcEs	\N	\N	2023-08-23 12:39:32.405882	2023-08-23 12:39:32.405882	\N	\N
+106	Ashgar Leghari	\N	 https://drive.google.com/drive/folders/1LAVYbqiuhZDffOCWhsJh3eRHrjtVv9EY	\N	\N	2023-08-23 12:39:32.405882	2023-08-23 12:39:32.405882	\N	\N
+107	Zoe +Stella (OCT)	\N	 https://drive.google.com/drive/folders/1Y5kmhvqhpkuqn56yDXle5kqfuNkmSzI6	\N	\N	2023-08-23 12:39:32.405882	2023-08-23 12:39:32.405882	\N	\N
+5	Plan B Earth et autres c. secrétaire d'Etat au transport	Le gouvernement britannique a publié le 26 juin 2018 une déclaration de politique nationale en matière d’aéroports (ANPS, Airports National Policy Statement), dans laquelle il se déclarait favorable à un projet d’agrandissement de l’aéroport d’Heathrow près de Londres, avec notamment la construction d’une 3ème piste, dans l’objectif principal de garder sa place de 1er « hub » européen pour le transport aérien international.\n\nPour établir cette Déclaration, le secrétariat d’État au transport avait tenu compte de l’engagement de réduction de 80% des émissions de gaz à effet de serre inclus dans le Climate Change Act de 2008, mais pas de l’Accord de Paris conclu en décembre 2015.	 https://drive.google.com/drive/folders/1C7tUzmzHzwAqaO6Ynyfb01vRTOegAXAr	1	1	2023-08-23 12:39:30.514065	2023-08-28 08:09:45.007039	2018	Fait
+2	Jugement du Tribunal Judiciaire de Nanterre compétence devoir de vigilance	Devoir de vigilance du code du commerce:\nPublier et mettre en œuvre un plan comportant les mesures de vigilance raisonnable propres à identifier les risques et à prévenir les atteintes graves envers les:\n* droits humains et les libertés fondamentales,\n* la santé et la sécurité des personnes ainsi que l'environnement,\n\nRésultant des activités de la société et de celles des sociétés qu'elle contrôle, directement ou indirectement, ainsi que des activités des sous-traitants ou fournisseurs avec lesquels est entretenue une relation commerciale établie, lorsque ces activités sont rattachées à cette relation.	 https://drive.google.com/drive/folders/1PwqAX1yPQE80-6iDThXgYeBRO3QtnV4b	\N	\N	2023-08-23 12:39:30.514065	2023-08-28 08:10:17.586006	2018	En cours
+81	CRC Sacchi et al v. Argentina et al	Seize enfants (dont Greta Thunberg), ressortissants de 12 pays, sont victimes de préjudices causés par la crise climatique. Ces atteintes vont de crises d’asthme dues à la fumée de feux de forêts, à l’impact sur la santé psychique, à l’augmentation des maladies parasitaires et infectieuses causée par la hausse des températures, à l’abandon de la culture d’élevage traditionnelle de par le réchauffement de la région, ou à la perte de territoire face à la montée des eaux de mer.	 https://drive.google.com/drive/folders/1QylCRf1UlnVHKjrWQMxui2-2bk791JjT	2	1	2023-08-23 12:39:32.004007	2023-08-28 08:08:07.999791	2019	En cours
+1	SILA et CBD V. BLM et ConocoPhillips	Le Willow Master Development Plan de ConocoPhillips Ltd est un projet pétrolier dans le nord-est de la Réserve Nationale de Pétrole en Alaska.\n\nLe projet comprend une série d'infrastructures interconnectées qui seraient construites sur environ neuf ans, y compris jusqu'à cinq sites de forage, ainsi que les installations et infrastructures nécessaires à l’exploitation de ces sites (routes, ponts, oléoducs, mine, piste d’atterrissage, etc.).\n\nLe projet devrait avoir une production maximale de 160 000 barils de pétrole par jour  au cours de sa durée de vie de 30 ans, produisant environ 586 millions de barils de pétrole.\n\nCe projet a reçu l’aval du Bureau of Land Management (BLM) en Octobre 2020.	 https://drive.google.com/drive/folders/1f1eJrBfsFa3ZgyFqNlF1Qt4JUdxkilIl	2	3	2023-08-23 12:39:30.514065	2023-08-28 08:09:46.613699	2020	Fait
+4	Greenpeace attaque l’Espagne 	Faisant suite à de nombreuses actions en justice similaires dans les pays européens, trois organisations non gouvernementales ont constaté le non-respect par l’Espagne de ses engagements internationaux.	 https://drive.google.com/drive/folders/1ykkgtx3Z4JDk6ovVrcdrOSytIXJ2fgR6	1	1	2023-08-23 12:39:30.514065	2023-08-28 08:10:08.648992	2020	Fait
+17	QPC 2021 Marguerite P et a.	Une loi de 2019 modifie le régime de protection de l’eau potable en rendant facultatif l’instauration d’un périmètre de protection rapproché du point de captage. Cet assouplissement ne bénéficie cependant pas à tous les propriétaires concernés menacés d’expropriation et ce, pour des raisons de pure praticité administrative.	https://drive.google.com/drive/folders/1AIJqrkR9AHf1CJLes4vcZziqv7uEL0it	2	2	2023-08-23 12:39:30.514065	2023-09-11 08:43:46.599886	2021	En cours
+71	Australia Coal Mine - Rocky Hill	Le vendredi 8 février 2019, le tribunal des affaires foncières et environnementales de l’Etat de Nouvelle-Galles du Sud, dans l’Ouest de l’Australie a rejeté le recours d’une société contre le refus du Ministère d’approuver son projet de mine de Rocky Hill.\nLa décision rendue se distingue en particulier par le fait qu'elle ne s'appuie pas seulement sur les études d'impact local du projet de la société, mais également sur les répercussions secondaires sur le réchauffement climatique liées à l'utilisation du charbon. Le juge établit un lien direct entre l’exploitation de la mine et l’augmentation des GES.	 https://drive.google.com/drive/folders/1ZstZa7OR24tbRJsmyVTQa73FRwo-mVTA	2	2	2023-08-23 12:39:31.687195	2023-08-28 08:09:43.063414	2017	Fait
+14	Le Président Indonésien jugé coupable pour négligence dans la protection du droit à un air sain	Le Président indonésien Joko Widodo, d’autres membres du gouvernement, ainsi que des élus locaux, ont été déclarés coupables de négligence dans le respect du droit des citoyens à respirer un air sain, par une décision tribunal de Jakarta-Centre rendue le 16 septembre 2021. Alors que Jakarta demeure l’une des villes les plus polluées du monde, l’inaction de ces personnalités a été reconnue comme une négligence dans l’enrayement de la pollution de l’air de la capitale indonésienne. Après deux longues années d’instance et huit reports de l’affaire, les juges de Jakarta ont confirmé le droit de tout citoyen à vivre dans un air sain, tout en condamnant les pouvoirs publics à prendre des mesures rigoureuses en la matière. Cette décision de principe en faveur de la protection de l’environnement sur le territoire indonésien, s’inscrit dans la lignée d’autres décisions nationales où les juges mettent en œuvre leurs pouvoirs de coercition afin de réprimer l’inertie des pouvoirs publics.	 https://drive.google.com/drive/folders/12I_sDwCYeAjAw7ZGUmsJZS16MFRIfXtz	2	1	2023-08-23 12:39:30.514065	2023-08-28 08:09:48.810269	\N	À faire
+16	Collectif des maires anti-pesticides, requête 437815	Par une décision du 26 juin 2019, le Conseil d’Etat avait ordonné que les règles d’utilisation de pesticides soient complétées pour être plus protectrices des populations. \nPar un décret et un arrêté du 27 décembre 2019, le gouvernement avait alors édicté de nouvelles règles précisant les conditions d’élaboration des chartes d’engagements par les utilisateurs de pesticides et fixant des distances minimales à respecter entre les zones de traitement et les zones d’habitation.	https://drive.google.com/drive/folders/1xT6yOm9OxDgiy1VYgNbouhqdGEHvalhD	2	2	2023-08-23 12:39:30.514065	2023-09-11 08:45:27.367067	2019	À faire
+9	Liberty Case Center for Biological Diversity v. Hilcorp	Hilcorp Alaska, LLC, ambitionne d’extraire du pétrole brut à Foggy Island Bay, le long de la côte de l'Alaska dans la mer de Beaufort.  Ce projet « Liberty » serait le premier projet de développement pétrolier entièrement immergé dans les eaux fédérales américaines. \n\nHilcorp estime que le site contient environ 120 millions de barils de pétrole récupérable, qui serait extrait au cours de quinze à vingt ans.\n\nLe projet Liberty nécessite la construction d’infrastructures importantes (île de gravier au large, puits de forage, oléoduc, plates-formes de gravier, plaques de glace, abri pour aéroglisseur, quai pour bateaux, mine de gravier, routes de glace). \n\nLe site proposé pour l'île de gravier se trouve au milieu du « boulder Patch », une zone isolée de rochers et de galets qui abrite la seule forêt de varech de l'Extrême-Arctique et produit une diversité d'espèces et une biomasse inhabituelles. La baie abrite une multitude de mammifères marins menacés et en voie de disparition, notamment des ours polaires, six espèces de baleines, trois espèces de phoques, des lions de mer, des loutres de mer et des morses du Pacifique. Des oiseaux de mer, de nombreuses espèces de poissons et de gros mammifères fréquentent toutes les eaux peu profondes autour de la baie.	 https://drive.google.com/drive/folders/1McCz8HwIJx9MfxumCrGsfquOSymiJNAR	2	3	2023-08-23 12:39:30.514065	2023-08-28 08:10:05.249778	\N	À faire
+6	Standing Rock Sioux Tribe v. USACE	En juin 2016, Dakota Access LLC lança la construction d’un oléoduc, transportant de l’huile de schiste entre le Dakota du Nord et l'Illinois et traversant les Etats du Dakota du Nord et du Sud ; de l’Iowa et de l’Illinois. La construction de l’oléoduc fut achevée en avril 2017. Elle suscita des manifestations à travers tout le pays en raison de son impact sur l’environnement et sur les pratiques religieuses des communautés locales, puisque le tracé de l’oléoduc devait traverser différents sites sacrés amérindiens.	 https://drive.google.com/drive/folders/1oEiUMAtq2h4NZIUuI-4A40MFkE1VfM7T	3	2	2023-08-23 12:39:30.514065	2023-08-28 08:10:10.590788	2016	Fait
+7	The Commonwealth of Massachusetts v Exxon Mobil Corporation 	En 2015, la presse internationale, et notamment The Guardian, The Los Angeles Times ou encore InsideClimateNews révèlent qu’Exxon, quatrième entreprise la plus émettrice de gaz à effet de serre du monde depuis 1965, connaissait les risques causés par son activité sur le changement climatique depuis la fin des années 1970. D’ailleurs, deux anciens scientifiques d’Exxon auditionnés par l’élue new-yorkaise Alexandria Ocasio-Cortez ont confirmé l’authenticité de ces documents devant la Chambre des représentants fin 2019. Une étude de 2017 par Geoffrey Supran et Naomi Oreskes, historiens à l’université de Harvard, est venue confirmer le décalage entre les documents internes et la communication d’Exxon dans les éditoriaux ou publireportages sur 25 ans.	 https://drive.google.com/drive/folders/1lulCEpivMntBMdByqBVTL52wt6TGTn9i	\N	1	2023-08-23 12:39:30.514065	2023-08-28 08:10:14.643958	2015	À actualiser
+11	Saúl Luciano Lliuya c. RWE (Allemagne)	Cette affaire oppose Saúl Luciano Lliuya, un agriculteur et guide de montagne péruvien, au groupe énergétique allemand RWE. Saúl Luciano Lliuya, le demandeur, est soutenu par l’ONG allemande Germanwatch. Il vit dans la ville de Huaraz dans les Andes. Le changement climatique dans cette partie du Pérou augmente le risque que de gros blocs de glace se détachent des glaciers surplombant la ville et tombent dans le lac glaciaire Palcacocha situé au-dessus de Huaraz, créant un risque d’augmentation du niveau du lac. Une telle montée des eaux aurait des conséquences dévastatrices pour les habitants de Huaraz. Cela pourrait déclencher une vague d'inondations qui toucherait environ 50 000 personnes dans la partie basse de la ville, dont Saúl Luciano Lliuya et sa famille. Dans sa plainte, Saúl Luciano Lliuya demande que RWE, le plus grand émetteur d'émissions de CO2 en Europe, contribue au financement des mesures de protection du lac de Palcacocha dans un ordre de grandeur correspondant à la contribution de l'entreprise au changement climatique mondial (environ 0,5 %).	 https://drive.google.com/drive/folders/1JNpsO-VKZHELL9_6YJ6ncspyGsZTFZ9E	1	1	2023-08-23 12:39:30.514065	2023-08-28 08:10:22.238085	2015	À faire
+12	Mise en demeure de BNP Parisbas 26-10-22	Avec une empreinte carbone supérieure à celle du territoire français, BNP Paribas était également, entre 2016 et 2021, le premier financeur européen et cinquième mondial du développement des énergies fossiles. Le géant bancaire est également leader sur le secteur du pétrole et du gaz en Arctique, à l’impact dévastateur sur les écosystèmes ultra-sensibles.\n\nLa BNP entretient des liens forts avec les multinationales de l’énergie fossile, notamment les 8 géants du pétrole et du gaz (tels que Total et Chevron) dont elle est le premier financeur mondial. Ces entreprises ont prévu plus de 200 nouveaux projets d’énergies fossiles d’ici 2025, qui entraîneraient l’émission de 8,6 gigatonnes de CO2 supplémentaires dans l’atmosphère, soit l’équivalent des émissions sur toute leur durée de vie de 77 nouvelles centrales à charbon.	 https://drive.google.com/drive/folders/16BuEkfGnq53aTu6Ksshm8hUh31j3XLFZ	1	1	2023-08-23 12:39:30.514065	2023-08-28 08:10:42.766644	2022	À faire
+8	Tribunal régional de Varsovie (Pologne), Greenpeace c	Avec un secteur de l’électricité dépendant très majoritairement du charbon, la Pologne constitue l’un des plus gros émetteurs de carbone de l’Union européenne (UE). Alors que les autorités polonaises ont refusé de se joindre à l’objectif de neutralité carbone pour 2050, adopté en décembre 2019 par les pays membres de l’UE, la société civile se mobilise. \n\nPrès de 90 % de l'électricité produite par Polska Grupa Energetyczna (PGE), la plus grande entreprise de services publics en Pologne, provient de la combustion du charbon. Selon une étude de PWC France publiée en février 2020, cette entreprise d’Etat est le plus grand émetteur de gaz à effet de serre en Pologne et le deuxième en Europe, après le groupe allemand RWE. La filiale GiEK extrait et brûle entre 85% et 90% du charbon du pays et constitue son plus grand producteur d'électricité. En 2018, les émissions de carbone de cette filiale se sont élevées à environ 57 millions de tonnes. Depuis lors, la société a établi d'autres usines de charbon à Opole et à Turów. En moyenne, GiEK génère environ 20 % du total des émissions annuelles de carbone de la Pologne.	 https://drive.google.com/drive/folders/1Nvr4VWpUhDs4HODRkETAO_OGYJbtu2h9	1	1	2023-08-23 12:39:30.514065	2023-08-28 08:10:44.147394	2019	À faire
+20	Association Les Amis de la Terre	Le 4 août 2021, le Conseil d’Etat a rendu une décision qualifiée par beaucoup “d’historique” en condamnant l’Etat à payer 10 millions d’euros à plusieurs organismes luttant contre la pollution de l’air. Cette décision fait suite à plusieurs années d’un contentieux judiciaire initié par l’association Les Amis de la Terre, dans lequel le juge administratif a reconnu à plusieurs reprises l’insuffisance de l’action de l’Etat pour lutter efficacement contre la pollution de l’air, tout en lui imposant d’agir. A défaut d’action, le Conseil d’Etat avertissait le Gouvernement qu’une amende colossale de 10 millions d’euros pourrait être prononcée par semestre de retard dans l’adoption de mesures permettant de respecter les seuils fixés pour certaines particules polluantes. N’ayant pas agi en ce sens, le juge a tenu promesse en le condamnant à payer une telle somme pour le premier semestre 2021.	https://drive.google.com/drive/folders/1c22kgzUDulukUX-S4Ijfk6o09yJ22sZk	2	2	2023-08-23 12:39:30.514065	2023-09-08 15:42:07.076444	2017	À faire
+21	Contentieux des arrêtés anti glyphosate	Entre août et octobre 2019, huit arrêtés municipaux (concernant les communes de Tremblay-en-France, Saint-Denis, L’Île Saint-Denis, Montfermeil, Sevran, Villemomble, Stains, Les Lilas) ont été adoptés par des maires de Seine-Saint-Denis en vue d’interdire ou limiter l’emploi du glyphosate et produits similaires sur le territoire de leur commune. Ces interdictions visaient l’emploi de tels produits en vue du traitement des espaces verts et jardins, infrastructures ferroviaires, routières, terrains de sports et espaces publics et privés dont l’accès est fermé au public ainsi qu’au sein des espaces de production alimentaire destinée à la consommation humaine.\n\nLe Préfet de la Seine-Saint-Denis a, par la suite, saisi le juge des référés en vue d’ordonner la suspension de l’exécution desdits arrêtés en février 2020. La requête est fondée sur un moyen d’incompétence dès lors que la régulation de l’emploi des produits phytopharmaceutiques constitue une police spéciale en vertu du Code rural et de la pêche, relevant de la compétence seule du ministre chargé de l’agriculture concernant leur utilisation et des ministres chargés de l’agriculture, de la santé, de l’environnement et de la consommation ou de celle du préfet de département dans lequel ces produits sont utilisés concernant la réglementation de l’utilisation de ces produits.\n\nEn application du Règlement 1107/2009 CE, seule l’autorité administrative compétente est en capacité d’encadrer l’utilisation de tels produits dans certaines zones.\n\nA l’encontre de cette argumentation, les communes ont soutenu que le caractère tardif de la requête et l’absence de doute sérieux quant à la légalité des arrêtés contestés n’étaient pas de nature à emporter la suspension desdits arrêtés.	https://drive.google.com/drive/folders/1SGBfHi_v1QYxRJn3xWmXpJ_N3_2logJV	2	2	2023-08-23 12:39:30.815717	2023-09-10 08:53:11.725296	2019	À faire
+25	CC Sortir du nucléaire QPC 5 février 2021	Les associations requérantes faisaient grief à l’article 1247 du code civil de fixer un seuil de gravité à la réparation du préjudice écologique. Ainsi, cette disposition méconnaîtrait les articles 3 et 4 de la Charte de l'environnement de 2004. Les associations soulevaient le moyen selon lequel les dispositions contestées méconnaîtraient les articles 1  et  2 de la Charte de l'environnement et l'objectif de valeur constitutionnelle de protection de l'environnement, ainsi que l'article 4 de la Déclaration des droits de l'homme et du citoyen de 1789. En outre, faute de définir ce que recouvre une atteinte non négligeable, ces dispositions méconnaîtraient le principe de clarté de la loi et l'objectif de valeur constitutionnelle d'accessibilité et d'intelligibilité de la loi. \nLe Conseil Constitutionnel, par la décision n° 2020-881 QPC du 5 février 2021, a déclaré conforme à la Constitution l’expression « non négligeable » de l’article 1247 du code civil. Les Sages apportent une définition claire du préjudice écologique, mais restent laconiques sur la raison de la constitutionnalité de l’article 1247.	 https://drive.google.com/drive/folders/1XDrssg49jq6rZu0mIKs0zMspNF5knblw	2	2	2023-08-23 12:39:30.815717	2023-10-11 08:41:14.988632	2021	Fait
+\.
+
+
+--
+-- Data for Name: case_complainant; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.case_complainant (agent_id, case_id, created_at, updated_at) FROM stdin;
+48	17	2023-08-23 13:50:10.040544	2023-08-23 13:50:10.040544
+25	81	2023-08-23 13:51:03.973422	2023-08-23 13:51:03.973422
+1	71	2023-08-23 13:54:41.440183	2023-08-23 13:54:41.440183
+34	5	2023-08-23 13:55:49.428273	2023-08-23 13:55:49.428273
+15	1	2023-08-23 13:56:30.794998	2023-08-23 13:56:30.794998
+16	1	2023-08-23 13:56:40.72234	2023-08-23 13:56:40.72234
+17	1	2023-08-23 13:56:49.934127	2023-08-23 13:56:49.934127
+10	1	2023-08-23 13:57:00.671571	2023-08-23 13:57:00.671571
+14	1	2023-08-23 13:57:12.472953	2023-08-23 13:57:12.472953
+46	14	2023-08-23 13:58:22.948733	2023-08-23 13:58:22.948733
+19	3	2023-08-23 13:59:15.791535	2023-08-23 13:59:15.791535
+15	9	2023-08-23 14:00:44.690716	2023-08-23 14:00:44.690716
+11	9	2023-08-23 14:00:51.441058	2023-08-23 14:00:51.441058
+16	9	2023-08-23 14:00:58.50933	2023-08-23 14:00:58.50933
+41	9	2023-08-23 14:01:15.13184	2023-08-23 14:01:15.13184
+42	9	2023-08-23 14:01:24.128712	2023-08-23 14:01:24.128712
+28	4	2023-08-23 14:02:23.647191	2023-08-23 14:02:23.647191
+29	4	2023-08-23 14:02:29.755623	2023-08-23 14:02:29.755623
+30	4	2023-08-23 14:02:40.832948	2023-08-23 14:02:40.832948
+22	6	2023-08-23 14:03:44.859411	2023-08-23 14:03:44.859411
+23	6	2023-08-23 14:03:53.509696	2023-08-23 14:03:53.509696
+36	7	2023-08-23 14:06:02.328993	2023-08-23 14:06:02.328993
+32	2	2023-08-23 14:06:48.965654	2023-08-23 14:06:48.965654
+20	11	2023-08-23 14:08:07.263635	2023-08-23 14:08:07.263635
+43	12	2023-08-23 14:08:55.782419	2023-08-23 14:08:55.782419
+44	12	2023-08-23 14:09:04.260926	2023-08-23 14:09:04.260926
+32	12	2023-08-23 14:09:12.454128	2023-08-23 14:09:12.454128
+38	8	2023-08-23 14:10:15.103184	2023-08-23 14:10:15.103184
+49	18	2023-09-01 19:54:18.341414	2023-09-01 19:54:18.341414
+50	19	2023-09-08 07:46:20.458814	2023-09-08 07:46:20.458814
+44	20	2023-09-08 15:30:53.070381	2023-09-08 15:30:53.070381
+51	25	2023-10-11 08:26:47.77929	2023-10-11 08:26:47.77929
+52	36	2023-10-24 16:48:54.880068	2023-10-24 16:48:54.880068
+53	84	2023-12-13 19:58:48.300022	2023-12-13 19:58:48.300022
+54	84	2023-12-13 20:00:30.757077	2023-12-13 20:00:30.757077
+55	84	2023-12-13 20:01:11.488363	2023-12-13 20:01:11.488363
+56	84	2023-12-13 20:02:27.238816	2023-12-13 20:02:27.238816
+57	84	2023-12-13 20:03:34.599678	2023-12-13 20:03:34.599678
+58	84	2023-12-13 20:04:17.476918	2023-12-13 20:04:17.476918
+\.
+
+
+--
+-- Data for Name: case_complainant_recipient; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.case_complainant_recipient (agent_id, case_id, created_at, updated_at) FROM stdin;
+5	81	2023-08-23 13:51:31.400002	2023-08-23 13:51:31.400002
+6	81	2023-08-23 13:51:42.009573	2023-08-23 13:51:42.009573
+7	81	2023-08-23 13:52:07.744403	2023-08-23 13:52:07.744403
+9	81	2023-08-23 13:52:18.709858	2023-08-23 13:52:18.709858
+8	81	2023-08-23 13:52:25.466896	2023-08-23 13:52:25.466896
+3	71	2023-08-23 13:54:54.161075	2023-08-23 13:54:54.161075
+35	5	2023-08-23 13:56:03.914826	2023-08-23 13:56:03.914826
+18	1	2023-08-23 13:57:24.327289	2023-08-23 13:57:24.327289
+47	14	2023-08-23 13:58:32.384683	2023-08-23 13:58:32.384683
+26	3	2023-08-23 13:59:23.797908	2023-08-23 13:59:23.797908
+27	3	2023-08-23 13:59:43.867432	2023-08-23 13:59:43.867432
+40	9	2023-08-23 14:01:35.527584	2023-08-23 14:01:35.527584
+31	4	2023-08-23 14:02:53.008701	2023-08-23 14:02:53.008701
+24	6	2023-08-23 14:04:02.974255	2023-08-23 14:04:02.974255
+37	7	2023-08-23 14:06:10.582887	2023-08-23 14:06:10.582887
+33	2	2023-08-23 14:06:59.414987	2023-08-23 14:06:59.414987
+21	11	2023-08-23 14:08:15.410281	2023-08-23 14:08:15.410281
+45	12	2023-08-23 14:09:21.250712	2023-08-23 14:09:21.250712
+39	8	2023-08-23 14:10:24.365586	2023-08-23 14:10:24.365586
+7	19	2023-09-08 07:47:01.742702	2023-09-08 07:47:01.742702
+7	20	2023-09-08 15:31:00.823272	2023-09-08 15:31:00.823272
+51	25	2023-10-11 08:28:21.455046	2023-10-11 08:28:21.455046
+7	36	2023-10-24 16:49:10.174269	2023-10-24 16:49:10.174269
+59	84	2023-12-13 20:07:47.878467	2023-12-13 20:07:47.878467
+60	84	2023-12-13 20:08:50.947247	2023-12-13 20:08:50.947247
+\.
+
+
+--
+-- Data for Name: case_status; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.case_status (case_status_id, name, created_at, updated_at) FROM stdin;
+1	En cours	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Finie	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	En appel	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+\.
+
+
+--
+-- Data for Name: decision; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.decision (decision_id, abstract, introduction_date, decision_date, solution, comment, case_id, decision_status_id, jurisdiction_id, created_at, updated_at) FROM stdin;
+7	Annulation par une Cour Fédérale américaine d’une autorisation de projet de forage pétrolier en Alaska :\n- Nécessité de prise en compte des émissions de gaz à effet de serre (GES) en aval de la production.\n- L’octroi d’une concession pétrolière, ne donne pas au concessionnaire un droit absolu sur le territoire de la concession.\n- Les mesures d’atténuation des conséquences sur la biodiversité, en l’espèce les ours polaires, doivent être précises et spécifiques.	2020-12-12	2021-08-18	L'approbation par le BLM du projet Willow est annulée pour les raisons suivantes :\n\n- GES en aval\nL'exclusion par le BLM dans son étude d’impact des émissions de GES en aval (c’est-à-dire émises post-extraction, lors de la combustion à l’étranger) est arbitraire. Selon la Cour, "l’Analyse d’Impact Environnemental du projet Willow "aurait dû soit donner une estimation quantitative des émissions de gaz à effet de serre en aval " qui résulteraient de la consommation de pétrole à l'étranger, soit "expliquer plus précisément pourquoi il n'aurait pas pu le faire " et fournir une discussion plus approfondie sur la façon dont la consommation étrangère de pétrole pourrait modifier l'analyse des équivalents de dioxyde de carbone». \n\n- Droits du titulaire de la concession\nLe BLM a agi contrairement à la loi dans la mesure où il a développé son analyse des alternatives en estimant que le concessionnaire, ConocoPhillips Ltd, avait un droit absolu d'extraire tout le pétrole et le gaz possible de ses concessions. La Cour affirme au contraire que - “Un contrat de concession n'accorde pas au titulaire le droit absolu de forer où il le souhaite et n'empêche pas catégoriquement le BLM d'envisager des scénarios de développement alternatifs”.\n\n- Analyse d’impact sur la biodiversité\nL’analyse d’impact sur la biodiversité rédigée par les services de protection de la faune et de la flore est annulée car elle ne propose aucune mesure d’atténuation « spécifiques, raisonnables et prudentes »  et n’énonce pas « les termes et conditions qui doivent être respectés » pour leur mise en œuvre. En conséquence, l’autorisation donnée par le BLM, fondée sur cette analyse d’impact est arbitraire et illégale. \n\nPar ailleurs, la Cour ajoute que le BLM n'a pas non plus analysé de manière adéquate une gamme raisonnable d'alternatives pour le projet Willow - un processus qui doit être "au cœur de l'étude d'impact environnemental". 	Fin 2020, les demandeurs, des ONG de protection de l’environnement, engagent des actions en justice afin d’empêcher le concessionnaire, la société ConocoPhillips Ltd d'entreprendre certaines activités de construction à l'hiver 2020-2021 dans le cadre du Projet Willow. \n\nLe 6 février 2021, la présente Cour émet une injonction temporaire interdisant certaines activités de construction pour une période pouvant aller jusqu'à deux semaines. Par la suite, les parties ont prévu de prolonger l'injonction temporaire jusqu'au 1er décembre 2021.	1	1	3	2023-08-23 14:21:43.465233	2023-08-23 14:24:29.357189
+5	Le 26 janvier 2017, Saúl Luciano Lliuya se pourvoit en appel devant le Tribunal régional supérieur de Hamm.	2017-01-26	\N	En appel, le Tribunal régional supérieur de Hamm a, quant à lui, rejeté cette interprétation. Il a reconnu qu'une entreprise privée peut, en principe, être responsable de dommages résultant du changement climatique. Cela s'applique si les dommages ou risques concrets pour les personnes privées ou leurs biens peuvent être partiellement attribués aux activités de l'entreprise concernée.	Lors de l'audience du 13 novembre 2017, le Tribunal régional supérieur de Hamm accepte d’entendre l'affaire contre RWE. Avec cette décision, un tribunal reconnaît pour la première fois qu'une entreprise privée peut, en principe, être tenue responsable des dommages climatiques qu’elle cause. Cela s'applique si des dommages concrets ou des risques pour des personnes privées ou leurs biens peuvent être attribués en partie aux activités de l'entreprise concernée. \n\nLe 30 novembre 2017, le Tribunal régional supérieur de Hamm décide que l'affaire peut formellement passer à l'étape suivante, c’est-à-dire à l’étape de la collecte et de la discussion des preuves. Le demandeur doit apporter la preuve de ses revendications devant le tribunal.\n\nEn février et mars 2018, le Tribunal régional supérieur de Hamm rejette deux objections à la décision d'administration des preuves formulées par les avocats de RWE et déclare une fois de plus que les entreprises peuvent être tenues responsables des dommages climatiques qu’elles causent.\n\nA la suite du désaccord entre les parties quant au choix des experts pour cette affaire, le Tribunal régional supérieur de Hamm nomme des experts en septembre 2018. Ces experts doivent émettre un avis sur la question de savoir s'il existe ou non une menace sérieuse de dommage à la propriété du demandeur. En cas de réponse positive à cette question, le Tribunal devra déterminer dans quelle mesure le changement climatique et les émissions de CO₂ rejetées par RWE ont contribué à cette menace.\n\nEn 2019, le Tribunal régional supérieur de Hamm soumet une demande à l'État péruvien pour être autorisé à inspecter les sites litigieux à Huaraz.\n\nUne visite des juges et experts devait avoir lieu à Huaraz en 2020 mais a dû être reportée en raison de la crise du Covid-19 et des restrictions qui en découlent. Elle a finalement lieu en mai 2022. La procédure est toujours en cours.	11	1	5	2023-08-23 14:18:38.44601	2023-08-23 14:19:38.797686
+6	Les tribus amérindiennes Standing Rock et Cheyenne contestent l’octroi par l’US Army Corp of Engineers (USACE) de la servitude permettant à l’oléoduc Dakota Access de traverser le lac Oahe. Il est reproché à l’USACE d’avoir octroyé cette servitude sans établir un “environmental impact statement” ou EIS (étude d’impact environnementale), pourtant requis lorsqu’une construction affecte significativement l’environnement. La US District Court for DC (cour fédérale du premier degré) a annulé la décision d’accorder à l’oléoduc Dakota Access une servitude sur le lac Oahe et a ordonné sa fermeture sous 30 jours.	2016-07-25	2020-07-20	La Cour annule la décision d’accorder à l’oléoduc Dakota Access une servitude sur le lac Oahe et ordonne sa fermeture sous 30 jours.	[raisonnement] Aux Etats-Unis, en matière de décision administrative illégale, il est d’usage que le juge annule la décision. L’annulation est la sanction classique pour les actes adoptés “en violation du NEPA”. Cependant, l’annulation n’est pas systématique. Elle doit être précédée par une analyse de la gravité de l’illégalité et des conséquences de l’annulation.\n\nPour ce qui est de la première partie de l’analyse qui concerne la gravité de l’illégalité, la Cour considère que l’USACE n’a pas justifié son choix de ne pas adopter d’EIS et qu’il n’apporte aucune justification convaincante à cette situation.\n\nLa deuxième partie de l’analyse est plus délicate. La Cour est appelée à confronter des considérations économiques et environnementales. Parmi elles : l’impact de l’annulation de la décision sur l’industrie du pétrole, sur la santé, sur l’environnement, ainsi que sur le recours au train pour transporter le pétrole au lieu de l’oléoduc. La Cour conclut que “compte tenu de la gravité de l’erreur de l’USACE ; de l’impossibilité d’adopter des mesures correctives ; le fait que Dakota Access a assumé une grande partie de son risque économique en connaissance de cause ; et les dommages potentiels existant chaque jour où l'oléoduc est exploité”, il est nécessaire de prononcer l’annulation de la décision de l’USACE.\n\nLe 5 août 2020, l’US Court of Appeals for the DC Circuit a ordonné la suspension de la décision de fermeture de l’Oléoduc afin de laisser le temps aux parties de présenter leurs arguments et à la Cour, de se prononcer sur l’affaire.	6	1	6	2023-08-23 14:20:04.866071	2023-08-23 14:20:58.221416
+9	Le Comité des droits de l’enfant considère que la crise climatique “menace gravement l’exercice des droits protégés par la Convention [relative aux droits de l’enfant]”. Il affirme qu’il est compétent pour statuer sur des atteintes transfrontalières, mais que la communication est, en l’espèce, irrecevable pour non-épuisement des recours internes.	2019-09-23	2021-09-22	Le comité des droits de l’enfants considère que la crise climatique “menace gravement l’exercice des droits protégés par la Conventions”. Il affirme qu’il est compétent pour statuer sur des atteintes transfrontalières, mais que la communication est, en l'espèce, irrecevable pour non-épuisement  des recours internes.	Sur la question de recevabilité -\n\nLes auteurs de la communication maintiennent,\nque le Comité est compétent parce que les enfants sont directement lésés par les émissions de gaz à effet de serre provenant du territoire des défendeurs;\nque ces atteintes étaient prévisibles;\nque les demandes sont manifestement fondées parce que les enfants subissent actuellement des préjudices directs et personnels et continueront de le faire dans un avenir prévisible; et\nqu'il serait vain d'exercer des recours internes, particulièrement en considération de l’urgence.\n\nSur le fond -\n\nLes auteurs de la communication demandent au CED de déclarer que « La crise climatique est une crise des droits de l'enfant » et que la Convention « oblige les nations à respecter, protéger et réaliser le droit inaliénable à la vie des enfants, dont découlent tous les autres droits. L'atténuation du changement climatique est un impératif des droits de l'homme». \n\nLes enfants se déclarent tous individuellement victimes de violations de leurs droits reconnus par les articles 6 (droit à la vie), 24 (droit à la santé) et 30 (droit à sa propre vie culturelle), lus conjointement avec l’article 3 (intérêt supérieur de l’enfant) de la Convention, mais affirment également la valeur universelle de la reconnaissance des droits humains et de l’enfant.\n\nIls affirment  que les états parties ont manqué à quatre obligations en droit international\nobligation de prévenir les violations prévisibles des droits de l'enfant nationales et extraterritoriales résultant du changement climatique ; \nobligation de coopérer au niveau international face à l'urgence climatique mondiale ; \nobligation d’appliquer le principe de précaution pour éviter des conséquences mortelles même face à l'incertitude ; \nobligation d’assurer la justice intergénérationnelle pour les enfants et la postérité.\n\nLes pétitionnaires allèguent que les états défendeurs ont échoué, en toute connaissance de cause, à prévenir les atteintes aux droits de l'enfant causées par le changement climatique en procédant à des réductions insuffisantes et tardives des émissions de gaz à effet de serre.	81	3	1	2023-08-23 14:26:44.992812	2023-08-23 14:28:34.352828
+8	Le 15 septembre 2020, trois organisations non gouvernementales, Greenpeace Espagne, Oxfam Intermón et Ecologistas en Acción, ont assigné l’Etat espagnol en justice pour son manque d’ambition en matière climatique.	2020-09-15	\N	L’affaire est pendante devant la Cour suprême.	Le 15 septembre 2020, Greenpeace Espagne, Oxfam Intermón et Ecologistas en Acción ont saisi la Cour suprême d’Espagne afin de condamner l’Espagne pour son inactivité dans la lutte contre le réchauffement climatique.\n\nLe 30 septembre 2020, la Cour suprême a admis la requête et a demandé au ministère de la présidence de présenter son dossier administratif dans un délai de 20 jours.	4	\N	7	2023-08-23 14:25:27.438972	2023-08-23 14:25:58.23599
+12	Ordonnance de mise en état	2020-01-18	2021-02-18	Condamnation de la SE Total à payer aux parties défenderesses la somme globale de 6 000 € en application de l’article 700 du code de procédure civile	\N	2	\N	9	2023-08-28 08:15:39.156742	2023-08-28 08:16:28.585757
+10	Le vendredi 8 février 2019, le tribunal des affaires foncières et environnementales de l’Etat de Nouvelle-Galles du Sud, dans l’Ouest de l’Australie a rejeté le projet de mine de Rocky Hill. C’est le juge Brian Preston qui a rendu cette décision.	2017-12-19	2019-02-08	Le tribunal a rejeté le recours d'une entreprise contre le refus des autorités d'autoriser son projet de mine Rocky Hill.\n\nLe juge Brian Preston a considéré que le projet survenait :\n1- "Au mauvais endroit parce qu'une mine de charbon à ciel ouvert dans ce paysage spectaculaire et culturel [...] aura des impacts importants visuellement, socialement et en fait d'aménagements."\n> Le juge a pris en compte non seulement les impacts sur le climat mais aussi sur l’écosystème dans lequel devait s'insérer la mine. Il a étudié les conséquences sur la faune et la flore environnantes mais aussi sur les populations et les activités autour de la mine.\n2- "Au mauvais moment parce que les émissions de gaz à effet de serre (GES) de la mine de charbon et des produits du charbon accroîtront les concentrations mondiales de GES au moment où ce qui est nécessaire et urgent, pour atteindre les objectifs climatiques qui ont été agréés, est une baisse rapide et profonde des émissions de GES."\n> Le juge a établi un lien direct entre l’exploitation de la mine et l’augmentation des émissions de GES.\nLa décision se distingue en particulier par le fait qu'elle ne s'appuie pas seulement sur les études d'impact local du projet de la société Gloucester Resources, mais aussi sur les répercussions secondaires sur le réchauffement climatique liées à l'utilisation du charbon.\n\nLe juge a soutenu que "Toutes les ressources naturelles ne doivent pas nécessairement être exploitées."\n\nCette décision ouvre un contentieux climatique en Australie et joue un rôle également moteur dans la justice climatique mondiale.	Le juge a soutenu que "Toutes les ressources naturelles ne doivent pas nécessairement être exploitées." Il semblerait intéressant d’éclairer cette remarque avec la doctrine du Public Trust qui veut que l’Etat protège les ressources naturelles, attention, le juge n’y fait pas référence dans cette décision.	71	2	2	2023-08-28 08:11:40.358475	2023-08-28 08:12:48.083942
+14	Suite au rejet de leurs demandes, les requérantes font appel auprès de la Cour d’appel de l’Angleterre et du pays de Galles.	\N	2020-02-27	Le 27 février 2020, la Cour d’appel d’Angleterre et du Pays de Galles a invalidé la déclaration de politique nationale relative aux aéroports (ANPS) rédigée en 2018 et qui permettait notamment de lancer le projet de construction d’une 3ème piste à l’aéroport londonien d’Heathrow. L’illégalité relevée par la Cour était l’absence de prise en compte dans l’ANPS de l’Accord de Paris de 2015.\n\nL’autorité administrative devra donc revoir sa déclaration et y expliquer comment elle prend en compte l’Accord de Paris et les engagements pris par le Royaume-Uni, même si elle n’est pas tenue de s’y conformer.	Si cet accord n’a pas de caractère contraignant dans l’ordre interne du Royaume-Uni, sa prise en compte est rendue obligatoire d’une part par l’effet d’une loi interne, le Planning Act, et d’autre part du fait de la directive européenne de 2001 sur les évaluations stratégiques environnementales (ESE).	5	1	11	2023-08-28 08:21:45.851537	2023-08-28 08:22:17.82409
+11	Les requérants sont victimes et familles de victimes de glissements de terrains dans la région de Bududa, en Ouganda. Les requérants saisissent la Haute Cour du pays. Ils contestent la carence des autorités locales et nationales dans l’adoption de mesures permettant de prévenir ou limiter les conséquences de ces glissements de terrain sur les droits fondamentaux à la vie.	2019-12-03	\N	Pour l’heure, la procédure suit son cours. Aucun jugement n’a, pour l’instant, été rendu.	Les requérants soulèvent les atteintes à plusieurs de leurs droits fondamentaux :\n\nLe droit à la vie de l’article 22§1 de la Constitution Ougandaise aurait été violé en conséquence des glissements de terrain. Les destructions de propriétés consécutives aux glissements de terrain constitueraient une atteinte au droit de propriété de l’article 26 de la Constitution ougandaise. Les conséquences des glissements de terrain seraient constitutives d’une atteinte au droit à un environnement sain garanti par l’article 39 de la Constitution ougandaise. Parmi elles : les pertes économiques, la disparition des conditions propres à assurer un environnement sain et sûr à la population du comté, les blessures physiques et psychologiques.\n\nLes demandeurs font valoir que la Constitution Ougandaise impose au Gouvernement d’adopter les mesures nécessaires pour faire face aux catastrophes naturelles.\n\nÉgalement, d’après les requérants, le droit international impose aux défendeurs d’adopter les mesures nécessaires propres à prévenir et limiter les conséquences des catastrophes naturelles ; à protéger le droit de propriété, le droit à la vie, le droit à un environnement sain et le droit à la santé physique et mentale.\n\nEnfin, ils soulèvent le fait que ces situations sont susceptibles de se renouveler et de s’aggraver en raison des changements de modèles de précipitations et des évènements climatiques extrêmes dûs au changement climatique.\n\nLes requérants demandent à la Haute Cour la réparation des dommages causés.	3	\N	4	2023-08-28 08:14:14.584093	2023-08-28 08:14:45.401222
+13	Plusieurs recours ont été déposés par des requérant ayant pour objet la défense de l’environnement et la lutte contre le changement climatique, ainsi que des autorités locales de l’agglomération londonienne, contre le secrétaire d’État au transport, autorité responsable de la politique en matière d’aéroports et de la rédaction de l’ANPS (Airports National Policy Statement).	\N	2019-05-01	Ayant été déboutées en mai 2019 en première instance devant la Haute Cour, les requérantes ont interjeté appel auprès de la Cour d’appel de l’Angleterre et du pays de Galles.	\N	5	2	10	2023-08-28 08:17:10.199627	2023-08-28 08:18:01.145603
+15	La société opératrice de l’aéroport d’Heathrow a déposé un recours, qui a été jugé recevable, auprès de la Cour suprême contre cette décision.	\N	\N	\N	\N	5	\N	12	2023-08-28 08:22:30.97008	2023-08-28 08:22:38.837022
+16	Greenpeace mène en Pologne une campagne globale de lutte contre la crise climatique et cherche à accélérer la décarbonisation du pays. Le 11 mars 2020, l’ONG a déposé un recours contre la filiale GiEK devant le tribunal régional de Varsovie (Łódź), pour exiger de l’entreprise publique la réduction de ses émissions de gaz à effet de serre. Greenpeace demande à l’entreprise de cesser tout nouvel investissement dans les combustibles fossiles et de parvenir aux émissions zéro de ses centrales à charbon existantes d’ici 2030.	2020-03-11	\N	L’affaire est en cours, aucune décision n’a été rendue à l’heure actuelle. Dans un premier temps, les juges doivent se pencher sur la recevabilité de la plainte.	Concernant la recevabilité de la plainte, Milosz Jakubowski, un juriste collaborant avec Greenpeace, a précisé à l’Agence-France-Presse (AFP) qu’une telle plainte devrait être recevable même si l’entreprise visée avait obtenu les permis nécessaires pour ses activités.\nLe contexte polonais peut être éclairant quant à la suite qui sera donnée à cette affaire par les juges. \nD’une part, cette affaire constitue le troisième procès intenté à l’encontre de l’entreprise PGE. Dans l’affaire pendante ClientEarth v. Polska Grupa Energetyczna, l’organisation de protection de l'environnement a demandé devant les juges polonais, en décembre 2019, que la PGE GEiK cesse de brûler du charbon dans son usine de charbon de Belchatow ou élimine complètement les émissions de CO2 de l'usine au plus tard en 2035. ClientEarth a également fondé sa requête sur l’article 232 de la loi sur la protection de l'environnement. A la différence de Greenpeace, ClientEarth a non seulement invoqué l’alinéa 1 mais aussi l'alinéa 2 qui considère l'environnement comme un “bien commun”.\n\nD’autre part, les inquiétantes menaces qui pèsent aujourd’hui sur l'État de droit polonais constituent également une clé d’analyse. Dans ses conclusions de juin 2019, la Cour de justice de l’Union européenne a estimé que les dispositions de la loi polonaise portant modification de la loi sur l'organisation des juridictions de droit commun sont contraires au droit de l'UE, enfreignent le principe de l'inamovibilité des juges et par conséquent le principe de l'indépendance de la justice.	8	\N	13	2023-08-28 08:22:52.913523	2023-08-28 08:23:20.173351
+18	Le 26 octobre 2022, Oxfam, Les Amis de la Terre et Notre Affaire à Tous (les demandeurs) ont mis en demeure la BNP Parisbas (le défendeur) de se conformer à la Loi sur le devoir de vigilance, en cessant immédiatement de soutenir financièrement les nouveaux projets d’énergies fossiles et de se conformer à l’objectif de limiter le réchauffement global à 1,5 °C. \n\nLe défendeur a trois mois pour répondre. En janvier 2023, en l’absence de réponse satisfaisante de sa part, les demandeurs pourront assigner le défendeur devant le Tribunal Judiciaire de Paris.	2022-10-26	\N	\N	\N	12	\N	9	2023-08-28 08:24:39.868132	2023-08-28 08:25:05.880694
+17	Cinq ONG de protection de l’environnement, dirigées par le Center for Biological Diversity (CBD) ont déposé une requête auprès de la Ninth Circuit Court of Appeals demandant la révision de la décision du Bureau of Ocean Energy Management (BOEM) d'approuver le plan de développement soumis par Hilcorp pour le projet Liberty. \n\nIls demandent également la révision de l’analyse d’impact sur la biodiversité des services de protection de la faune et de la flore (US Fish and Wildlife Service -FWS) pour la construction et l'exploitation du projet.	\N	2020-12-07	Annulation d’une autorisation de forage en Alaska par la Cour d’Appel du 9eme Circuit.\n\nLes émissions de gaz à effet de serre (GES) produites par la combustion à l’étranger doivent être prises en compte dans l’analyse d’impact environnemental d’un projet extractif aux Etats-Unis.\nLes mesures d’atténuation des effets du projet afin de préserver la biodiversité doivent être précises, spécifiques, et contraignantes et engager les ressources nécessaires.	L’arrêt Liberty confirme des principes essentiels concernant la teneur des analyses d’impact environnemental effectuées par les agences étatiques dans le cadre des autorisations de concessions de forages. Il sera suivi moins d’un an plus tard par le jugement Willow, de la Fédéral District Court de l’Alaska qui le consolide, dans une affaire concernant l’analyse d’impact faite par le Bureau of Land Management (BLM).\n\nEn particulier, ces deux jugements précisent que des prévisions concernant les émissions de GES causées par la consommation d’hydrocarbures exportés doivent être prises en compte dans l’analyse d’impact environnemental. \nIl est intéressant de noter que la Cour a souligné dans Liberty que l’agence étatique est en droit de modifier sa décision relative à l’autorisation de forage, «même à une date ultérieure», dans le cas où les prévisions concernant les émissions à l’étranger indiqueraient des émissions importantes. \n\nLa Cour Suprême norvégienne a adopté la même approche dans un jugement de Décembre 2020 en soulignant que les autorités avaient « le droit et le devoir » de ne pas approuver un plan d’exploitation si les considérations envers l’environnement, dont les émissions à l’étranger, indiquent à ce moment là, une violation de la Constitution (droit a un environnement sain), et cela même dans le cas ou les exploitants auraient déjà engagés des investissement sur ces sites au stade de l’exploration.	9	1	14	2023-08-28 08:23:44.883145	2023-08-28 08:24:17.364028
+20	Par cet arrêt, le Conseil d’Etat juge que les dispositions réglementaires en vigueur ne permettent pas de garantir que l'utilisation de pesticides sera systématiquement encadrée voire interdite dans les sites terrestres Natura 2000, en méconnaissance des exigences de la directive du 21 octobre 2009 instaurant un cadre d'action communautaire pour parvenir à une utilisation des pesticides compatible avec le développement durable. Il ordonne au gouvernement d’agir dans les 6 mois pour réduire l’utilisation des pesticides dans les sites Natura 2000. 	2020-01-13	2021-11-15	Le Conseil d’Etat enjoint au gouvernement de prendre de telles mesures dans un délai de six mois, soit d’ici le 15 mai 2022.	\N	18	1	17	2023-09-01 20:03:16.574666	2023-09-01 20:04:00.27123
+21	Le 20 avril 2020, le juge des référés du Conseil d’Etat a rendu une ordonnance dans laquelle il constate l’absence de carence du gouvernement dans la protection du droit à la vie et à la santé, dans une affaire dans laquelle le demandeur lui reprochait de ne pas avoir appliqué l’arrêté du 7 avril 2016 qui prescrit des mesures de restriction des épandages en cas de pic de pollution et de dépassement des seuils d’alerte.	2020-03-17	2020-04-20	Par une ordonnance rendue le 20 avril 2020, le Conseil d’Etat déboute l’association qui n’a pas démontré la nécessité de prendre des mesures complémentaires : on ne peut reprocher au gouvernement sa carence dans l’application de l’arrêté du 7 avril 2016.\nLe juge des référés rappelle cependant qu’il incombe à l’administration « de faire preuve d’une vigilance particulière dans le contexte actuel d’état d’urgence sanitaire en veillant à ce que soit pris, au besoin préventivement en cas de menace avérée de franchissement des seuils, des mesures propres à éviter la survenue ou au moins à réduire la durée des épisodes de franchissement des seuils, notamment en limitant les pratiques agricoles polluantes ». C’est sous la réserve que l’État assure strictement ses obligations, y compris de manière préventive, que le juge a rejeté la demande de l’association.	Le Gouvernement a-t-il porté une atteinte grave et manifestement illégale au droit à la vie et au droit à la protection de la santé en s’abstenant d’appliquer l’arrêté du 7 avril 2016 qui restreint les épandages agricoles ?	19	2	17	2023-09-08 07:48:12.983844	2023-09-08 07:53:40.851274
+22	L' association Les Amis de la Terre formule une demande auprès du Gouvernement afin qu’il agisse pour lutter contre la pollution de l’air et qu’il respecte la Directive 2008/50/CE du Parlement européen et du Conseil du 21 mai 2008 concernant la qualité de l’air ambiant et un air pur pour l’Europe, notamment dans plusieurs grandes villes telles que Paris, Marseille ou Lyon. Le rejet implicite de cette demande avait incité l’association à exercer un recours pour excès de pouvoir devant le juge administratif, dans le but d’obtenir du juge qu’il annule ces décisions de rejet, et enjoigne au Premier ministre et ministres compétents d’agir.	\N	2017-07-12	\N	\N	20	\N	17	2023-09-08 15:32:57.302759	2023-09-08 15:41:48.473103
+23	L'association Les Amis de la Terre, constatant l’irrespect de la décision du Conseil d’Etat par le Gouvernement français, est repassée à l’offensive, et a permis l’adoption d’une nouvelle décision plusieurs fois qualifiée d’historique : celle du 10 juillet 2020 par laquelle la Haute juridiction venait constater l’insuffisance des mesures adoptées, et condamner l’État à agir en suivant les mesures prises par le juge administratif pour réduire la pollution de l'air dans huit zones géographiques sous une astreinte de 10 millions d’euros par semestre de retard, soit 54 000€ par jour de retard	\N	2020-07-10	\N	\N	20	\N	17	2023-09-08 15:43:30.188506	2023-09-08 15:43:30.656579
+4	Le 24 novembre 2015, Saúl Luciano Lliuya dépose une plainte civile contre RWE devant le Tribunal régional d'Essen en Allemagne. En décembre 2015, le Tribunal régional d'Essen classifie l'affaire comme étant d'importance fondamentale.\n\nLe 15 décembre 2016, le Tribunal régional d'Essen rejette la demande en raison de l’absence de causalité juridique. Il admet néanmoins la possibilité d’une causalité scientifique.	2015-11-24	2016-12-15	Le Tribunal régional d'Essen rejette la demande en raison de l’absence de causalité juridique. Il admet néanmoins la possibilité d’une causalité scientifique.\n\nLors de son rejet de l'affaire en première instance, le Tribunal régional d'Essen a nié l'existence d'un lien de causalité juridiquement pertinent entre les émissions de gaz à effet de serre de RWE et la mise en danger des biens du demandeur. En substance, le tribunal a fait valoir que les processus du changement climatique et ses conséquences sont si complexes qu'il n'est pas possible en pratique de prouver un lien de causalité individuel entre les émissions de CO2 de certains émetteurs et des impacts spécifiques du changement climatique. Le tribunal a également fait valoir, en se référant au principe d'adéquation, qu'il existe de nombreux contributeurs à la charge globale de gaz à effet de serre dans l'atmosphère et que, par conséquent, la part d'un émetteur unique n'est pas pertinente pour les impacts spécifiques du changement climatique causés.	\N	11	2	8	2023-08-23 14:16:19.592844	2023-12-15 18:57:20.295539
+24	L’association Les Amis de la Terre et autres associations requérantes ont demandé au Conseil d’Etat, par mémoire enregistré le 25 mars 2021, de constater que les deux décisions du 12 juillet 2017, et du 10 juillet 2020, n’ont pas été pleinement exécutée au terme du délai de 6 mois octroyé au Gouvernement par le Conseil d’Etat. Elles demandent également une majoration de l’astreinte de 10 millions, à 20 millions d’euros par semestre de retard, en plus de procéder à la liquidation de l’astreinte prononcée en juillet 2020.	\N	2021-08-04	La décision rendue par le Conseil d’Etat le 4 août 2021 témoigne d’une certaine constance dans la prise de position forte adoptée par le juge administratif face à l’inaction de l’Etat en matière de pollution de l’air. Cette pression exercée sur les gouvernants trouve un écho d’autant plus fort au regard des décisions rendues dans le cadre de l’affaire Grande Synthe, ou encore de l’Affaire du siècle, constatant la carence fautive de l’Etat en matière de lutte contre le changement climatique et lui imposant d’agir.	Qu’en penser ? Certes, la condamnation de l’Etat servira à financer les activités de plusieurs organismes dédiés à l’étude et à la lutte contre la pollution de l’air, ainsi qu’à l’amélioration de la qualité de l’air. Pourtant, certaines ONG craignent que cela amène l’Etat à réduire proportionnellement le budget alloué à ces organismes, qui, s’ils sont indépendants, vivent largement grâce à ces subventions. Ces ONG préconisaient ainsi plutôt la mise en place d’un fonds spécifique pouvant financer des projets dédiés à la lutte contre la pollution de l’air afin d’éviter de telles dérives.	20	\N	17	2023-09-08 15:45:59.57907	2023-09-08 15:47:18.79979
+19	La requérante Marguerite P a saisi le Conseil d’Etat d’une QPC qu’il a transmise au Conseil constitutionnel le 19 novembre 2020.	2020-11-19	2021-02-12	La distinction entre les terrains concernés par une procédure démarrée le jour de la publication de la loi et ceux qui bénéficient de l’assouplissement des règles de protections des points de captage d’eau potable vise uniquement “à dispenser les personnes publiques ayant engagé une procédure d'instauration de périmètres avant la publication de la loi d'avoir à la reprendre pour la compléter.” Ce motif, sans objet avec la mesure, ne permet donc pas de justifier une différence de traitement par la loi, qui est donc inconstitutionnelle au regard de l’article 6 de la DDHC.\n\nLe paragraphe concernant l’exclusion des requérants du champ d’application de la loi de 2019 est ainsi censuré par le Conseil constitutionnel.	La différence de situation instaurée par la loi de 2019 modifiant le système de santé est-elle justifiée au regard de l’objet de la loi et proportionnée à l’objectif recherché ?	17	1	16	2023-08-28 09:46:27.714046	2023-09-10 09:07:16.765269
+25	Alors que l’autorisation européenne du glyphosate a fait l’objet d’une prolongation jusqu’en 2020, le calendrier d’une éventuelle interdiction anticipée d’utilisation en France demeure incertain. Dans ce cadre, des élus locaux sont intervenus afin d’interdire l’épandage sur le territoire de la commune.\n\nLes huit décisions examinées ici concernent huit communes du département de la Seine-Saint-Denis. Si l’issue en est variable en raison des spécificités des arrêtés concernés, le tribunal laisse pour autant ouverte la possibilité d’une telle action si tant est que des circonstances locales particulières soient établies. Néanmoins, il convient de noter que depuis l’adoption des arrêtés, des mesures de police spéciale ont été prises en vue de protéger les populations par le biais du décret N°2019-1500 et de l’arrêté du 27 décembre 2019. Ainsi, de telles mesures de police spéciale pourraient désormais remettre en cause la capacité d’intervention des élus.\n	\N	2020-03-03	\N	\N	21	\N	18	2023-09-10 08:55:00.385028	2023-09-10 08:55:41.036003
+26	Les textes attaqués ont fait l’objet de 10 requêtes distinctes, introduites entre le 21 janvier 2020 et le 23 août 2020. Ces requêtes présentant à juger des questions semblables, le Conseil d’Etat les a jointes pour statuer par une seule décision.\nLa commune de Bègles a été également admise à intervenir à l’instance.	\N	2021-07-26	Le Conseil d’Etat a jugé que les nouvelles dispositions demeurent insuffisantes et partant, illégales, sur trois points : \nen tant qu’elles fixent, s’agissant des cultures basses, à 5 mètres la distance minimale d’épandage des produits dont la toxicité n’est que suspectée, et ce alors que l’Agence nationale de sécurité sanitaire de l’alimentation, de l’environnement et du travail (ANSES) recommande une distance minimale de 10 mètres entre les habitations et les zones d’épandage de tout produit classé cancérogène, mutagène ou toxique, sans distinguer si leurs effets sont avérés, présumés ou seulement suspectés ; \nen tant qu’elles ne prévoient aucune mesure de protection pour les personnes travaillant à proximité des zones d’utilisation de pesticides ; \nen tant qu’elles n’assurent pas une protection des personnes habitant à proximité des zones susceptibles d’être traitées et des personnes présentes, faute d’imposer que les chartes prévoient l’information de ces personnes préalablement à l’utilisation de pesticides. \nLe Conseil d’Etat ordonne au gouvernement de compléter la réglementation sur ces trois points, dans un délai de six mois.	Le recours portait principalement sur la question de savoir si les nouvelles dispositions réglementaires en matière de distances minimales et de conditions d’élaboration des chartes étaient suffisamment protectrices pour les riverains et les travailleurs, au regard notamment des exigences de la directive du 21 octobre 2009 instaurant un cadre d’action communautaire pour parvenir à une utilisation de pesticides compatible avec le développement durable et du principe de précaution.	16	\N	17	2023-09-11 08:45:14.584677	2023-09-11 08:46:26.986553
+28	Après un arrêté pris à son encontre quant à son obligation de quitter le territoire français (OQTF) un Bengladais a saisi la justice française à travers un recours pour excès de pouvoir. Celui-ci s’est vu autorisé à rester sur le territoire Français, car la justice a estimé que sa santé  était incompatible avec la pollution de l’air de son pays.	2020-06-05	2020-12-18	La Cour d'appel de Bordeaux confirme la décision du tribunal administratif de Toulouse annulant l'OQTF.	De façon inédite, une cour a considéré que le requérant ne pouvait être regardé comme pouvant jouir d'un traitement approprié au Bangladesh. La Cour ajoute que, dans ce pays,  le taux de particules fines de polluants est l'un des plus élevés au monde, la mortalité liée à l'asthme est de 12,92 pour 100 000 habitants contre 0,82 en France. Le requérant se trouverait ainsi, en cas de renvoi dans son pays d'origine, “exposé à un risque d'aggravation de son état de santé et à une mort prématurée”.\n\nDans cette décision, la Cour va plus loin puisqu'elle apprécie l’offre de soins et les caractéristiques du système de santé bangladais. Elle a pris en compte le niveau de pollution au Bangladesh, élément qui n’avait pas été intégré par le tribunal administratif tel qu’elle le souligne en indiquant qu’il “se trouverait confronté dans son pays d'origine à la fois à une aggravation de sa pathologie respiratoire en raison de la pollution atmosphérique, à des risques d'interruption d'un traitement moins bien adapté à son état de santé, et à des dysfonctionnements de l'appareil respiratoire dont il a un besoin vital”.	36	1	19	2023-10-24 17:13:21.424319	2023-10-24 17:25:21.802446
+27	A travers cette décision, le Conseil Constitutionnel donne une définition précise du préjudice écologique réparable. Les sages confirment que les termes « non négligeables » de l’article 1247 du Code civil, sont bien conformes à la Constitution. 	\N	2021-02-05	Le Conseil Constitutionnel, par la décision n° 2020-881 QPC du 5 février 2021, a déclaré conforme à la Constitution l’expression « non négligeable » de l’article 1247 du code civil. Les Sages apportent une définition claire du préjudice écologique, mais restent laconiques sur la raison de la constitutionnalité de l’article 1247.	\N	25	2	16	2023-10-11 08:36:24.02635	2023-10-11 08:36:44.498143
+29	Des particuliers et des associations ont saisi le Tribunal européen de Luxembourg le lundi 4 mars 2019 d’un recours en annulation contestant le traitement de la biomasse forestière en tant que carburant renouvelable dans la Directive de 2018 sur les énergies renouvelables révisée de l'Union européenne (UE) (connue sous le nom de RED II). Les demandeurs soutenaient que RED II accélérera la dévastation généralisée des forêts et augmentera considérablement les émissions de gaz à effet de serre sans tenir compte des émissions de CO2 provenant de la combustion de bois.\nLe tribunal a rejeté le recours pour irrecevabilité.	2019-03-04	2021-01-14	Le tribunal a rejeté le recours pour irrecevabilité.	\N	84	3	20	2023-12-13 20:14:52.770227	2023-12-13 20:16:58.992453
+\.
+
+
+--
+-- Data for Name: decision_ground; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.decision_ground (ground_id, decision_id, created_at, updated_at) FROM stdin;
+8	4	2023-08-23 14:18:18.955921	2023-08-23 14:18:18.955921
+8	5	2023-08-23 14:19:48.258287	2023-08-23 14:19:48.258287
+2	6	2023-08-23 14:21:17.985733	2023-08-23 14:21:17.985733
+2	7	2023-08-23 14:24:41.198454	2023-08-23 14:24:41.198454
+3	7	2023-08-23 14:24:49.347204	2023-08-23 14:24:49.347204
+9	8	2023-08-23 14:26:10.146701	2023-08-23 14:26:10.146701
+10	8	2023-08-23 14:26:16.664583	2023-08-23 14:26:16.664583
+1	9	2023-08-23 14:28:48.214473	2023-08-23 14:28:48.214473
+9	10	2023-08-28 08:12:53.062578	2023-08-28 08:12:53.062578
+11	10	2023-08-28 08:13:03.594485	2023-08-28 08:13:03.594485
+7	11	2023-08-28 08:15:06.846763	2023-08-28 08:15:06.846763
+12	11	2023-08-28 08:15:17.610829	2023-08-28 08:15:17.610829
+13	11	2023-08-28 08:15:24.615104	2023-08-28 08:15:24.615104
+14	12	2023-08-28 08:16:40.550722	2023-08-28 08:16:40.550722
+15	12	2023-08-28 08:16:52.419771	2023-08-28 08:16:52.419771
+16	16	2023-08-28 08:23:28.931168	2023-08-28 08:23:28.931168
+17	18	2023-08-28 08:25:16.12736	2023-08-28 08:25:16.12736
+18	19	2023-08-28 09:47:53.365654	2023-08-28 09:47:53.365654
+19	21	2023-09-08 07:53:06.461235	2023-09-08 07:53:06.461235
+22	27	2023-10-11 08:38:09.166585	2023-10-11 08:38:09.166585
+23	27	2023-10-11 08:39:49.819212	2023-10-11 08:39:49.819212
+18	27	2023-10-11 08:40:13.305515	2023-10-11 08:40:13.305515
+24	28	2023-10-24 17:21:17.220535	2023-10-24 17:21:17.220535
+25	29	2023-12-13 20:14:53.726125	2023-12-13 20:14:53.726125
+\.
+
+
+--
+-- Data for Name: decision_resource; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.decision_resource (resource_id, decision_id, created_at, updated_at) FROM stdin;
+11	17	2023-08-28 08:24:27.319411	2023-08-28 08:24:27.319411
+2	4	2023-08-28 08:53:51.097035	2023-08-28 08:53:51.097035
+2	5	2023-08-28 08:53:59.043195	2023-08-28 08:53:59.043195
+9	6	2023-08-28 08:54:29.623765	2023-08-28 08:54:29.623765
+7	8	2023-08-28 08:55:18.92817	2023-08-28 08:55:18.92817
+10	9	2023-08-28 08:55:45.457674	2023-08-28 08:55:45.457674
+7	11	2023-08-28 08:56:18.594897	2023-08-28 08:56:18.594897
+1	17	2023-08-28 08:56:41.44287	2023-08-28 08:56:41.44287
+24	21	2023-09-08 07:51:06.484576	2023-09-08 07:51:06.484576
+25	27	2023-10-11 08:36:25.53712	2023-10-11 08:36:25.53712
+20	28	2023-10-24 17:23:31.670432	2023-10-24 17:23:31.670432
+26	28	2023-10-24 17:24:32.479157	2023-10-24 17:24:32.479157
+27	29	2023-12-13 20:15:36.266169	2023-12-13 20:15:36.266169
+\.
+
+
+--
+-- Data for Name: decision_status; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.decision_status (decision_status_id, name, created_at, updated_at) FROM stdin;
+1	Demandes accueillies	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Rejet	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Ne statue pas sur le fond	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+4	Demande partiellement accueillies	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+\.
+
+
+--
+-- Data for Name: ground; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ground (ground_id, name, ground_type_id, created_at, updated_at) FROM stdin;
+1	Convention internationale des droits de l’enfant du 20 novembre 1989	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Loi états-unienne sur la Politique Nationale sur l’Environnement ( National Environment Policy Act –NEPA)	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Loi états-unienne sur la Propreté des Eaux (Clean Water Act –CWA)	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+4	Loi états-unienne sur la Protection des Mammifères Marins (Marine Mammals Protection Act -MMPA)	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+5	Loi états-unienne sur la protection des Espèces en Danger(Endangered Species Act – ESA)	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+6	Constitution Ougandaise	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+7	Droit à la vie de l’article 22§1 de la Constitution Ougandaise	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+8	Article 1004 du Code civil allemand	5	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+9	Accord de Paris, 2015	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+10	Règlement (UE) n° 2018/1999 du 11 décembre 2018 sur la gouvernance de l'Union de l'énergie et de l'action pour le climat	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+11	Convention-Cadre des Nations-Unies sur les changements climatiques	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+12	Droit de propriété de l’article 26 de la Constitution ougandaise	5	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+13	Droit à un environnement sain garanti par l’article 39 de la Constitution ougandaise	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+14	L 225-102-4 du code de commerce	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+15	Article 1252 du code civil	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+16	Article 323 de la loi polonaise sur la protection de l’environnement	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+17	Loi de 2017 sur le devoir de vigilance des multinationales	4	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+18	Déclaration des droits de l’Homme et du citoyen de 1789	3	2023-08-28 09:47:52.925581	2023-08-28 09:47:53.146008
+19	Arrêté du 7 avril 2016 prescrivant des mesures de restriction des épandages en cas de pic de pollution et de dépassement des seuils d’alerte\n	5	2023-09-08 07:53:06.017885	2023-09-08 07:53:06.240821
+23	Objectif de valeur constitutionnelle de protection de l'environnement - France	4	2023-10-11 08:39:49.08436	2023-10-11 08:39:49.565389
+22	Charte de l'environnement	4	2023-10-11 08:38:08.350137	2023-10-11 08:40:28.69049
+24	Code de l'entrée et du séjour des étrangers et du droit d'asile	3	2023-10-24 17:21:16.738431	2023-10-24 17:21:16.995527
+25	Article 191 du Traité sur le fonctionnement de l'Union européenne	4	2023-12-13 20:14:46.001316	2023-12-13 20:14:46.439187
+\.
+
+
+--
+-- Data for Name: ground_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ground_type (ground_type_id, name, created_at, updated_at) FROM stdin;
+1	Public trust	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Tort law	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Droits humains	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+4	Normes environnementales	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+5	Droit civil	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+\.
+
+
+--
+-- Data for Name: jurisdiction; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.jurisdiction (jurisdiction_id, name, geolocation, jurisdiction_url, scope, created_at, updated_at) FROM stdin;
+1	Comité conventionnel onusien	Genève, Suisse	\N	Monde	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+2	Tribunal des affaires foncières et environnementales	Etat de Nouvelle-Galles du Sud, Australie	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+3	Court fédérale du district d'Alaska	Alaska, Etats-Unis d'Amérique	https://www.akd.uscourts.gov/	Alaska	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+4	Haute Cour	Ouganda	\N	Ouganda	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+5	Tribunal régional supérieur de Hamm	Allemagne	\N	Allemagne	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+6	Tribunal de première instance du district de Columbia	\N	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+7	Cour Suprême	Espagne	\N	Espagne	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+8	Tribunal régional d'Essen	Essen	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+9	Tribunal judiciaire de Nanterre	Nanterre	\N	France	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+10	Haute Cour	Angleterre	\N	Angleterre	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+11	Cour d’appel	Angleterre et Pays de Galles	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+12	Cour Suprême	Angleterre	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+13	Tribunal régional de Varsovie	Pologne	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+14	Cour d’Appel du 9eme Circuit	Etats-Unis	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+15	Tribunal Judiciaire de Paris	Paris	\N	\N	2023-08-23 12:38:59.295712	2023-08-23 12:38:59.295712
+16	Conseil constitutionnel	France	\N	France	2023-08-28 09:46:22.947894	2023-08-28 09:46:22.947894
+17	Conseil d'état	France	\N	France	2023-09-01 20:02:56.366615	2023-09-08 07:48:44.416367
+18	Tribunal Administratif	Montreuil	\N	Montreuil	2023-09-10 08:55:39.355288	2023-09-10 08:55:39.355288
+19	Cour administrative d'appel de Bordeaux	Bordeaux, France	\N	\N	2023-10-24 17:20:16.138342	2023-10-24 17:20:16.138342
+20	Tribunal de l'Union européenne	Luxembourg	https://curia.europa.eu/jcms/jcms/j_6/fr/	Union européenne	2023-12-13 20:13:12.802162	2023-12-13 20:13:12.802162
+\.
+
+
+--
+-- Data for Name: resource; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.resource (resource_id, name, url, resource_type_id, created_at, updated_at) FROM stdin;
+1	12	https://notreaffaireatous.org/numero-12-de-la-newsletter-des-affaires-climatiques-ecocide-loccasion-manquee/	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	16	https://notreaffaireatous.org/numero-16-de-la-newsletter-des-affaires-climatiques/	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Case No. 3:20-cv-00290-SLG, Case No. 3:20-cv-00308-SLG	https://s3.documentcloud.org/documents/21045581/210818-willow-order.pdf 	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+4	Tsama William et alii v. Attorney General of Uganda, mémoire en demande, 12 octobre 2020	nan	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+5	W., FRANK, C. BALS, J. GRIMM, "The Case of Huaraz: First Climate Lawsuit on Loss and Damage Against an Energy Company Before German Courts" in. R. MECHLER, L. BOUWER, T. SCHINKO, S. SURMINSKI, J. LINNEROOTH-BAYER (éd.) Loss and Damage from Climate Change. Climate Risk Management, Policy and Governance. Springer, Cham, Suisse, 2018. https://doi.org/10.1007/978-3-319-72026-5_20.	https://link.springer.com/chapter/10.1007/978-3-319-72026-5_20#citeas	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+6	Décision US District Court for DC, “Standing Rock Sioux Tribe v. USACE”, 6 juillet 2020	https://earthjustice.org/sites/default/files/files/standing_rock_sioux_tribe_v._army_corps_of_engineers.pdf 	1	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+7	9	https://notreaffaireatous.org/numero-9-de-la-newsletter-des-affaires-climatiques-droit-a-un-environnement-sain/	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+8	Article "Gloucester Resources (“Rocky Hill”) case", Environmental Law Australia	http://envlaw.com.au/gloucester-resources-case/	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+9	8	https://notreaffaireatous.org/numero-8-de-la-newsletter-des-affaires-climatiques/	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+10	14	https://notreaffaireatous.org/numero-14-de-la-newsletter-des-affaires-climatiques-la-proposition-de-directive-europeenne-sur-le-devoir-de-vigilance-des-entreprises/	3	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+11	Center for biological diversity v zinke 3	http://climatecasechart.com/climate-change-litigation/case/center-for-biological-diversity-v-zinke-3/ 	2	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+12	1	\N	3	2023-08-28 08:57:15.677899	2023-08-28 08:57:15.893113
+13	2	\N	3	2023-08-28 08:57:29.079303	2023-08-28 08:57:29.301064
+14	3	\N	3	2023-08-28 08:58:26.720446	2023-08-28 08:58:26.960331
+15	4	\N	3	2023-08-28 08:58:44.228055	2023-08-28 08:58:44.456005
+16	5	https://notreaffaireatous.org/newsletter-n5-les-multinationales-pollueuses-devant-les-tribunaux/	3	2023-08-28 08:58:58.770345	2023-08-28 09:03:36.578665
+17	6	https://notreaffaireatous.org/numero-6-de-la-newsletter-des-affaires-climatiques-lonu-saisie-de-la-question-climatique/	3	2023-08-28 08:59:14.488973	2023-08-28 09:03:46.771283
+18	7	https://notreaffaireatous.org/numero-7-de-la-newsletter-des-affaires-climatiques/	3	2023-08-28 08:59:30.012876	2023-08-28 09:03:53.716661
+19	10	https://notreaffaireatous.org/numero-10-de-la-newsletter-des-affaires-climatiques-affaire-du-siecle-et-droit-a-un-environnement-sain/	3	2023-08-28 08:59:42.483956	2023-08-28 09:04:16.035717
+20	11	https://notreaffaireatous.org/numero-11-de-la-newsletter-des-affaires-climatiques-droit-de-propriete-et-crise-climatique/	3	2023-08-28 08:59:51.372169	2023-08-28 09:04:20.81334
+21	13	https://notreaffaireatous.org/newsletter-n13-21-decembre-2021/	3	2023-08-28 09:00:02.817131	2023-08-28 09:04:30.490619
+22	15	https://notreaffaireatous.org/numero-15-de-la-newsletter-des-affaires-climatiques/	3	2023-08-28 09:00:16.237035	2023-08-28 09:04:40.154377
+23	17	https://notreaffaireatous.org/numero-17-de-la-newsletter-des-affaires-climatiques-lavis-consultatif-devant-les-juridictions-internationales-un-outil-pour-faire-avancer-le-droit-du-climat/	3	2023-08-28 09:04:55.709141	2023-08-28 09:04:55.956878
+24	Restriction des épandages agricoles	https://www.conseil-etat.fr/ressources/decisions-contentieuses/dernieres-decisions-importantes/conseil-d-etat-20-avril-restriction-des-epandages-agricoles	1	2023-09-08 07:51:06.03831	2023-09-08 07:51:06.245535
+25	n° 2020-881 QPC du 5 février 2021	https://www.conseil-constitutionnel.fr/decision/2021/2020881QPC.htm	1	2023-10-11 08:35:22.339799	2023-10-11 08:35:22.741876
+26	CAA Bordeaux 18 décembre 2020	https://www.legifrance.gouv.fr/ceta/id/CETATEXT000042737615	1	2023-10-24 17:24:32.04144	2023-10-24 17:24:32.260717
+27	Article de l'initiative "EU Biomass Legal Case"	https://eubiomasscase.org/2021/01/28/eu-court-refuses-to-hear-international-complaint-against-forest-destroying-renewable-energy-policies/	2	2023-12-13 20:15:35.304329	2023-12-13 20:15:35.820534
+\.
+
+
+--
+-- Data for Name: resource_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.resource_type (resource_type_id, name, created_at, updated_at) FROM stdin;
+1	Décision	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+2	Ouvrage/Article	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+3	Newsletter	2023-08-23 12:36:48.489827	2023-08-23 12:36:48.489827
+\.
+
+
+--
+-- Name: Agent_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Agent_Id_seq"', 60, true);
+
+
+--
+-- Name: Agent_Type_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Agent_Type_Id_seq"', 5, true);
+
+
+--
+-- Name: Appeal_Type_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Appeal_Type_Id_seq"', 4, true);
+
+
+--
+-- Name: Case_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Case_Id_seq"', 107, true);
+
+
+--
+-- Name: Case_Status_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Case_Status_Id_seq"', 3, true);
+
+
+--
+-- Name: Decision_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Decision_Id_seq"', 29, true);
+
+
+--
+-- Name: Decision_Status_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Decision_Status_Id_seq"', 4, true);
+
+
+--
+-- Name: Ground_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Ground_Id_seq"', 25, true);
+
+
+--
+-- Name: Ground_Type_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Ground_Type_Id_seq"', 5, true);
+
+
+--
+-- Name: Jurisdiction_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Jurisdiction_Id_seq"', 20, true);
+
+
+--
+-- Name: Resource_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Resource_Id_seq"', 27, true);
+
+
+--
+-- Name: Resource_Type_Id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Resource_Type_Id_seq"', 3, true);
+
+
+--
+-- Name: agent agent_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.agent
+    ADD CONSTRAINT agent_pkey PRIMARY KEY (agent_id);
+
+
+--
+-- Name: agent_type agent_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.agent_type
+    ADD CONSTRAINT agent_type_pkey PRIMARY KEY (agent_type_id);
+
+
+--
+-- Name: appeal_type appeal_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.appeal_type
+    ADD CONSTRAINT appeal_type_pkey PRIMARY KEY (appeal_type_id);
+
+
+--
+-- Name: case1 case1_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case1
+    ADD CONSTRAINT case1_pkey PRIMARY KEY (case_id);
+
+
+--
+-- Name: case_complainant case_complainant_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_complainant
+    ADD CONSTRAINT case_complainant_pkey PRIMARY KEY (agent_id, case_id);
+
+
+--
+-- Name: case_complainant_recipient case_complainant_recipient_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_complainant_recipient
+    ADD CONSTRAINT case_complainant_recipient_pkey PRIMARY KEY (agent_id, case_id);
+
+
+--
+-- Name: case_status case_status_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_status
+    ADD CONSTRAINT case_status_pkey PRIMARY KEY (case_status_id);
+
+
+--
+-- Name: decision_ground decision_ground_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_ground
+    ADD CONSTRAINT decision_ground_pkey PRIMARY KEY (ground_id, decision_id);
+
+
+--
+-- Name: decision decision_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision
+    ADD CONSTRAINT decision_pkey PRIMARY KEY (decision_id);
+
+
+--
+-- Name: decision_resource decision_resource_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_resource
+    ADD CONSTRAINT decision_resource_pkey PRIMARY KEY (resource_id, decision_id);
+
+
+--
+-- Name: decision_status decision_status_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_status
+    ADD CONSTRAINT decision_status_pkey PRIMARY KEY (decision_status_id);
+
+
+--
+-- Name: ground ground_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ground
+    ADD CONSTRAINT ground_pkey PRIMARY KEY (ground_id);
+
+
+--
+-- Name: ground_type ground_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ground_type
+    ADD CONSTRAINT ground_type_pkey PRIMARY KEY (ground_type_id);
+
+
+--
+-- Name: jurisdiction jurisdiction_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jurisdiction
+    ADD CONSTRAINT jurisdiction_pkey PRIMARY KEY (jurisdiction_id);
+
+
+--
+-- Name: resource resource_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resource
+    ADD CONSTRAINT resource_pkey PRIMARY KEY (resource_id);
+
+
+--
+-- Name: resource_type resource_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resource_type
+    ADD CONSTRAINT resource_type_pkey PRIMARY KEY (resource_type_id);
+
+
+--
+-- Name: agent ux_agent_nametype; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.agent
+    ADD CONSTRAINT ux_agent_nametype UNIQUE (name, agent_type_id);
+
+
+--
+-- Name: agent_type ux_agent_type_name; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.agent_type
+    ADD CONSTRAINT ux_agent_type_name UNIQUE (name);
+
+
+--
+-- Name: appeal_type ux_appealtype_name; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.appeal_type
+    ADD CONSTRAINT ux_appealtype_name UNIQUE (name);
+
+
+--
+-- Name: case_status ux_case_status_name; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_status
+    ADD CONSTRAINT ux_case_status_name UNIQUE (name);
+
+
+--
+-- Name: case1 ux_case_title; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case1
+    ADD CONSTRAINT ux_case_title UNIQUE (title);
+
+
+--
+-- Name: decision_status ux_decision_status_name; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_status
+    ADD CONSTRAINT ux_decision_status_name UNIQUE (name);
+
+
+--
+-- Name: decision ux_decision_titlecase; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision
+    ADD CONSTRAINT ux_decision_titlecase UNIQUE (case_id, abstract);
+
+
+--
+-- Name: ground ux_ground_nametype; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ground
+    ADD CONSTRAINT ux_ground_nametype UNIQUE (name, ground_type_id);
+
+
+--
+-- Name: ground_type ux_ground_type_name; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ground_type
+    ADD CONSTRAINT ux_ground_type_name UNIQUE (name);
+
+
+--
+-- Name: jurisdiction ux_jurisdiction_namelocation; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jurisdiction
+    ADD CONSTRAINT ux_jurisdiction_namelocation UNIQUE (name, geolocation);
+
+
+--
+-- Name: resource ux_resource_nametype; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resource
+    ADD CONSTRAINT ux_resource_nametype UNIQUE (name, resource_type_id);
+
+
+--
+-- Name: resource_type ux_resource_type_name; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resource_type
+    ADD CONSTRAINT ux_resource_type_name UNIQUE (name);
+
+
+--
+-- Name: agent_type trigger_Agent_Type_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Agent_Type_updated_at" BEFORE UPDATE ON public.agent_type FOR EACH ROW EXECUTE FUNCTION public."function_Agent_Type_updated_at"();
+
+
+--
+-- Name: agent trigger_Agent_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Agent_updated_at" BEFORE UPDATE ON public.agent FOR EACH ROW EXECUTE FUNCTION public."function_Agent_updated_at"();
+
+
+--
+-- Name: appeal_type trigger_Appeal_Type_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Appeal_Type_updated_at" BEFORE UPDATE ON public.appeal_type FOR EACH ROW EXECUTE FUNCTION public."function_Appeal_Type_updated_at"();
+
+
+--
+-- Name: case_complainant_recipient trigger_Case_Complainant_Recipient_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Case_Complainant_Recipient_updated_at" BEFORE UPDATE ON public.case_complainant_recipient FOR EACH ROW EXECUTE FUNCTION public."function_Case_Complainant_Recipient_updated_at"();
+
+
+--
+-- Name: case_complainant trigger_Case_Complainant_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Case_Complainant_updated_at" BEFORE UPDATE ON public.case_complainant FOR EACH ROW EXECUTE FUNCTION public."function_Case_Complainant_updated_at"();
+
+
+--
+-- Name: case_status trigger_Case_Status_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Case_Status_updated_at" BEFORE UPDATE ON public.case_status FOR EACH ROW EXECUTE FUNCTION public."function_Case_Status_updated_at"();
+
+
+--
+-- Name: case1 trigger_Case_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Case_updated_at" BEFORE UPDATE ON public.case1 FOR EACH ROW EXECUTE FUNCTION public."function_Case_updated_at"();
+
+
+--
+-- Name: decision_ground trigger_Decision_Ground_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Decision_Ground_updated_at" BEFORE UPDATE ON public.decision_ground FOR EACH ROW EXECUTE FUNCTION public."function_Decision_Ground_updated_at"();
+
+
+--
+-- Name: decision_resource trigger_Decision_Resource_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Decision_Resource_updated_at" BEFORE UPDATE ON public.decision_resource FOR EACH ROW EXECUTE FUNCTION public."function_Decision_Resource_updated_at"();
+
+
+--
+-- Name: decision_status trigger_Decision_Status_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Decision_Status_updated_at" BEFORE UPDATE ON public.decision_status FOR EACH ROW EXECUTE FUNCTION public."function_Decision_Status_updated_at"();
+
+
+--
+-- Name: decision trigger_Decision_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Decision_updated_at" BEFORE UPDATE ON public.decision FOR EACH ROW EXECUTE FUNCTION public."function_Decision_updated_at"();
+
+
+--
+-- Name: ground_type trigger_Ground_Type_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Ground_Type_updated_at" BEFORE UPDATE ON public.ground_type FOR EACH ROW EXECUTE FUNCTION public."function_Ground_Type_updated_at"();
+
+
+--
+-- Name: ground trigger_Ground_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Ground_updated_at" BEFORE UPDATE ON public.ground FOR EACH ROW EXECUTE FUNCTION public."function_Ground_updated_at"();
+
+
+--
+-- Name: jurisdiction trigger_Jurisdiction_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Jurisdiction_updated_at" BEFORE UPDATE ON public.jurisdiction FOR EACH ROW EXECUTE FUNCTION public."function_Jurisdiction_updated_at"();
+
+
+--
+-- Name: resource_type trigger_Resource_Type_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Resource_Type_updated_at" BEFORE UPDATE ON public.resource_type FOR EACH ROW EXECUTE FUNCTION public."function_Resource_Type_updated_at"();
+
+
+--
+-- Name: resource trigger_Resource_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER "trigger_Resource_updated_at" BEFORE UPDATE ON public.resource FOR EACH ROW EXECUTE FUNCTION public."function_Resource_updated_at"();
+
+
+--
+-- Name: agent agent_agent_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.agent
+    ADD CONSTRAINT agent_agent_type_id_fkey FOREIGN KEY (agent_type_id) REFERENCES public.agent_type(agent_type_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: case1 case1_appeal_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case1
+    ADD CONSTRAINT case1_appeal_type_id_fkey FOREIGN KEY (appeal_type_id) REFERENCES public.appeal_type(appeal_type_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: case1 case1_case_status_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case1
+    ADD CONSTRAINT case1_case_status_id_fkey FOREIGN KEY (case_status_id) REFERENCES public.case_status(case_status_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: case_complainant case_complainant_agent_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_complainant
+    ADD CONSTRAINT case_complainant_agent_id_fkey FOREIGN KEY (agent_id) REFERENCES public.agent(agent_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: case_complainant case_complainant_case_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_complainant
+    ADD CONSTRAINT case_complainant_case_id_fkey FOREIGN KEY (case_id) REFERENCES public.case1(case_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: case_complainant_recipient case_complainant_recipient_agent_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_complainant_recipient
+    ADD CONSTRAINT case_complainant_recipient_agent_id_fkey FOREIGN KEY (agent_id) REFERENCES public.agent(agent_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: case_complainant_recipient case_complainant_recipient_case_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.case_complainant_recipient
+    ADD CONSTRAINT case_complainant_recipient_case_id_fkey FOREIGN KEY (case_id) REFERENCES public.case1(case_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: decision decision_case_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision
+    ADD CONSTRAINT decision_case_id_fkey FOREIGN KEY (case_id) REFERENCES public.case1(case_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: decision decision_decision_status_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision
+    ADD CONSTRAINT decision_decision_status_id_fkey FOREIGN KEY (decision_status_id) REFERENCES public.decision_status(decision_status_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: decision_ground decision_ground_decision_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_ground
+    ADD CONSTRAINT decision_ground_decision_id_fkey FOREIGN KEY (decision_id) REFERENCES public.decision(decision_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: decision_ground decision_ground_ground_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_ground
+    ADD CONSTRAINT decision_ground_ground_id_fkey FOREIGN KEY (ground_id) REFERENCES public.ground(ground_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: decision decision_jurisdiction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision
+    ADD CONSTRAINT decision_jurisdiction_id_fkey FOREIGN KEY (jurisdiction_id) REFERENCES public.jurisdiction(jurisdiction_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: decision_resource decision_resource_decision_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_resource
+    ADD CONSTRAINT decision_resource_decision_id_fkey FOREIGN KEY (decision_id) REFERENCES public.decision(decision_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: decision_resource decision_resource_resource_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.decision_resource
+    ADD CONSTRAINT decision_resource_resource_id_fkey FOREIGN KEY (resource_id) REFERENCES public.resource(resource_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: ground ground_ground_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ground
+    ADD CONSTRAINT ground_ground_type_id_fkey FOREIGN KEY (ground_type_id) REFERENCES public.ground_type(ground_type_id) ON DELETE RESTRICT;
+
+
+--
+-- Name: resource resource_resource_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resource
+    ADD CONSTRAINT resource_resource_type_id_fkey FOREIGN KEY (resource_type_id) REFERENCES public.resource_type(resource_type_id) ON DELETE RESTRICT;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

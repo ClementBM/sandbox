@@ -428,8 +428,12 @@ class T5(nn.Module):
 
     def forward(self, src, target, src_attn_mask=None, target_attn_mask=None):
         x = self.encoder(src, attn_mask=src_attn_mask)
+
         x = self.decoder(
-            target, x, attn_mask=target_attn_mask, context_attn_mask=src_attn_mask
+            x=target,
+            context=x,
+            attn_mask=target_attn_mask,
+            context_attn_mask=src_attn_mask,
         )
         x = self.to_logits(x)
 

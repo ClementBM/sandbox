@@ -838,22 +838,22 @@ RENAME TABLES
 
 /* PREFIX_CODE varchar := 'nc_jb59___'; */
 
-ALTER TABLE Decision_Status RENAME TO                   "nc_jb59___Decision_Status";
-ALTER TABLE Decision RENAME TO                          "nc_jb59___Decision";
-ALTER TABLE Jurisdiction RENAME TO                      "nc_jb59___Jurisdiction";
-ALTER TABLE Ground_Type RENAME TO                       "nc_jb59___Ground_Type";
-ALTER TABLE Ground RENAME TO                            "nc_jb59___Ground";
-ALTER TABLE Case_Status RENAME TO                       "nc_jb59___Case_Status";
-ALTER TABLE Agent_Type RENAME TO                        "nc_jb59___Agent_Type";
-ALTER TABLE Agent RENAME TO                             "nc_jb59___Agent";
-ALTER TABLE Appeal_Type RENAME TO                       "nc_jb59___Appeal_Type";
-ALTER TABLE Case1 RENAME TO                              "nc_jb59___Case";
-ALTER TABLE Resource_Type RENAME TO                     "nc_jb59___Resource_Type";
-ALTER TABLE Resource RENAME TO                          "nc_jb59___Resource";
-ALTER TABLE Decision_Resource RENAME TO                 "nc_jb59___Decision_Resource";
-ALTER TABLE Case_Complainant RENAME TO                  "nc_jb59___Case_Complainant";
-ALTER TABLE Case_Complainant_Recipient RENAME TO        "nc_jb59___Case_Complainant_Recipient";
-ALTER TABLE Decision_Ground RENAME TO                   "nc_jb59___Decision_Ground";
+ALTER TABLE Decision_Status RENAME TO                   "nc_1cla___Decision_Status";
+ALTER TABLE Decision RENAME TO                          "nc_1cla___Decision";
+ALTER TABLE Jurisdiction RENAME TO                      "nc_1cla___Jurisdiction";
+ALTER TABLE Ground_Type RENAME TO                       "nc_1cla___Ground_Type";
+ALTER TABLE Ground RENAME TO                            "nc_1cla___Ground";
+ALTER TABLE Case_Status RENAME TO                       "nc_1cla___Case_Status";
+ALTER TABLE Agent_Type RENAME TO                        "nc_1cla___Agent_Type";
+ALTER TABLE Agent RENAME TO                             "nc_1cla___Agent";
+ALTER TABLE Appeal_Type RENAME TO                       "nc_1cla___Appeal_Type";
+ALTER TABLE Case1 RENAME TO                             "nc_1cla___Case";
+ALTER TABLE Resource_Type RENAME TO                     "nc_1cla___Resource_Type";
+ALTER TABLE Resource RENAME TO                          "nc_1cla___Resource";
+ALTER TABLE Decision_Resource RENAME TO                 "nc_1cla___Decision_Resource";
+ALTER TABLE Case_Complainant RENAME TO                  "nc_1cla___Case_Complainant";
+ALTER TABLE Case_Complainant_Recipient RENAME TO        "nc_1cla___Case_Complainant_Recipient";
+ALTER TABLE Decision_Ground RENAME TO                   "nc_1cla___Decision_Ground";
 
 
 /*
@@ -866,22 +866,22 @@ where "agent_id" = (select "agent_id" from "nc_05yt___Agent" where "agent_id" = 
 Delete failed: delete from "nc_05yt___Agent" where "agent_id" = $1 - control reached end of trigger procedure without RETURN
 */
 
-ALTER TABLE                   "nc_05yt___Decision_Status" RENAME TO Decision_Status                 ;
-ALTER TABLE                          "nc_05yt___Decision" RENAME TO Decision                 ;
-ALTER TABLE                      "nc_05yt___Jurisdiction" RENAME TO Jurisdiction                    ;
-ALTER TABLE                       "nc_05yt___Ground_Type" RENAME TO Ground_Type                     ;
-ALTER TABLE                            "nc_05yt___Ground" RENAME TO Ground                          ;
-ALTER TABLE                       "nc_05yt___Case_Status" RENAME TO Case_Status                     ;
-ALTER TABLE                        "nc_05yt___Agent_Type" RENAME TO Agent_Type                      ;
-ALTER TABLE                             "nc_05yt___Agent" RENAME TO Agent                           ;
-ALTER TABLE                       "nc_05yt___Appeal_Type" RENAME TO Appeal_Type                     ;
-ALTER TABLE                              "nc_05yt___Case" RENAME TO Case1                      ;
-ALTER TABLE                     "nc_05yt___Resource_Type" RENAME TO Resource_Type                   ;
-ALTER TABLE                          "nc_05yt___Resource" RENAME TO Resource                        ;
-ALTER TABLE                 "nc_05yt___Decision_Resource" RENAME TO Decision_Resource        ;
-ALTER TABLE                  "nc_05yt___Case_Complainant" RENAME TO Case_Complainant          ;
-ALTER TABLE        "nc_05yt___Case_Complainant_Recipient" RENAME TO Case_Complainant_Recipient;
-ALTER TABLE                   "nc_05yt___Decision_Ground" RENAME TO Decision_Ground          ;
+ALTER TABLE                   "nc_jb59___Decision_Status" RENAME TO Decision_Status                 ;
+ALTER TABLE                          "nc_jb59___Decision" RENAME TO Decision                 ;
+ALTER TABLE                      "nc_jb59___Jurisdiction" RENAME TO Jurisdiction                    ;
+ALTER TABLE                       "nc_jb59___Ground_Type" RENAME TO Ground_Type                     ;
+ALTER TABLE                            "nc_jb59___Ground" RENAME TO Ground                          ;
+ALTER TABLE                       "nc_jb59___Case_Status" RENAME TO Case_Status                     ;
+ALTER TABLE                        "nc_jb59___Agent_Type" RENAME TO Agent_Type                      ;
+ALTER TABLE                             "nc_jb59___Agent" RENAME TO Agent                           ;
+ALTER TABLE                       "nc_jb59___Appeal_Type" RENAME TO Appeal_Type                     ;
+ALTER TABLE                              "nc_jb59___Case" RENAME TO Case1                      ;
+ALTER TABLE                     "nc_jb59___Resource_Type" RENAME TO Resource_Type                   ;
+ALTER TABLE                          "nc_jb59___Resource" RENAME TO Resource                        ;
+ALTER TABLE                 "nc_jb59___Decision_Resource" RENAME TO Decision_Resource        ;
+ALTER TABLE                  "nc_jb59___Case_Complainant" RENAME TO Case_Complainant          ;
+ALTER TABLE        "nc_jb59___Case_Complainant_Recipient" RENAME TO Case_Complainant_Recipient;
+ALTER TABLE                   "nc_jb59___Decision_Ground" RENAME TO Decision_Ground          ;
 
 
 

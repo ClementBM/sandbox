@@ -1,6 +1,3 @@
-from pathlib import Path
-
-
 class CharLevelTokenizer:
     def __init__(self, text: str) -> None:
         chars = sorted(list(set(text)))

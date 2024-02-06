@@ -146,3 +146,7 @@ geo-analysis/data/*.csv
 # javascript
 dist/
 node_modules/
+
+
+# zip
+*.zip

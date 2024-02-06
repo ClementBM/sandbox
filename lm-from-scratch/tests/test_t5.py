@@ -182,15 +182,13 @@ def test_t5model():
     src = torch.randint(0, VOCAB_SIZE, (BATCH_SIZE, MAX_LENGTH))
     target = torch.randint(0, VOCAB_SIZE, (BATCH_SIZE, MAX_LENGTH))
 
-    logits, loss = model(src, target)
+    logits = model(src, target)
     logits.shape == torch.Size([BATCH_SIZE, MAX_LENGTH, VOCAB_SIZE])
 
     src_mask = torch.ones((BATCH_SIZE, MAX_LENGTH)).bool()
-    logits, loss = model(src, target, src_attn_mask=src_mask)
+    logits = model(src, target, src_attn_mask=src_mask)
     logits.shape == torch.Size([BATCH_SIZE, MAX_LENGTH, VOCAB_SIZE])
 
     context_mask = torch.ones((BATCH_SIZE, MAX_LENGTH)).bool()
-    logits, loss = model(
-        src, target, src_attn_mask=src_mask, target_attn_mask=context_mask
-    )
+    logits = model(src, target, src_attn_mask=src_mask, target_attn_mask=context_mask)
     logits.shape == torch.Size([BATCH_SIZE, MAX_LENGTH, VOCAB_SIZE])

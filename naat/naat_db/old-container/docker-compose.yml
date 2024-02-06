@@ -1,0 +1,21 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  timescaledb:
+    image: timescale/timescaledb-ha:pg16
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+    volumes:
+      - /home/clem/Source/sandbox/naat/naat_db/old-container:/home/postgres/pgdata
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

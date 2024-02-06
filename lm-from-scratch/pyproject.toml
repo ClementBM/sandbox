@@ -25,6 +25,9 @@ sentencepiece = "^0.1.99"
 transformers = "^4.34.1"
 spacy = "^3.7.2"
 opendelta = "^0.3.2"
+torchtext = "0.15.1"
+torchmetrics = "^1.2.0"
+tensorboard = "^2.15.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
