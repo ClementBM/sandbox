@@ -42,6 +42,7 @@ This makes Apache Tika available as a Python library, installable via Setuptools
 To use this library, you need to have Java 7+ installed on your system as tika-python starts up the Tika REST server in the background.
 
 ### `soffice` linux package
+
 ### [pdf2docx](https://github.com/dothinking/pdf2docx)
 **Built on `PyMuPDF`**
 
