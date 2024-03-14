@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: stg_global_cases
+    description: "A starter dbt model"
+
+  - name: stg_us_cases
+    description: "A starter dbt model"

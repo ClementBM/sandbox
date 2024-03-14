@@ -527,8 +527,6 @@ Decision_Resource Table
 #############
 */
 
--- AUTO INCREMENT
-
 CREATE TABLE Decision_Resource (
     Resource_Id INT NOT NULL,
     Decision_Id INT NOT NULL,

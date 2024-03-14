@@ -150,3 +150,10 @@ node_modules/
 
 # zip
 *.zip
+
+
+target/
+dbt_packages/
+logs/
+
+naat/artifacts/arianeweb/

@@ -1,0 +1,1 @@
+select * from {{ ref('us_cases') }}
