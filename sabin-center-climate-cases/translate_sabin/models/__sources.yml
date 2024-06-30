@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: csv_sources
+    meta:
+      external_location: "~/Source/sandbox/sabin-center-climate-cases/artifacts/{name}.csv"
+    tables:
+      - name: global_cases
+      - name: us_cases

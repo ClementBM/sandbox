@@ -24,5 +24,8 @@
         "**/__pycache__/**": true,
         ".mypy_cache/**": true,
         ".pytest_cache/**": true
-    }
+    },
+    "dbt.queryLimit": 500,
+    "dbt.enableNewLineagePanel": true,
+    "dbt.enableNewQueryPanel": true
 }

@@ -1,0 +1,52 @@
+
+version: 2
+
+models:
+  - name: us_case_by_category
+    description: "US cases by category"
+    columns:
+      - name: case_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+
+semantic_models:
+  - name: us_case
+    defaults:
+      agg_time_dimension: filing_year
+    description: |
+      The grain of the table is one row per case.
+    model: ref('us_case_by_category')
+    entities:
+      - name: case
+        type: primary
+        expr: case_id
+    dimensions:
+      - name: filing_year
+        expr: filing_year
+        type: time
+        type_params:
+          time_granularity: year
+    measures:
+      - name: case_count
+        expr: 1
+        agg: sum
+
+
+metrics:
+  - name: case_count
+    description: Number of cases
+    type: simple
+    label: US cases count
+    type_params:
+      measure: case_count
+  - name: case_count_by_year
+    description: Number of cases
+    type: simple
+    label: US cases count by year
+    type_params:
+      measure: case_count
+    filter: |
+      {{ Dimension('case__filing_year') }} = '2016-01-01'

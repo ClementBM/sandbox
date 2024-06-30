@@ -1,1 +1,1 @@
-select * from {{ ref('us_cases') }}
+select * from {{ source('csv_sources', 'us_cases') }}

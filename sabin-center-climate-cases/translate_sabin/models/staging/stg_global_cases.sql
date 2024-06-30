@@ -1,1 +1,1 @@
-select * from {{ ref('global_cases') }}
+select * from {{ source('csv_sources', 'global_cases') }}
