@@ -1,0 +1,320 @@
+{
+    "trec-20222": {
+        "0": {
+            "NCT02994342": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. A 32-year-old woman comes to the hospital with vaginal spotting.\n1. Her last menstrual period was 10 weeks ago.\n2. She has regular menses lasting for 6 days and repeating every 29 days.\n3. Medical history is significant for appendectomy and several complicated UTIs.\n4. She has multiple male partners, and she is inconsistent with using barrier contraceptives.\n5. Vital signs are normal.\n6. Serum \u03b2-hCG level is 1800 mIU/mL, and a repeat level after 2 days shows an abnormal rise to 2100 mIU/mL.\n7. Pelvic ultrasound reveals a thin endometrium with no gestational sac in the uterus.\n8. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Efficacy and Tolerability Study of ZP-025 Vaginal Gel for the Treatment of Vaginal Dryness\nTarget diseases: Vaginal Dryness\nInterventions: Vaginal gel, Medical Device Class 2A\nSummary: Evaluation of ZP-025 vaginal gel in terms of efficacy and safety in the treatment of vaginal dryness in post-menopausal women with vaginal atrophy in comparison to a group of non-treated post-menopausal women with vaginal atrophy after 56 consecutive days and at 4-week follow-up only for women applying ZP-025 vaginal gel.\nInclusion criteria:\n 0. caucasian women <70 years, in physiological postmenopausal status for at least 2 years;\n1. women with signs and symptoms of vaginal atrophy (i. e. vaginal discomfort, itching, dyspareunia, dryness);\n2. signed informed consent; willing and able to comply with study procedures\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 78.8889536857605,
+                "inclusion": {
+                    "0": [
+                        "The patient is a 32-year-old woman, which does not meet the criterion of being a Caucasian woman over 70 years old. Therefore, this criterion is not applicable.",
+                        [],
+                        "not applicable"
+                    ],
+                    "1": [
+                        "The patient note does not mention any signs or symptoms of vaginal atrophy, such as vaginal discomfort, itching, dyspareunia, or dryness. Therefore, there is not enough information to determine if the patient meets this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient note mentions that the patient will provide informed consent and will comply with the trial protocol without any practical issues. Therefore, the patient meets this criterion.",
+                        [
+                            8
+                        ],
+                        "included"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. A 32-year-old woman comes to the hospital with vaginal spotting.\n1. Her last menstrual period was 10 weeks ago.\n2. She has regular menses lasting for 6 days and repeating every 29 days.\n3. Medical history is significant for appendectomy and several complicated UTIs.\n4. She has multiple male partners, and she is inconsistent with using barrier contraceptives.\n5. Vital signs are normal.\n6. Serum \u03b2-hCG level is 1800 mIU/mL, and a repeat level after 2 days shows an abnormal rise to 2100 mIU/mL.\n7. Pelvic ultrasound reveals a thin endometrium with no gestational sac in the uterus.\n8. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Efficacy and Tolerability Study of ZP-025 Vaginal Gel for the Treatment of Vaginal Dryness\nTarget diseases: Vaginal Dryness\nInterventions: Vaginal gel, Medical Device Class 2A\nSummary: Evaluation of ZP-025 vaginal gel in terms of efficacy and safety in the treatment of vaginal dryness in post-menopausal women with vaginal atrophy in comparison to a group of non-treated post-menopausal women with vaginal atrophy after 56 consecutive days and at 4-week follow-up only for women applying ZP-025 vaginal gel.\nExclusion criteria:\n 0. childbearing potential women;\n1. ascertained or presumptive hypersensitivity to the formulation ingredients;\n2. therapy with systemic or vaginal oestrogens within 6 months from the inclusion;\n3. current urinary or vaginal infection (cultural positive result to vaginal or urines microbiological swab in the 7 days preceding inclusion);\n4. previous episodes of vaginal bleeding or spotting in the last 6 months;\n5. vaginal prolapse and any other disease that could interfere with the study conduction and participation\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 97.11745476722717,
+                "exclusion": {
+                    "0": [
+                        "The patient is a 32-year-old woman, which indicates childbearing potential. The patient note does not mention any contraceptive use, so it is possible that she could be pregnant.",
+                        [
+                            0
+                        ],
+                        "excluded"
+                    ],
+                    "1": [
+                        "There is no direct evidence of hypersensitivity to the formulation ingredients in the patient note.",
+                        [],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient note does not mention any therapy with systemic or vaginal estrogens.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "The patient has a history of several complicated UTIs, but there is no evidence of a current urinary or vaginal infection.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "The patient has vaginal spotting, which is within the last 6 months. This meets the exclusion criterion.",
+                        [
+                            0
+                        ],
+                        "excluded"
+                    ],
+                    "5": [
+                        "There is no mention of vaginal prolapse or any other disease that could interfere with the study conduction and participation in the patient note.",
+                        [],
+                        "not enough information"
+                    ]
+                }
+            }
+        },
+        "1": {
+            "NCT02534779": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. A 32-year-old woman comes to the hospital with vaginal spotting.\n1. Her last menstrual period was 10 weeks ago.\n2. She has regular menses lasting for 6 days and repeating every 29 days.\n3. Medical history is significant for appendectomy and several complicated UTIs.\n4. She has multiple male partners, and she is inconsistent with using barrier contraceptives.\n5. Vital signs are normal.\n6. Serum \u03b2-hCG level is 1800 mIU/mL, and a repeat level after 2 days shows an abnormal rise to 2100 mIU/mL.\n7. Pelvic ultrasound reveals a thin endometrium with no gestational sac in the uterus.\n8. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Assessing the Disintegration, Safety, and Acceptability of Placebo Vaginal Inserts for the Delivery of Vaginal Products\nTarget diseases: Vaginal Diseases\nInterventions: Placebo Vaginal Insert\nSummary: This open-label study will examine the disintegration/disappearance time, safety, and acceptability of placebo vaginal inserts. Participants will use a placebo vaginal insert twice: first for an in-clinic disintegration/safety assessment, and a second time for an at-home acceptability assessment, with safety assessed at the following clinic visit.\nInclusion criteria:\n 0. Age 18-50 years, inclusive\n1. General good health (by volunteer history and investigator judgment)\n2. Currently having regular menstrual cycles of 21 - 35 days by volunteer report\n3. Protected from pregnancy, meaning one of the following: Sexually abstinent and planning to remain abstinent for the duration of the study; In a monogamous heterosexual relationship for at least four months with a partner who is not known to be HIV positive and has no known risks for sexually transmitted infections (STIs) and: Couple is using condoms and is willing to use non-spermicidally lubricated condoms throughout the study or One partner is sterilized; or in a monogamous same-sex relationship for at least four months with a partner who is not known to be HIV positive and has no known risks for STIs.\n4. Willing to abstain from vaginal activity and vaginal product use as required in the protocol\n5. Vaginal and cervical anatomy that, in the opinion of the investigator, lends itself to easy examination\n6. Willing to give voluntary consent, sign an informed consent form and comply with study procedures as required by the protocol\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 124.48916792869568,
+                "inclusion": {
+                    "0": [
+                        "The patient is a 32-year-old woman, which meets the age criterion.",
+                        [
+                            0
+                        ],
+                        "included"
+                    ],
+                    "1": [
+                        "The patient's medical history is generally good, with no significant issues mentioned.",
+                        [],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient has regular menstrual cycles of 29 days, which falls within the specified range of 21-35 days.",
+                        [
+                            2
+                        ],
+                        "included"
+                    ],
+                    "3": [
+                        "The patient has multiple male partners and is inconsistent with using barrier contraceptives, which does not meet the pregnancy protection criteria.",
+                        [
+                            4
+                        ],
+                        "not included"
+                    ],
+                    "4": [
+                        "There is no information provided about the patient's willingness to abstain from vaginal activity and product use as required in the protocol.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "There is no information provided about the patient's vaginal and cervical anatomy.",
+                        [],
+                        "not enough information"
+                    ],
+                    "6": [
+                        "The patient will provide informed consent and comply with the trial protocol, meeting this criterion.",
+                        [
+                            8
+                        ],
+                        "included"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. A 32-year-old woman comes to the hospital with vaginal spotting.\n1. Her last menstrual period was 10 weeks ago.\n2. She has regular menses lasting for 6 days and repeating every 29 days.\n3. Medical history is significant for appendectomy and several complicated UTIs.\n4. She has multiple male partners, and she is inconsistent with using barrier contraceptives.\n5. Vital signs are normal.\n6. Serum \u03b2-hCG level is 1800 mIU/mL, and a repeat level after 2 days shows an abnormal rise to 2100 mIU/mL.\n7. Pelvic ultrasound reveals a thin endometrium with no gestational sac in the uterus.\n8. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Assessing the Disintegration, Safety, and Acceptability of Placebo Vaginal Inserts for the Delivery of Vaginal Products\nTarget diseases: Vaginal Diseases\nInterventions: Placebo Vaginal Insert\nSummary: This open-label study will examine the disintegration/disappearance time, safety, and acceptability of placebo vaginal inserts. Participants will use a placebo vaginal insert twice: first for an in-clinic disintegration/safety assessment, and a second time for an at-home acceptability assessment, with safety assessed at the following clinic visit.\nExclusion criteria:\n 0. History of hysterectomy\n1. Currently pregnant or within two calendar months from the last pregnancy outcome. Note: If recently pregnant must have had at least two spontaneous menses since pregnancy outcome\n2. Use of any hormonal contraceptive method in the last 30 days (oral, transdermal, transvaginal, implant, or hormonal intrauterine contraceptive device)\n3. Injection of Depo-Provera in the last 6 months\n4. Current use of copper intrauterine device (IUD)\n5. Currently breastfeeding or having breastfed an infant in the last two months, or planning to breastfeed during the course of the study\n6. History of sensitivity/allergy to any component of the study products\n7. Symptomatic reproductive tract infection (RTI)\n8. Chronic or acute vulvar or vaginal symptoms (pain, irritation, spotting, etc.)\n9. Known current drug or alcohol abuse which could impact study compliance\n10. Participation in any other investigational trial (device, drug, or vaginal trial) within the last 30 days or planned participation in any other investigational trial during the study\n11. History of gynecological procedures (including genital piercing) on the external genitalia, vagina or cervix within the last 14 days\n12. Abnormal finding on physical examination or a social or medical condition which, in the opinion of the investigator, would make participation in the study unsafe or would complicate interpretation of data\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 264.65202045440674,
+                "exclusion": {
+                    "0": [
+                        "The patient has not had a hysterectomy, so this criterion is not applicable.",
+                        [],
+                        "not applicable"
+                    ],
+                    "1": [
+                        "The patient's last menstrual period was 10 weeks ago, and she has not had two spontaneous menses since the pregnancy outcome. Therefore, she is currently pregnant and meets this exclusion criterion.",
+                        [
+                            1,
+                            6,
+                            7
+                        ],
+                        "excluded"
+                    ],
+                    "2": [
+                        "There is no information about the use of hormonal contraceptives in the last 30 days, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "There is no information about the use of Depo-Provera in the last 6 months, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "There is no information about the use of a copper IUD, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "There is no information about breastfeeding or breastfeeding plans, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "6": [
+                        "There is no information about sensitivity/allergy to any component of the study products, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "7": [
+                        "The patient has vaginal spotting, which is a symptomatic reproductive tract infection (RTI). Therefore, she meets this exclusion criterion.",
+                        [
+                            7
+                        ],
+                        "excluded"
+                    ],
+                    "8": [
+                        "The patient has vaginal spotting, which is a chronic or acute vulvar or vaginal symptom. Therefore, she meets this exclusion criterion.",
+                        [
+                            7
+                        ],
+                        "excluded"
+                    ],
+                    "9": [
+                        "There is no information about drug or alcohol abuse, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "10": [
+                        "There is no information about participation in other investigational trials, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "11": [
+                        "There is no information about recent gynecological procedures, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "12": [
+                        "There is no information about abnormal findings on physical examination or social/medical conditions that could impact study participation, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ]
+                }
+            }
+        },
+        "2": {
+            "NCT01596972": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. A 32-year-old woman comes to the hospital with vaginal spotting.\n1. Her last menstrual period was 10 weeks ago.\n2. She has regular menses lasting for 6 days and repeating every 29 days.\n3. Medical history is significant for appendectomy and several complicated UTIs.\n4. She has multiple male partners, and she is inconsistent with using barrier contraceptives.\n5. Vital signs are normal.\n6. Serum \u03b2-hCG level is 1800 mIU/mL, and a repeat level after 2 days shows an abnormal rise to 2100 mIU/mL.\n7. Pelvic ultrasound reveals a thin endometrium with no gestational sac in the uterus.\n8. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: The Role of a Semi-Quantitative Urine Pregnancy Test and Pregnancy Questionnaire After Uterine Evacuation for Undesired Pregnancy of Uncertain Location\nTarget diseases: Follow-up After Uterine Evacuation\nInterventions: dBest semi-quantitative urine pregnancy test\nSummary: The primary aim of this study is to determine if a self-administered semi-quantitative urine pregnancy test and telephone pregnancy symptom questionnaire can reduce the percentage of women with a complete uterine evacuation who require a clinic or lab visit to confirm completion.~The investigators hypothesize that women with complete uterine evacuation will be less likely to require a follow-up clinic or lab visit by using a standardized pregnancy questionnaire and home SQ-UPT, than by using serum hCG as the objective measure of completion.\nInclusion criteria:\n 0. Women aged 18 years or older with an undesired pregnancy < 6 weeks gestation\n1. Women with a positive urine pregnancy test\n2. Proficiency in English\n3. Working phone and subject willing to be contacted by phone.\n4. Agreeing to surveys regarding demographics, follow-up preferences, and satisfaction with assigned follow-up method\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 90.80919909477234,
+                "inclusion": {
+                    "0": [
+                        "The patient is a 32-year-old woman, so she meets the age criterion.",
+                        [
+                            0
+                        ],
+                        "included"
+                    ],
+                    "1": [
+                        "The patient has a positive serum \u03b2-hCG level, which suggests a positive urine pregnancy test.",
+                        [
+                            6
+                        ],
+                        "included"
+                    ],
+                    "2": [
+                        "The patient note does not mention the patient's proficiency in English.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "The patient note does not mention the patient's working phone or willingness to be contacted by phone.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "The patient note does not mention the patient's agreement to surveys regarding demographics, follow-up preferences, and satisfaction with assigned follow-up method.",
+                        [],
+                        "not enough information"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. A 32-year-old woman comes to the hospital with vaginal spotting.\n1. Her last menstrual period was 10 weeks ago.\n2. She has regular menses lasting for 6 days and repeating every 29 days.\n3. Medical history is significant for appendectomy and several complicated UTIs.\n4. She has multiple male partners, and she is inconsistent with using barrier contraceptives.\n5. Vital signs are normal.\n6. Serum \u03b2-hCG level is 1800 mIU/mL, and a repeat level after 2 days shows an abnormal rise to 2100 mIU/mL.\n7. Pelvic ultrasound reveals a thin endometrium with no gestational sac in the uterus.\n8. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: The Role of a Semi-Quantitative Urine Pregnancy Test and Pregnancy Questionnaire After Uterine Evacuation for Undesired Pregnancy of Uncertain Location\nTarget diseases: Follow-up After Uterine Evacuation\nInterventions: dBest semi-quantitative urine pregnancy test\nSummary: The primary aim of this study is to determine if a self-administered semi-quantitative urine pregnancy test and telephone pregnancy symptom questionnaire can reduce the percentage of women with a complete uterine evacuation who require a clinic or lab visit to confirm completion.~The investigators hypothesize that women with complete uterine evacuation will be less likely to require a follow-up clinic or lab visit by using a standardized pregnancy questionnaire and home SQ-UPT, than by using serum hCG as the objective measure of completion.\nExclusion criteria:\n 0. Women with presence of a yolk sac or crown rump length visualized on ultrasound\n1. Women with a gestational sac greater than 13mm [11]\n2. High Suspicion for ectopic pregnancy\n3. o Sign: Concerning adnexal mass seen on ultrasound in conjunction with pelvic pain and/or vaginal spotting\n4. Hemodynamic instability\n5. o Signs: heavy vaginal bleeding, hypotension, tachycardia\n6. Pelvic Infection\n7. o Signs: pain or fever\n8. Medical conditions that contraindicate uterine evacuation according to PPLM clinic policy\n9. o These include but are not limited to: a bleeding disorder or anticoagulation, significant cardiac disease, renal or liver failure, IUD in situ that cannot be removed\n10. Unwilling or unable to comply with study follow-up procedures\n11. Being in a situation where receiving phone calls or additional contact with research staff may endanger the privacy or safety of the subject (e.g. situations of domestic violence or abuse)\n12. Inability to give informed consent\n13. Previous participation in this study\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 316.89661383628845,
+                "exclusion": {
+                    "0": [
+                        "The patient note mentions a thin endometrium with no gestational sac in the uterus, which does not meet the exclusion criterion of a yolk sac or crown rump length visualized on ultrasound.",
+                        [
+                            7
+                        ],
+                        "not excluded"
+                    ],
+                    "1": [
+                        "The patient note does not mention the size of the gestational sac, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient note does not mention any signs of ectopic pregnancy, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "The patient note does not mention a concerning adnexal mass seen on ultrasound in conjunction with pelvic pain and/or vaginal spotting, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "The patient note does not mention hemodynamic instability, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "The patient note does not mention heavy vaginal bleeding, hypotension, or tachycardia, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "6": [
+                        "The patient note does not mention pain or fever, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "7": [
+                        "The patient note does not mention any medical conditions that contraindicate uterine evacuation according to PPLM clinic policy, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "8": [
+                        "The patient note mentions that the patient will provide informed consent and comply with the trial protocol without any practical issues, so the exclusion criterion is not met.",
+                        [
+                            8
+                        ],
+                        "not excluded"
+                    ],
+                    "9": [
+                        "The patient note does not mention any situations where receiving phone calls or additional contact with research staff may endanger the privacy or safety of the subject, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "10": [
+                        "The patient note mentions that the patient will provide informed consent and comply with the trial protocol without any practical issues, so the exclusion criterion is not met.",
+                        [
+                            8
+                        ],
+                        "not excluded"
+                    ],
+                    "11": [
+                        "The patient note does not mention any situations where receiving phone calls or additional contact with research staff may endanger the privacy or safety of the subject, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ],
+                    "12": [
+                        "The patient note mentions that the patient will provide informed consent, so the exclusion criterion is not met.",
+                        [
+                            8
+                        ],
+                        "not excluded"
+                    ],
+                    "13": [
+                        "The patient note does not mention any previous participation in this study, so there is not enough information to determine if the exclusion criterion is met.",
+                        [],
+                        "not enough information"
+                    ]
+                }
+            }
+        }
+    }
+}
