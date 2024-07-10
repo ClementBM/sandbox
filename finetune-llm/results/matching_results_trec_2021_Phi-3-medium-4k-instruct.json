@@ -301,5 +301,471 @@
                 }
             }
         }
+    },
+    "trec-202135": {
+        "0": {
+            "NCT03152305": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 15 year old girl with the history of recurrent bilateral headache.\n1. The attacks come 2 times or more per week and each episode lasts around a day or a half.\n2. The pain is pulsating in quality and severe in intensity, causing trouble in her routine physical activity.\n3. The attacks are associated with nausea and photophobia.\n4. She recently noticed that that there are more attacks around her menstrual period.\n5. She is diagnosed with the migraine headache and is under treatment.\n6. She is a high-school student and living with her both parents.\n7. She is a book worm and spend her free time in a public library near her home.\n8. She is also interested in writing stories and has several short stories in English.\n9. She rarely does exercise.\n10. Her BMI is 21 with the BP of 100/60.\n11. There is nothing remarkable in her physical exam.\n12. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Intracranial Pressure During Migraine\nTarget diseases: Menstrual Migraine\nInterventions: Intracranial pressure variations\nSummary: An increase in intracranial pressure (ICP) during migraine attacks is possible and could contribute to pain initiation and maintenance. From now on, it was not possible to measure ICP in a non-invasive way. The development of a new tool allows non-invasive self-measures of ICP variations. Thus, it is possible for the first time to look for such ICP variations during migraine attacks and to conclude if this mechanism is implied in the pathophysiology of migraine.\nInclusion criteria:\n 0. 18 to 50 non menopausal women\n1. Menstrual migraine\n2. Using a triptan as usual treatment to relieve attacks\n3. Usual triptan efficacy although recurrence is possible\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 76.6266360282898,
+                "inclusion": {
+                    "0": [
+                        "The patient is a 15 year old girl, which does not meet the age criterion of 18 to 50 non menopausal women. Therefore, the patient is not included.",
+                        [],
+                        "not included"
+                    ],
+                    "1": [
+                        "The patient has migraines associated with her menstrual period, which meets the criterion of menstrual migraine. Therefore, the patient is included.",
+                        [
+                            4
+                        ],
+                        "included"
+                    ],
+                    "2": [
+                        "There is no direct evidence in the patient note about the use of a triptan as usual treatment to relieve attacks. Therefore, there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "There is no direct evidence in the patient note about the usual triptan efficacy, although recurrence is possible. Therefore, there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 15 year old girl with the history of recurrent bilateral headache.\n1. The attacks come 2 times or more per week and each episode lasts around a day or a half.\n2. The pain is pulsating in quality and severe in intensity, causing trouble in her routine physical activity.\n3. The attacks are associated with nausea and photophobia.\n4. She recently noticed that that there are more attacks around her menstrual period.\n5. She is diagnosed with the migraine headache and is under treatment.\n6. She is a high-school student and living with her both parents.\n7. She is a book worm and spend her free time in a public library near her home.\n8. She is also interested in writing stories and has several short stories in English.\n9. She rarely does exercise.\n10. Her BMI is 21 with the BP of 100/60.\n11. There is nothing remarkable in her physical exam.\n12. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Intracranial Pressure During Migraine\nTarget diseases: Menstrual Migraine\nInterventions: Intracranial pressure variations\nSummary: An increase in intracranial pressure (ICP) during migraine attacks is possible and could contribute to pain initiation and maintenance. From now on, it was not possible to measure ICP in a non-invasive way. The development of a new tool allows non-invasive self-measures of ICP variations. Thus, it is possible for the first time to look for such ICP variations during migraine attacks and to conclude if this mechanism is implied in the pathophysiology of migraine.\nExclusion criteria:\n 0. Disease of the ear\n1. Intracranial hypertension\n2. Chronic daily headache\n3. Use of topiramate or acetazolamide\n4. Triptans used more than 10 days/month\n5. Analgesic drug used more than 15 days/month\n6. Uncontrolled high blood pressure\n7. BMI >30\n8. Ongoing allergic rhinitis or flu\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 216.19724893569946,
+                "exclusion": {
+                    "0": [
+                        "The patient does not have a disease of the ear, as there is no mention of ear problems in the patient note. Direct evidence is not present. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, the patient is not excluded based on this criterion.",
+                        [],
+                        "not excluded"
+                    ],
+                    "1": [
+                        "The patient has been diagnosed with migraine headache, but there is no direct evidence of intracranial hypertension. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, there is not enough information to determine eligibility based on this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient has recurrent bilateral headaches, but there is no direct evidence of chronic daily headache. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, there is not enough information to determine eligibility based on this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "The patient is under treatment for migraine headache, but there is no direct evidence of topiramate or acetazolamide use. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, there is not enough information to determine eligibility based on this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "The patient is under treatment for migraine headache, but there is no direct evidence of triptans use more than 10 days/month. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, there is not enough information to determine eligibility based on this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "The patient is under treatment for migraine headache, but there is no direct evidence of analgesic drug use more than 15 days/month. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, there is not enough information to determine eligibility based on this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "6": [
+                        "The patient's blood pressure is 100/60, which is not considered uncontrolled high blood pressure. Direct evidence is present. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, the patient is not excluded based on this criterion.",
+                        [],
+                        "not excluded"
+                    ],
+                    "7": [
+                        "The patient's BMI is 21, which is not greater than 30. Direct evidence is present. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, the patient is not excluded based on this criterion.",
+                        [],
+                        "not excluded"
+                    ],
+                    "8": [
+                        "There is no mention of ongoing allergic rhinitis or flu in the patient note. Direct evidence is not present. If the criterion is true, it is impossible for a good patient note to miss such information. Therefore, the patient is not excluded based on this criterion.",
+                        [],
+                        "not excluded"
+                    ]
+                }
+            }
+        },
+        "1": {
+            "NCT04153409": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 15 year old girl with the history of recurrent bilateral headache.\n1. The attacks come 2 times or more per week and each episode lasts around a day or a half.\n2. The pain is pulsating in quality and severe in intensity, causing trouble in her routine physical activity.\n3. The attacks are associated with nausea and photophobia.\n4. She recently noticed that that there are more attacks around her menstrual period.\n5. She is diagnosed with the migraine headache and is under treatment.\n6. She is a high-school student and living with her both parents.\n7. She is a book worm and spend her free time in a public library near her home.\n8. She is also interested in writing stories and has several short stories in English.\n9. She rarely does exercise.\n10. Her BMI is 21 with the BP of 100/60.\n11. There is nothing remarkable in her physical exam.\n12. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: A Proof of Concept Study of the Efficacy and Safety of Oral LAT8881 in Acute Migraine\nTarget diseases: Acute Migraine\nInterventions: LAT8881, Placebo\nSummary: This is a randomised, placebo controlled, double blind, crossover proof of concept study to investigate the efficacy and safety of oral LAT8881 in acute migraine, with or without aura.\nInclusion criteria:\n 0. Males or females aged 18 to 75 years at the time of consent\n1. Diagnosis of episodic migraine headache at least 12 months ago with or without aura as defined in International Classification of Headache-3\n2. Onset of migraine headache before age 50\n3. Medical history of 2 - 8 migraine headache attacks per month for the previous 12 months; \u2265 75% of attacks progress to moderate or severe pain within 2 hours (ie, rapidly-escalating)\n4. Minimum 48 hours on average between migraine headache attacks\n5. Acute headache medication on \u2264 14 days/month in the 3 months prior to screening\n6. Willing and able to comply with all study procedures including completion of a headache diary and a migraine diary on the day of a migraine headache\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 111.521249294281,
+                "inclusion": {
+                    "0": [
+                        "The patient is a 15 year old girl, which does not meet the age criterion of 18 to 75 years.",
+                        [],
+                        "not included"
+                    ],
+                    "1": [
+                        "The patient has been diagnosed with migraine headache, which meets the criterion of having a diagnosis of episodic migraine headache at least 12 months ago.",
+                        [
+                            5
+                        ],
+                        "included"
+                    ],
+                    "2": [
+                        "The patient's age is not mentioned in relation to the onset of migraine headache, so there is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "The patient has 2 attacks per week, which is more than 2-8 attacks per month, and the attacks progress to moderate or severe pain within 2 hours, meeting the criterion.",
+                        [
+                            1,
+                            2
+                        ],
+                        "included"
+                    ],
+                    "4": [
+                        "The patient has attacks that come 2 times or more per week, which does not meet the criterion of having a minimum of 48 hours between attacks.",
+                        [
+                            1
+                        ],
+                        "not included"
+                    ],
+                    "5": [
+                        "The patient is under treatment, but there is no information about the frequency of acute headache medication use in the past 3 months.",
+                        [],
+                        "not enough information"
+                    ],
+                    "6": [
+                        "The patient is willing and able to comply with all study procedures, including completion of a headache diary and a migraine diary on the day of a migraine headache.",
+                        [
+                            12
+                        ],
+                        "included"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 15 year old girl with the history of recurrent bilateral headache.\n1. The attacks come 2 times or more per week and each episode lasts around a day or a half.\n2. The pain is pulsating in quality and severe in intensity, causing trouble in her routine physical activity.\n3. The attacks are associated with nausea and photophobia.\n4. She recently noticed that that there are more attacks around her menstrual period.\n5. She is diagnosed with the migraine headache and is under treatment.\n6. She is a high-school student and living with her both parents.\n7. She is a book worm and spend her free time in a public library near her home.\n8. She is also interested in writing stories and has several short stories in English.\n9. She rarely does exercise.\n10. Her BMI is 21 with the BP of 100/60.\n11. There is nothing remarkable in her physical exam.\n12. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: A Proof of Concept Study of the Efficacy and Safety of Oral LAT8881 in Acute Migraine\nTarget diseases: Acute Migraine\nInterventions: LAT8881, Placebo\nSummary: This is a randomised, placebo controlled, double blind, crossover proof of concept study to investigate the efficacy and safety of oral LAT8881 in acute migraine, with or without aura.\nExclusion criteria:\n 0. Unable to distinguish migraine from other primary headache conditions\n1. Average of 15 or more headache (migraine or nonmigraine) days per month or history of more than 25% of headaches occurring at time of wakening (wake up headaches)\n2. History of aura lasting more than 60 minutes\n3. History of vomiting within 2 hours of onset of a migraine headache in more than 25% of migraine headaches\n4. Medication overuse headache, defined as:\n5. use of opioids, triptans or ergot alkaloids or any combination of these medications for treatment of headaches 10 or more days per month during the 90 days prior to screening OR\n6. Non-steroidal anti-inflammatory drugs (NSAIDs) or simple analgesics for treatment of headaches on more than 14 days per month during the 90 days prior to screening\n7. Recent (3 years) history of frequent or chronic hemiplegic/ basilar migraine, tension headache, retinal migraine, ophthalmoplegic migraine as per ICHD classification, or treatment resistant atypical migraine\n8. Hospital admission for status intractable migraine or medication overuse headache within 6 months of screening\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 150.29781007766724,
+                "exclusion": {
+                    "0": [
+                        "The patient note does not mention the ability to distinguish migraine from other primary headache conditions. It is not possible that a good patient note will miss such information, so the criterion is not applicable.",
+                        [],
+                        "not applicable"
+                    ],
+                    "1": [
+                        "The patient has recurrent bilateral headaches, but the note does not specify the average number of headache days per month. There is not enough information to determine eligibility.",
+                        [
+                            1,
+                            2,
+                            5
+                        ],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient note does not mention a history of aura lasting more than 60 minutes. There is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "The patient note mentions nausea associated with the attacks, but does not specify the frequency of vomiting within 2 hours of onset. There is not enough information to determine eligibility.",
+                        [
+                            3
+                        ],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "The patient note does not mention the use of opioids, triptans, ergot alkaloids, NSAIDs, or simple analgesics for treatment of headaches. There is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "The patient note does not mention a recent history of frequent or chronic hemiplegic/basilar migraine, tension headache, retinal migraine, ophthalmoplegic migraine, or treatment-resistant atypical migraine. There is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ],
+                    "6": [
+                        "The patient note does not mention any hospital admission for status intractable migraine or medication overuse headache within 6 months of screening. There is not enough information to determine eligibility.",
+                        [],
+                        "not enough information"
+                    ]
+                }
+            }
+        },
+        "2": {
+            "NCT01648530": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 15 year old girl with the history of recurrent bilateral headache.\n1. The attacks come 2 times or more per week and each episode lasts around a day or a half.\n2. The pain is pulsating in quality and severe in intensity, causing trouble in her routine physical activity.\n3. The attacks are associated with nausea and photophobia.\n4. She recently noticed that that there are more attacks around her menstrual period.\n5. She is diagnosed with the migraine headache and is under treatment.\n6. She is a high-school student and living with her both parents.\n7. She is a book worm and spend her free time in a public library near her home.\n8. She is also interested in writing stories and has several short stories in English.\n9. She rarely does exercise.\n10. Her BMI is 21 with the BP of 100/60.\n11. There is nothing remarkable in her physical exam.\n12. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Chronic Migraine Epidemiology and Outcomes Study\nTarget diseases: Migraine Disorders\nInterventions: No Treatment\nSummary: This is a population internet-based study to characterize migraine clinical course and impact on family.\nInclusion criteria:\n 0. History of migraine\n1. U.S. Member of Survey Panel\n2. Household member of study participant\n3. Ability to complete internet-based questionnaires\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 81.91882610321045,
+                "inclusion": {
+                    "0": [
+                        "The patient has a history of recurrent bilateral headache, which is consistent with migraine. Direct evidence is present in sentence 0.",
+                        [
+                            0
+                        ],
+                        "included"
+                    ],
+                    "1": [
+                        "The patient is a high-school student, which suggests she is likely a U.S. member of a survey panel. However, there is no direct evidence of her being a member of a survey panel.",
+                        [],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient lives with both parents, which implies that her parents could be household members of the study participant. However, there is no direct evidence of her parents being household members of the study participant.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "The patient is expected to provide informed consent and comply with the trial protocol, which indicates her ability to complete internet-based questionnaires. Direct evidence is present in sentence 12.",
+                        [
+                            12
+                        ],
+                        "included"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 15 year old girl with the history of recurrent bilateral headache.\n1. The attacks come 2 times or more per week and each episode lasts around a day or a half.\n2. The pain is pulsating in quality and severe in intensity, causing trouble in her routine physical activity.\n3. The attacks are associated with nausea and photophobia.\n4. She recently noticed that that there are more attacks around her menstrual period.\n5. She is diagnosed with the migraine headache and is under treatment.\n6. She is a high-school student and living with her both parents.\n7. She is a book worm and spend her free time in a public library near her home.\n8. She is also interested in writing stories and has several short stories in English.\n9. She rarely does exercise.\n10. Her BMI is 21 with the BP of 100/60.\n11. There is nothing remarkable in her physical exam.\n12. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Chronic Migraine Epidemiology and Outcomes Study\nTarget diseases: Migraine Disorders\nInterventions: No Treatment\nSummary: This is a population internet-based study to characterize migraine clinical course and impact on family.\nExclusion criteria:\n 0. No access to internet\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 30.187947273254395,
+                "exclusion": {
+                    "1": [
+                        "The exclusion criterion is about the patient's access to the internet. The patient note does not mention anything about the patient's internet access. Therefore, there is not enough information to determine if the patient meets this criterion.",
+                        [],
+                        "not enough information"
+                    ]
+                }
+            }
+        }
+    },
+    "trec-202161": {
+        "0": {
+            "NCT01754519": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 45-year-old postmenopausal woman with cytologically confirmed breast cancer.\n1. A core biopsy revealed a 3 cm invasive ductal breast carcinoma in the left upper outer quadrant.\n2. The tumor is  HER2-positive and ER/PR negative.\n3. Axillary sampling revealed 5 positive lymph nodes.\n4. CXR was remarkable for metastatic lesions.\n5. The patient is using multivitamins and iron supplements.\n6. She does not smoke or consume alcohol.\n7. She is not sexually active and has no children.\n8. She is a candidate for tumor resection and agrees to do so prior to chemotherapy.\n9. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Radiation Therapy in Treating Post-Menopausal Women With Early Stage Breast Cancer Undergoing Surgery\nTarget diseases: Tubular Breast Carcinoma, Ductal Breast Carcinoma In Situ, Estrogen Receptor Negative, Estrogen Receptor Positive, HER2/Neu Negative, Invasive Cribriform Breast Carcinoma, Invasive Ductal Carcinoma, Not Otherwise Specified, Lobular Breast Carcinoma In Situ, Mucinous Breast Carcinoma, Papillary Breast Carcinoma, Progesterone Receptor Positive, Stage I Breast Cancer, Stage II Breast Cancer, Stage IIIA Breast Cancer, Stage IIIC Breast Cancer\nInterventions: Therapeutic Conventional Surgery, Radiation Therapy, Laboratory Biomarker Analysis, Quality-of-Life Assessment\nSummary: This phase II trial studies how well radiation therapy works in treating post-menopausal women with early stage breast cancer undergoing surgery. Radiation therapy uses high energy x rays to kill tumor cells. This may be an effective treatment for breast cancer.\nInclusion criteria:\n 0. Core needle biopsy (e.g. Mammotome, core, stereotactic, ultrasound guided) showing invasive mammary cancer (with or without concomitant ductal carcinoma or lobular carcinoma in situ) or ductal carcinoma in situ; acceptable histologic types of invasive mammary cancer include ductal, tubular, mucinous, papillary, cribriform and NOS (not otherwise specified); invasive lobular cancer is excluded\n1. Age >= 50 years and postmenopausal with no menses for at least one year prior to study enrollment\n2. Age > 70 years with invasive breast cancer clinical size =< 3 cm OR Age 50 - 70 years with invasive breast cancer clinical size =< 1.5 cm OR Age >= 50 years and postmenopausal with any grade ductal carcinoma in situ (DCIS) clinical extent =< 1.5 cm (clinical tumor size will be determined by pre-operative breast imaging-mammography, ultrasound and/or magnetic resonance imaging; in cases of multiple measurements, the largest recorded single dimension will be used to determine eligibility)\n3. Hormone receptor status\n4. Estrogen or progesterone receptor positive or\n5. Estrogen and progesterone receptor negative and clinical tumor size =< 1.0 cm\n6. Human epidermal growth factor receptor 2 (HER2)/neu negative on the core biopsy analysis defined as 0 or 1+ by immunohistochemistry or not amplified by fluorescent in situ hybridization analysis\n7. Tumor >= 0.5 cm from skin as defined by breast ultrasound\n8. Unicentric tumor\n9. Axillary lymph nodes negative by pre-operative physical examination in all cases and pathologic examination from surgery for invasive disease\n10. Negative surgical margins, defined as no margin-labeling ink on tumor cells from margin evaluation\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 146.61847639083862,
+                "inclusion": {
+                    "0": [
+                        "The patient has a core needle biopsy showing invasive ductal breast carcinoma, which meets the inclusion criterion.",
+                        [
+                            1
+                        ],
+                        "included"
+                    ],
+                    "1": [
+                        "The patient is 45 years old and postmenopausal, which meets the age and menopausal status inclusion criterion.",
+                        [],
+                        "included"
+                    ],
+                    "2": [
+                        "The patient's tumor size is 3 cm, which meets the size criteria for age > 50 years.",
+                        [],
+                        "included"
+                    ],
+                    "3": [
+                        "The patient's tumor is HER2-positive and ER/PR negative, which meets the hormone receptor status inclusion criterion.",
+                        [],
+                        "included"
+                    ],
+                    "4": [
+                        "The patient's tumor is >= 0.5 cm from the skin, which meets the distance from skin inclusion criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "The patient has a unicentric tumor, which meets the unicentric tumor inclusion criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "6": [
+                        "The patient has 5 positive axillary lymph nodes, which does not meet the axillary lymph nodes negative inclusion criterion.",
+                        [
+                            3
+                        ],
+                        "not included"
+                    ],
+                    "7": [
+                        "The patient's surgical margins are not mentioned, which does not provide enough information to determine eligibility based on this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "8": [
+                        "The patient is a candidate for tumor resection, which implies that the tumor is unicentric, meeting the unicentric tumor inclusion criterion.",
+                        [],
+                        "included"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 45-year-old postmenopausal woman with cytologically confirmed breast cancer.\n1. A core biopsy revealed a 3 cm invasive ductal breast carcinoma in the left upper outer quadrant.\n2. The tumor is  HER2-positive and ER/PR negative.\n3. Axillary sampling revealed 5 positive lymph nodes.\n4. CXR was remarkable for metastatic lesions.\n5. The patient is using multivitamins and iron supplements.\n6. She does not smoke or consume alcohol.\n7. She is not sexually active and has no children.\n8. She is a candidate for tumor resection and agrees to do so prior to chemotherapy.\n9. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Radiation Therapy in Treating Post-Menopausal Women With Early Stage Breast Cancer Undergoing Surgery\nTarget diseases: Tubular Breast Carcinoma, Ductal Breast Carcinoma In Situ, Estrogen Receptor Negative, Estrogen Receptor Positive, HER2/Neu Negative, Invasive Cribriform Breast Carcinoma, Invasive Ductal Carcinoma, Not Otherwise Specified, Lobular Breast Carcinoma In Situ, Mucinous Breast Carcinoma, Papillary Breast Carcinoma, Progesterone Receptor Positive, Stage I Breast Cancer, Stage II Breast Cancer, Stage IIIA Breast Cancer, Stage IIIC Breast Cancer\nInterventions: Therapeutic Conventional Surgery, Radiation Therapy, Laboratory Biomarker Analysis, Quality-of-Life Assessment\nSummary: This phase II trial studies how well radiation therapy works in treating post-menopausal women with early stage breast cancer undergoing surgery. Radiation therapy uses high energy x rays to kill tumor cells. This may be an effective treatment for breast cancer.\nExclusion criteria:\n 0. Initial core biopsy showing invasive lobular cancer\n1. Estrogen receptor and progesterone receptor negative tumor with clinical size > 1 cm\n2. Any Her 2+ breast cancer (immunohistochemistry 3+; or amplified by fluorescence in situ hybridization [FISH])\n3. Cancer in a patient with a known inherited susceptibility mutation in breast cancer (BRCA)1 or BRCA2\n4. Multicentric breast cancer (two foci of known cancer in the breast separated by greater than 5 cm, or in separate quadrants\n5. Clinically or pathologically positive axillary lymph nodes\n6. Any prior breast cancer\n7. Prior breast radiation therapy\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 110.35998725891113,
+                "exclusion": {
+                    "0": [
+                        "The exclusion criterion is not applicable as the patient has invasive ductal breast carcinoma, not invasive lobular cancer.",
+                        [],
+                        "not applicable"
+                    ],
+                    "1": [
+                        "The patient's tumor is ER/PR negative and 3 cm in size, which meets the exclusion criterion.",
+                        [
+                            1,
+                            2
+                        ],
+                        "excluded"
+                    ],
+                    "2": [
+                        "The patient's tumor is HER2-positive, which meets the exclusion criterion.",
+                        [
+                            2
+                        ],
+                        "excluded"
+                    ],
+                    "3": [
+                        "There is no information about BRCA1 or BRCA2 mutations in the patient note.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "There is no information about multicentric breast cancer in the patient note.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "The patient has 5 positive axillary lymph nodes, which meets the exclusion criterion.",
+                        [
+                            3
+                        ],
+                        "excluded"
+                    ],
+                    "6": [
+                        "There is no information about prior breast cancer in the patient note.",
+                        [],
+                        "not enough information"
+                    ],
+                    "7": [
+                        "There is no information about prior breast radiation therapy in the patient note.",
+                        [],
+                        "not enough information"
+                    ]
+                }
+            }
+        },
+        "1": {
+            "NCT03981705": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 45-year-old postmenopausal woman with cytologically confirmed breast cancer.\n1. A core biopsy revealed a 3 cm invasive ductal breast carcinoma in the left upper outer quadrant.\n2. The tumor is  HER2-positive and ER/PR negative.\n3. Axillary sampling revealed 5 positive lymph nodes.\n4. CXR was remarkable for metastatic lesions.\n5. The patient is using multivitamins and iron supplements.\n6. She does not smoke or consume alcohol.\n7. She is not sexually active and has no children.\n8. She is a candidate for tumor resection and agrees to do so prior to chemotherapy.\n9. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Assessment of Complete Pathologic Response After Neoadjuvant Chemotherapy for Breast Cancer\nTarget diseases: TN ER-/PR-/HER2- Breast Cancer, Triple Negative Breast Cancer, HER2-positive Breast Cancer, ERany/PRany/HER2+ Breast Cancer\nInterventions: Standard Trimodality Breast Imaging\nSummary: This is a feasibility study to gain preliminary information regarding whether breast imaging with or without a core needle biopsy after neoadjuvant chemotherapy (NAC) but before surgery can accurately predict complete pathologic response (pCR) in women with triple negative or HER2- positive breast cancer. pCR is defined as having no residual invasive breast cancer or ductal carcinoma in situ.\nInclusion criteria:\n 0. Biopsy proven triple negative (TN) (ER-/PR-/HER2-) or HER2 positive (ERany/PRany/HER2+) breast cancer for which neoadjuvant chemotherapy is planned\n1. A biopsy clip placed at the time of diagnostic biopsy\n2. 18 years of age or older\n3. Must be able to read and write in English due to the importance of survey (questionnaire) completion to meet the study's endpoint - this is justified as there is no individual benefit to study participation\n4. Able to provide written consent prior to any research related activities\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 71.2767276763916,
+                "inclusion": {
+                    "0": [
+                        "The patient has HER2-positive and ER/PR negative breast cancer, which meets the inclusion criterion for HER2-positive breast cancer. Direct evidence is present in sentence 2.",
+                        [
+                            2
+                        ],
+                        "included"
+                    ],
+                    "1": [
+                        "The patient note does not mention a biopsy clip, so there is not enough information to determine eligibility for this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "2": [
+                        "The patient is 45 years old, which meets the age criterion. Direct evidence is present in sentence 0.",
+                        [
+                            0
+                        ],
+                        "included"
+                    ],
+                    "3": [
+                        "The patient note does not mention the patient's ability to read and write in English, so there is not enough information to determine eligibility for this criterion.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "The patient will provide informed consent, which meets the criterion for written consent. Direct evidence is present in sentence 9.",
+                        [
+                            9
+                        ],
+                        "included"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 45-year-old postmenopausal woman with cytologically confirmed breast cancer.\n1. A core biopsy revealed a 3 cm invasive ductal breast carcinoma in the left upper outer quadrant.\n2. The tumor is  HER2-positive and ER/PR negative.\n3. Axillary sampling revealed 5 positive lymph nodes.\n4. CXR was remarkable for metastatic lesions.\n5. The patient is using multivitamins and iron supplements.\n6. She does not smoke or consume alcohol.\n7. She is not sexually active and has no children.\n8. She is a candidate for tumor resection and agrees to do so prior to chemotherapy.\n9. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Assessment of Complete Pathologic Response After Neoadjuvant Chemotherapy for Breast Cancer\nTarget diseases: TN ER-/PR-/HER2- Breast Cancer, Triple Negative Breast Cancer, HER2-positive Breast Cancer, ERany/PRany/HER2+ Breast Cancer\nInterventions: Standard Trimodality Breast Imaging\nSummary: This is a feasibility study to gain preliminary information regarding whether breast imaging with or without a core needle biopsy after neoadjuvant chemotherapy (NAC) but before surgery can accurately predict complete pathologic response (pCR) in women with triple negative or HER2- positive breast cancer. pCR is defined as having no residual invasive breast cancer or ductal carcinoma in situ.\nExclusion criteria:\n 0. Stage IV breast cancer\n1. T4 breast cancer\n2. Previous ipsilateral breast cancer\n3. Any contraindication for undergoing a contrast-enhanced breast MRI and/or the breast biopsy between chemotherapy and surgery\n\n\n\nPlain JSON output:",
+                "exclusion_inference_time": 72.42278599739075,
+                "exclusion": {
+                    "0": [
+                        "The patient has cytologically confirmed breast cancer, but there is no information about the stage. However, the presence of metastatic lesions in the CXR suggests that the patient might have Stage IV breast cancer.",
+                        [
+                            4
+                        ],
+                        "excluded"
+                    ],
+                    "1": [
+                        "The tumor size is 3 cm, which does not meet the T4 criteria (T4 tumors are greater than 5 cm).",
+                        [
+                            1
+                        ],
+                        "not excluded"
+                    ],
+                    "2": [
+                        "There is no information about previous ipsilateral breast cancer in the patient note.",
+                        [],
+                        "not enough information"
+                    ],
+                    "3": [
+                        "There is no information about contraindications for undergoing a contrast-enhanced breast MRI and/or the breast biopsy between chemotherapy and surgery in the patient note.",
+                        [],
+                        "not enough information"
+                    ]
+                }
+            }
+        },
+        "2": {
+            "NCT00898937": {
+                "inclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the inclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that allow someone to participate in a clinical study are called inclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the inclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each inclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific inclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"included\", \"not included\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"included\" denotes that the patient meets the inclusion criterion, while \"not included\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "inclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 45-year-old postmenopausal woman with cytologically confirmed breast cancer.\n1. A core biopsy revealed a 3 cm invasive ductal breast carcinoma in the left upper outer quadrant.\n2. The tumor is  HER2-positive and ER/PR negative.\n3. Axillary sampling revealed 5 positive lymph nodes.\n4. CXR was remarkable for metastatic lesions.\n5. The patient is using multivitamins and iron supplements.\n6. She does not smoke or consume alcohol.\n7. She is not sexually active and has no children.\n8. She is a candidate for tumor resection and agrees to do so prior to chemotherapy.\n9. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Gene Expression in Tumor Tissue From Women Undergoing Surgery for Breast Cancer or Core Biopsy of the Breast\nTarget diseases: Breast Cancer\nInterventions: microarray analysis, breast biopsy\nSummary: RATIONALE: Studying samples of breast tissue in the laboratory may help doctors learn more about the genes and proteins found in breast tissue.~PURPOSE: This phase I trial is studying genes and proteins in breast tissue from women undergoing surgery for breast cancer or core biopsy of the breast.\nInclusion criteria:\n 0. DISEASE CHARACTERISTICS:\n1. Undergoing surgery for breast cancer OR core biopsy sampling of the breast\n2. PATIENT CHARACTERISTICS:\n3. Not specified\n4. PRIOR CONCURRENT THERAPY:\n5. Not specified\n\n\n\nPlain JSON output:",
+                "inclusion_inference_time": 47.407771825790405,
+                "inclusion": {
+                    "1": [
+                        "The patient is undergoing surgery for breast cancer, meeting the criterion.",
+                        [
+                            8
+                        ],
+                        "included"
+                    ],
+                    "2": [
+                        "The patient is undergoing surgery for breast cancer, meeting the criterion.",
+                        [
+                            8
+                        ],
+                        "included"
+                    ],
+                    "3": [
+                        "Patient characteristics are not specified, so there is not enough information.",
+                        [],
+                        "not enough information"
+                    ],
+                    "4": [
+                        "Prior concurrent therapy is not specified, so there is not enough information.",
+                        [],
+                        "not enough information"
+                    ],
+                    "5": [
+                        "The patient is not specified for prior concurrent therapy, so there is not enough information.",
+                        [],
+                        "not enough information"
+                    ]
+                },
+                "exclusion_system_prompt": "You are a helpful assistant for clinical trial recruitment. Your task is to compare a given patient note and the exclusion criteria of a clinical trial to determine the patient's eligibility at the criterion level.\nThe factors that disqualify someone from participating are called exclusion criteria. They are based on characteristics such as age, gender, the type and stage of a disease, previous treatment history, and other medical conditions.\nYou should check the exclusion criteria one-by-one, and output the following three elements for each criterion:\n\tElement 1. For each exclusion criterion, briefly generate your reasoning process: First, judge whether the criterion is not applicable (not very common), where the patient does not meet the premise of the criterion. Then, check if the patient note contains direct evidence. If so, judge whether the patient meets or does not meet the criterion. If there is no direct evidence, try to infer from existing evidence, and answer one question: If the criterion is true, is it possible that a good patient note will miss such information? If impossible, then you can assume that the criterion is not true. Otherwise, there is not enough information.\n\tElement 2. If there is relevant information, you must generate a list of relevant sentence IDs in the patient note. If there is no relevant information, you must annotate an empty list.\n\tElement 3. Classify the patient eligibility for this specific exclusion criterion: the label must be chosen from {\"not applicable\", \"not enough information\", \"excluded\", \"not excluded\"}. \"not applicable\" should only be used for criteria that are not applicable to the patient. \"not enough information\" should be used where the patient note does not contain sufficient information for making the classification. Try to use as less \"not enough information\" as possible because if the note does not mention a medically important fact, you can assume that the fact is not true for the patient. \"excluded\" denotes that the patient meets the exclusion criterion and should be excluded in the trial, while \"not excluded\" means the reverse.\nYou should output only a JSON dict exactly formatted as: dict{str(criterion_number): list[str(element_1_brief_reasoning), list[int(element_2_sentence_id)], str(element_3_eligibility_label)]}.",
+                "exclusion_user_prompt": "Here is the patient note, each sentence is led by a sentence_id:\n0. The patient is a 45-year-old postmenopausal woman with cytologically confirmed breast cancer.\n1. A core biopsy revealed a 3 cm invasive ductal breast carcinoma in the left upper outer quadrant.\n2. The tumor is  HER2-positive and ER/PR negative.\n3. Axillary sampling revealed 5 positive lymph nodes.\n4. CXR was remarkable for metastatic lesions.\n5. The patient is using multivitamins and iron supplements.\n6. She does not smoke or consume alcohol.\n7. She is not sexually active and has no children.\n8. She is a candidate for tumor resection and agrees to do so prior to chemotherapy.\n9. The patient will provide informed consent, and will comply with the trial protocol without any practical issues.\n\nHere is the clinical trial:\nTitle: Gene Expression in Tumor Tissue From Women Undergoing Surgery for Breast Cancer or Core Biopsy of the Breast\nTarget diseases: Breast Cancer\nInterventions: microarray analysis, breast biopsy\nSummary: RATIONALE: Studying samples of breast tissue in the laboratory may help doctors learn more about the genes and proteins found in breast tissue.~PURPOSE: This phase I trial is studying genes and proteins in breast tissue from women undergoing surgery for breast cancer or core biopsy of the breast.\nExclusion criteria:\n \n\n\nPlain JSON output:",
+                "exclusion_inference_time": 52.27501726150513,
+                "exclusion": {
+                    "1": [
+                        "The patient has breast cancer, which is the target disease for the trial. Therefore, this criterion is not applicable.",
+                        [],
+                        "not applicable"
+                    ],
+                    "2": [
+                        "The patient has undergone a core biopsy, which is one of the interventions in the trial. Therefore, this criterion is not applicable.",
+                        [],
+                        "not applicable"
+                    ],
+                    "3": [
+                        "The patient has metastatic lesions, which may be an exclusion criterion. However, there is no direct evidence in the patient note regarding the extent of metastasis.",
+                        [
+                            4
+                        ],
+                        "not enough information"
+                    ]
+                }
+            }
+        }
     }
 }
