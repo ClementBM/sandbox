@@ -89,11 +89,31 @@ class TransformerBlock(nn.Module):
         return out
 
 
-class Gpt(nn.Module):
-    def __init__(self, vocab_size, num_heads, head_size, embed_dim, max_len):
+class EmbeddingStem(nn.Module):
+
+    def __init__(self, vocab_size, embed_dim, max_len):
         super().__init__()
         self.token_embedding_table = nn.Embedding(vocab_size, embed_dim)
         self.position_embedding_table = nn.Embedding(max_len, embed_dim)
+
+    def forward(self, idx):
+        B, T = idx.shape
+
+        token_embedding = self.token_embedding_table(idx)
+        position_embedding = self.position_embedding_table(
+            torch.arange(T, device=DEVICE)
+        )
+
+        return token_embedding + position_embedding  # B, T, embedding_size
+
+
+class Gpt(nn.Module):
+    def __init__(self, vocab_size, num_heads, head_size, embed_dim, max_len):
+        super().__init__()
+
+        self.embedding = EmbeddingStem(
+            vocab_size=vocab_size, embed_dim=embed_dim, max_len=max_len
+        )
 
         head_size = embed_dim // num_heads
 
@@ -110,12 +130,7 @@ class Gpt(nn.Module):
         # idx and targets are both (B, T) tensor of integers
         B, T = idx.shape
 
-        token_embedding = self.token_embedding_table(idx)
-        position_embedding = self.position_embedding_table(
-            torch.arange(T, device=DEVICE)
-        )
-
-        x = token_embedding + position_embedding  # B, T, embedding_size
+        x = self.embedding(idx)  # B, T, embedding_size
         x = self.transformer_block(x)  # B, T, head_size * num_heads
         x = self.layer_norm(x)
         logits = self.lm_head(x)  # B, T, vocab_size

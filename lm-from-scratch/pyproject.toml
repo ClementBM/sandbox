@@ -28,6 +28,7 @@ opendelta = "^0.3.2"
 torchtext = "0.15.1"
 torchmetrics = "^1.2.0"
 tensorboard = "^2.15.1"
+captum = "^0.7.0"
 
 [tool.poetry.dev-dependencies]
 pylint = "*"
